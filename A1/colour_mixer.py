@@ -1,5 +1,15 @@
 
-def primary_color(color1 , color2):
+def primary_color(color1, color2):
+    """
+    Return the resulting color from mixing two primary colors
+
+    PARAM: color1, a string
+    PARAM: color2, a string
+    PRE-CONDITION: color1 != color2 and must be a lowercase string containing the colors red, blue, or yellow
+    PRE-CONDITION: color2 != color1 and must be a lowercase string containing the colors red, blue, or yellow
+    POST-CONDITION: gives the color that results from the mixture of given colors
+    RETURN: the resultant color as a string in lowercase or a message to correct user input as a string
+    """
     if color1 == "red" and color2 == "blue":
         return "purple"
     elif color1 == "blue" and color2 == "red":
@@ -17,11 +27,28 @@ def primary_color(color1 , color2):
     else:
         return "Your chosen colors must be primary colors (red,blue,yellow)"
 
+
 def color_mixer():
+    """
+    Receive user input then give the resulting color from mixing two primary colors
+
+    Uses helper function to find the resultant color from the user inputted primary colors
+    RETURN: the resultant color as a string
+    """
     first_color = input("input your first color: ").strip()
     second_color = input("input your second color: ").strip()
-    return primary_color(first_color.lower(),second_color.lower())
+    return primary_color(first_color.lower(), second_color.lower())
 
-print(color_mixer())
+
+def main():
+    """
+    Drive the program
+    """
+    print(color_mixer())
+
+
+if __name__ == '__main__':
+    main()
+
 
 

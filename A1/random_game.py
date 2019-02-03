@@ -2,7 +2,7 @@ import random
 
 
 def computer_choice():
-    choice = random.randrange(0,3)
+    choice = random.randint(0, 2)
     if choice == 0:
         return "Rock"
     elif choice == 1:
