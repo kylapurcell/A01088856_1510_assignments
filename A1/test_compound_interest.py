@@ -11,5 +11,5 @@ class TestCompoundInterest(TestCase):
         self.assertEqual(float, type(compound_interest.compound_interest(7.5, 1.2, 3, 5)))
 
     def test_compound_interest3(self):
-        self.assertEqual(, compound_interest)
+        self.assertEqual(368.0462271001469, compound_interest.compound_interest(4.5, 0.7, 3, 7))
 
