@@ -8,6 +8,23 @@ def number_converter(number):
     PRE-CONDITION: number must be a string or an integer
     POST-CONDITION: converts letters into a number or returns given number
     RETURN: the corresponding number as a string or the given number as a string
+
+    >>> number_converter("A")
+    '2'
+    >>> number_converter("D")
+    '3'
+    >>> number_converter("G")
+    '4'
+    >>> number_converter("J")
+    '5'
+    >>> number_converter("M")
+    '6'
+    >>> number_converter("P")
+    '7'
+    >>> number_converter("T")
+    '8'
+    >>> number_converter("X")
+    '9'
     """
     if number == "A" or number == "B" or number == "C":
         return str(2)
@@ -56,6 +73,8 @@ def main():
     """
     Drive the program
     """
+    import doctest
+    doctest.testmod()
     print(number_translator())
 
 

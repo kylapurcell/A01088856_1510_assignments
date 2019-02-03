@@ -10,7 +10,7 @@ class TestNumberGenerator(TestCase):
         self.assertEqual(list, type(lotto.number_generator()))   # tests if out put is of type list
 
     def test_number_generator3(self):                           # tests if contents of the list are integer
-        self.assertTrue(int, sum(lotto.number_generator()))
+        self.assertTrue(int, type(sum(lotto.number_generator())))
 
     def test_number_generator4(self):
         list2 = lotto.number_generator()

@@ -7,10 +7,12 @@ def how_many_ones(real_number):
     POST-CONDITION: calculates what number is in the ones column of a given number
     RETURN: the number in the ones column as an integer
 
-    >>> how_many_ones(0)
-    0
+    >>> how_many_ones(1)
+    1
     >>> how_many_ones(13)
     3
+    >>> how_many_ones(10000)
+    0
     """
     ones = real_number % 10
     return ones
@@ -25,10 +27,12 @@ def how_many_tens(real_number):
     POST-CONDITION: calculates what number is in the tens column of a given number
     RETURN: the number in the tens column as a positive integer
 
-    >>> how_many_tens(0)
+    >>> how_many_tens(1)
     0
     >>> how_many_tens(11)
     1
+    >>> how_many_tens(10000)
+    0
     """
     tens = real_number // 10 % 10
     return tens
@@ -42,6 +46,13 @@ def how_many_hundreds(real_number):
     PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: calculates what number is in the hundreds column of a given number
     RETURN: the number in the hundreds column as an integer
+    
+    >>> how_many_hundreds(1)
+    0
+    >>> how_many_hundreds(400)
+    4
+    >>> how_many_hundreds(10000)
+    0
     """
     hundreds = real_number // 100 % 10
     return hundreds
@@ -55,6 +66,13 @@ def how_many_thousands(real_number):
     PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: calculates what number is in the thousands column of a given number
     RETURN: the number in the thousands column as an integer
+
+    >>> how_many_thousands(1)
+    0
+    >>> how_many_thousands(6000)
+    6
+    >>> how_many_thousands(10000)
+    0
     """
     thousands = real_number // 1000 % 10
     return thousands
@@ -68,6 +86,13 @@ def how_many_ten_thousands(real_number):
     PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: calculates what number is in the ten thousands column of a given number
     RETURN: the number in the thousands column as an integer
+
+    >>> how_many_ten_thousands(1)
+    0
+    >>> how_many_ten_thousands(3000)
+    0
+    >>> how_many_ten_thousands(10000)
+    1
     """
     ten_thousands = real_number // 10000 % 10
     return ten_thousands
@@ -81,6 +106,17 @@ def roman_ones(real_number):
     PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: calculates the corresponding roman number for the ones column
     RETURN: the roman numeral of the ones column as a string
+
+    >>> roman_ones(1)
+    'I'
+    >>> roman_ones(4)
+    'IV'
+    >>> roman_ones(5)
+    'V'
+    >>> roman_ones(6)
+    'VI'
+    >>> roman_ones(9)
+    'IX'
     """
     roman1 = how_many_ones(real_number) - 5
     if roman1 < -1:
@@ -101,6 +137,17 @@ def roman_tens(real_number):
     PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: calculates the corresponding roman number for the tens column
     RETURN: the roman numeral of the tens column as a string
+
+    >>> roman_tens(10)
+    'X'
+    >>> roman_tens(40)
+    'XL'
+    >>> roman_tens(50)
+    'L'
+    >>> roman_tens(60)
+    'LX'
+    >>> roman_tens(90)
+    'XC'
     """
     roman10 = how_many_tens(real_number) - 5
     if roman10 < -1:
@@ -121,6 +168,17 @@ def roman_hundreds(real_number):
     PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: calculates the corresponding roman number for the hundreds column
     RETURN: the roman numeral of the hundreds column as a string
+
+    >>> roman_hundreds(100)
+    'C'
+    >>> roman_hundreds(400)
+    'CD'
+    >>> roman_hundreds(500)
+    'D'
+    >>> roman_hundreds(600)
+    'DC'
+    >>> roman_hundreds(900)
+    'CM'
     """
     roman100 = how_many_hundreds(real_number) - 5
     if roman100 < -1:
@@ -141,6 +199,13 @@ def roman_thousands(real_number):
      PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
      POST-CONDITION: calculates the corresponding roman number for the thousands column
      RETURN: the roman numeral of the thousands column as a string
+
+     >>> roman_thousands(1)
+     ''
+     >>> roman_thousands(1000)
+     'M'
+     >>> roman_thousands(5000)
+     'MMMMM'
      """
     return "M" * how_many_thousands(real_number)
 
@@ -153,6 +218,13 @@ def roman_ten_thousands(real_number):
     PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: calculates the corresponding roman number for the ten thousands column
     RETURN: the roman numeral of the ten thousands column as a string
+
+    >>> roman_ten_thousands(1)
+    ''
+    >>> roman_ten_thousands(5000)
+    ''
+    >>> roman_ten_thousands(10000)
+    'MMMMMMMMMM'
     """
     return "M" * how_many_ten_thousands(real_number) * 10
 
@@ -165,6 +237,17 @@ def roman_numerals(positive_int):
     PRE-CONDITION: positive_int must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: concatenates the corresponding roman numerals for each column
     RETURN: the corresponding roman numeral as a string
+
+    >>> roman_numerals(1)
+    'I'
+    >>> roman_numerals(25)
+    'XXV'
+    >>> roman_numerals(560)
+    'DLX'
+    >>> roman_numerals(4545)
+    'MMMMDXLV'
+    >>> roman_numerals(10000)
+    'MMMMMMMMMM'
     """
     return roman_ten_thousands(positive_int) + roman_thousands(positive_int) \
            + (roman_hundreds(positive_int)) + roman_tens(positive_int) + roman_ones(positive_int)

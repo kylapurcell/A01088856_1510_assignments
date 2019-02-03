@@ -27,6 +27,13 @@ def who_wins(choice1, choice2):
     PRE-CONDITION: choice2 must be a string in title case with no leading or trailing whitespace
     POST-CONDITION: returns the winner based on choice1 and choice2
     RETURN: Computer Wins, Draw, Or You Win as a string
+
+    >>> who_wins("Paper","Rock")
+    'Computer Wins'
+    >>> who_wins("Paper","Paper")
+    'Draw'
+    >>> who_wins("Paper", "Scissors")
+    'You Win'
     """
     if choice1 == "Paper" and choice2 == "Rock":
         return "Computer Wins"
@@ -70,6 +77,8 @@ def main():
     """
     Drive the program
     """
+    import doctest
+    doctest.testmod()
     print(rock_paper_scissors())
 
 

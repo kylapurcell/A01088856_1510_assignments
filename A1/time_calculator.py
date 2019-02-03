@@ -6,17 +6,29 @@ def time_calculator(seconds):
     PRE-CONDITION: seconds must be a positive integer
     POST-CONDITION: gives a list with the corresponding amount of days, hours, minutes and seconds
     RETURN: a list of integers with the amount of days, hours, minutes, and seconds in that order
+
+    >>> time_calculator(0)
+    [0, 0, 0, 0]
+
+    >>> time_calculator(1)
+    [0, 0, 0, 1]
+
+    >>> time_calculator(31536000)
+    [365, 8760, 525600, 31536000]
     """
-    minutes = int(seconds/60)
-    hours = int(seconds/3600)
-    days = int(seconds/86400)
-    return [days, hours, minutes, seconds]
+    seconds1 = int(seconds)
+    minutes = int(seconds1/60)
+    hours = int(seconds1/3600)
+    days = int(seconds1/86400)
+    return [days, hours, minutes, seconds1]
 
 
 def main():
     """
     Drive the program
     """
+    import doctest
+    doctest.testmod()
     print(time_calculator(68000))
 
     

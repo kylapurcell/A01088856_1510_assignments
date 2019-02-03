@@ -32,10 +32,10 @@ def primary_color(color1, color2):
         return "green"
     elif color1 == "blue" and color2 == "yellow":
         return "green"
-    elif color1 == color2:
+    elif color1 == color2:                                  # if two colors are the same returns a helpful message
         return "Your chosen colors must be different"
     else:
-        return "Your chosen colors must be primary colors (red,blue,yellow)"
+        return "Your chosen colors must be primary colors (red,blue,yellow)"  # if given colors != red, blue, yellow
 
 
 def color_mixer():
@@ -45,9 +45,9 @@ def color_mixer():
     Uses helper function to find the resultant color from the user inputted primary colors
     RETURN: the resultant color as a string
     """
-    first_color = input("input your first color: ").strip()
+    first_color = input("input your first color: ").strip()    # takes user input and strips any whitespace
     second_color = input("input your second color: ").strip()
-    return primary_color(first_color.lower(), second_color.lower())
+    return primary_color(first_color.lower(), second_color.lower())  # ensures user input is in lower case
 
 
 def main():
