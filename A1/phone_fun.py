@@ -1,3 +1,12 @@
+# Kyla Purcell
+
+# A01088856
+
+# February 3rd 2019
+
+# A program that converts a 10 digit telephone number with letters in it to its numerical version
+
+
 def number_converter(number):
     """
     Convert letters of the alphabet into the corresponding number or return the given number
@@ -55,11 +64,12 @@ def number_translator():
     RETURN: the numeric version of given phone number as a string in XXX-XXX-XXX format
     """
 
-    phone_number = input("Input a 10 digit phone number in format XXX-XXX-XXXX: ").strip().upper()
-    digit1= number_converter(phone_number[0])
-    digit2= number_converter(phone_number[1])
-    digit3= number_converter(phone_number[2])
-    digit4= number_converter(phone_number[4])
+    phone_number = input("Input a 10 digit phone number in format XXX-XXX-XXXX: ").strip().upper()  # strips user input
+    # and converts to uppercase
+    digit1 = number_converter(phone_number[0])
+    digit2 = number_converter(phone_number[1])
+    digit3 = number_converter(phone_number[2])     # Converts phone_number at each index excluding - characters
+    digit4 = number_converter(phone_number[4])
     digit5 = number_converter(phone_number[5])
     digit6 = number_converter(phone_number[6])
     digit7 = number_converter(phone_number[8])

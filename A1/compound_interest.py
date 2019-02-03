@@ -1,3 +1,11 @@
+# Kyla Purcell
+
+# A01088856
+
+# February 3rd 2019
+
+# A program that calculates compound interest
+
 
 def compound_interest(principal, annual_interest, number_per_year, years):
     """

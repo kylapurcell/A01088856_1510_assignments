@@ -9,7 +9,7 @@ def computer_choice():
     RETURN: a choice of Rock, Paper, or Scissors as a string in title case
     """
     choice = random.randint(0, 2)
-    if choice == 0:
+    if choice == 0:                   # Returns Rock, Paper, or, Scissors based on random choice of integer [0, 2]
         return "Rock"
     elif choice == 1:
         return "Paper"
@@ -55,6 +55,15 @@ def who_wins(choice1, choice2):
         return "Computer Wins"
 
 
+# Kyla Purcell
+
+# A01088856
+
+# February 3rd 2019
+
+# A program that plays a round of Rock, Paper, Scissors with the user
+
+
 def rock_paper_scissors():
     """
     Play a game of Rock, Paper, Scissors with the user
@@ -65,10 +74,10 @@ def rock_paper_scissors():
     RETURN: the user choice, the computer choice and the winner as a concatenated string or
     a helpful message to correct user input as a string
     """
-    user_choice = input("Input your guess: ").strip().title()
-    cpu_choice = computer_choice()
+    user_choice = input("Input your guess: ").strip().title()  # strips user input and converts to title case
+    cpu_choice = computer_choice()  # helper function to get computer's choice
     if user_choice == "Rock" or user_choice == "Paper" or user_choice == "Scissors":
-        return "cpu choose " + cpu_choice + ", you choose " + user_choice + ", so " + who_wins(cpu_choice,user_choice)
+        return "cpu choose " + cpu_choice + ", you choose " + user_choice + ", so " + who_wins(cpu_choice, user_choice)
     else:
         return "Please choose between rock, paper or scissors to play the game"
 

@@ -1,3 +1,12 @@
+# Kyla Purcell
+
+# A01088856
+
+# February 3rd 2019
+
+# A program that converts real numbers in the range 1-10,000 into roman numerals
+
+
 def how_many_ones(real_number):
     """
     Calculate how many digits are present in ones column of a given number
@@ -14,7 +23,7 @@ def how_many_ones(real_number):
     >>> how_many_ones(10000)
     0
     """
-    ones = real_number % 10
+    ones = real_number % 10  # Uses remainder to calculate what number in ones column
     return ones
 
 
@@ -34,7 +43,7 @@ def how_many_tens(real_number):
     >>> how_many_tens(10000)
     0
     """
-    tens = real_number // 10 % 10
+    tens = real_number // 10 % 10  # Uses remainder to calculate what number in tens column
     return tens
 
 
@@ -54,7 +63,7 @@ def how_many_hundreds(real_number):
     >>> how_many_hundreds(10000)
     0
     """
-    hundreds = real_number // 100 % 10
+    hundreds = real_number // 100 % 10  # Uses remainder to calculate what number in hundreds column
     return hundreds
 
 
@@ -74,7 +83,7 @@ def how_many_thousands(real_number):
     >>> how_many_thousands(10000)
     0
     """
-    thousands = real_number // 1000 % 10
+    thousands = real_number // 1000 % 10  # Uses remainder to calculate what number in thousands column
     return thousands
 
 
@@ -94,7 +103,7 @@ def how_many_ten_thousands(real_number):
     >>> how_many_ten_thousands(10000)
     1
     """
-    ten_thousands = real_number // 10000 % 10
+    ten_thousands = real_number // 10000 % 10  # Uses remainder to calculate what number in ten thousands column
     return ten_thousands
 
 
@@ -118,14 +127,14 @@ def roman_ones(real_number):
     >>> roman_ones(9)
     'IX'
     """
-    roman1 = how_many_ones(real_number) - 5
+    roman1 = how_many_ones(real_number) - 5  # calculates the difference to determine what roman numeral
     if roman1 < -1:
         return "I" * how_many_ones(real_number)
-    elif roman1 == -1:
+    elif roman1 == -1:  # If difference is -1, ones number = 4 so special case
         return "IV"
     elif 4 > roman1 >= 0:
         return "V" + "I" * roman1
-    elif roman1 == 4:
+    elif roman1 == 4:  # If difference is 4, ones number = 9, so special case
         return "IX"
 
 
@@ -149,14 +158,14 @@ def roman_tens(real_number):
     >>> roman_tens(90)
     'XC'
     """
-    roman10 = how_many_tens(real_number) - 5
+    roman10 = how_many_tens(real_number) - 5  # calculates the difference to determine what roman numeral
     if roman10 < -1:
         return "X" * how_many_tens(real_number)
-    elif roman10 == -1:
+    elif roman10 == -1:  # If difference is -1, tens number = 40, so special case
         return "XL"
     elif 4 > roman10 >= 0:
         return "L" + "X" * roman10
-    elif roman10 == 4:
+    elif roman10 == 4:  # If difference is 4, tens number = 90, so special case
         return "XC"
 
 
@@ -180,14 +189,14 @@ def roman_hundreds(real_number):
     >>> roman_hundreds(900)
     'CM'
     """
-    roman100 = how_many_hundreds(real_number) - 5
+    roman100 = how_many_hundreds(real_number) - 5  # calculates the difference to determine what roman numeral
     if roman100 < -1:
         return "C" * how_many_hundreds(real_number)
-    elif roman100 == -1:
+    elif roman100 == -1:  # If difference is -1, hundreds number = 400, so special case
         return "CD"
     elif 4 > roman100 >= 0:
         return "D" + "C" * roman100
-    elif roman100 == 4:
+    elif roman100 == 4:  # If difference is 4, hundreds number = 900, so special case
         return "CM"
 
 
@@ -207,7 +216,7 @@ def roman_thousands(real_number):
      >>> roman_thousands(5000)
      'MMMMM'
      """
-    return "M" * how_many_thousands(real_number)
+    return "M" * how_many_thousands(real_number)  # Thousands roman numerals depends only on how_many_thousands
 
 
 def roman_ten_thousands(real_number):
@@ -226,7 +235,7 @@ def roman_ten_thousands(real_number):
     >>> roman_ten_thousands(10000)
     'MMMMMMMMMM'
     """
-    return "M" * how_many_ten_thousands(real_number) * 10
+    return "M" * how_many_ten_thousands(real_number) * 10  # Ten Thousands numeral is ten thousands number times 10
 
 
 def roman_numerals(positive_int):
@@ -264,8 +273,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-

@@ -1,3 +1,11 @@
+# Kyla Purcell
+
+# A01088856
+
+# February 3rd 2019
+
+# A program that prints the color that results from mixing two given primary colors
+
 
 def primary_color(color1, color2):
     """

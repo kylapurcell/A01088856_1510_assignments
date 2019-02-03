@@ -1,3 +1,12 @@
+# Kyla Purcell
+
+# A01088856
+
+# February 3rd 2019
+
+# A program that converts time in seconds to various different units
+
+
 def time_calculator(seconds):
     """
     Convert seconds to days, hours, and minutes
