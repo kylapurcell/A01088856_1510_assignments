@@ -1,3 +1,12 @@
+# Kyla Purcell
+
+# A01088856
+
+# February 3rd 2019
+
+# A program that plays a round of Rock, Paper, Scissors with the user
+
+
 import random
 
 
@@ -53,15 +62,6 @@ def who_wins(choice1, choice2):
         return "Draw"
     elif choice1 == "Scissors" and choice2 == "Paper":
         return "Computer Wins"
-
-
-# Kyla Purcell
-
-# A01088856
-
-# February 3rd 2019
-
-# A program that plays a round of Rock, Paper, Scissors with the user
 
 
 def rock_paper_scissors():
