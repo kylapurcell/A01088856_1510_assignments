@@ -174,6 +174,8 @@ def main():
     """
     Drive the program
     """
+    import doctest
+    doctest.testmod()
     print(roman_numerals(1789))
 
 

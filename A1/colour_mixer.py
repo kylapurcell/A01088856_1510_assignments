@@ -9,6 +9,16 @@ def primary_color(color1, color2):
     PRE-CONDITION: color2 != color1 and must be a lowercase string containing the colors red, blue, or yellow
     POST-CONDITION: gives the color that results from the mixture of given colors
     RETURN: the resultant color as a string in lowercase or a message to correct user input as a string
+
+    >>> primary_color("red", "blue")
+    'purple'
+
+    >>> primary_color("red", "yellow")
+    'orange'
+
+    >>> primary_color("blue", "yellow")
+    'green'
+
     """
     if color1 == "red" and color2 == "blue":
         return "purple"
@@ -44,6 +54,8 @@ def main():
     """
     Drive the program
     """
+    import doctest
+    doctest.testmod()
     print(color_mixer())
 
 
