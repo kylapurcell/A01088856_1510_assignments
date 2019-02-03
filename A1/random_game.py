@@ -67,6 +67,9 @@ def rock_paper_scissors():
 
 
 def main():
+    """
+    Drive the program
+    """
     print(rock_paper_scissors())
 
 

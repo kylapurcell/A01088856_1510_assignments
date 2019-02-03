@@ -6,6 +6,11 @@ def how_many_ones(real_number):
     PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: calculates what number is in the ones column of a given number
     RETURN: the number in the ones column as an integer
+
+    >>> how_many_ones(0)
+    0
+    >>> how_many_ones(13)
+    3
     """
     ones = real_number % 10
     return ones
@@ -19,6 +24,11 @@ def how_many_tens(real_number):
     PRE-CONDITION: real number must be a positive integer in the inclusive range(1,10000)
     POST-CONDITION: calculates what number is in the tens column of a given number
     RETURN: the number in the tens column as a positive integer
+
+    >>> how_many_tens(0)
+    0
+    >>> how_many_tens(11)
+    1
     """
     tens = real_number // 10 % 10
     return tens
