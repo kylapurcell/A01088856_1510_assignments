@@ -1,8 +1,8 @@
 def number_converter(number):
     """
-    Convert letters of the alphabet into the corresponding or return the given number
+    Convert letters of the alphabet into the corresponding number or return the given number
 
-    If number is a letter, will convert to a number in the form of a string, else will return a string version of given
+    If number is a letter, will convert to a numeric value in the form of a string, else will return a string version of given
     number
     PARAM: number, a string or an integer
     PRE-CONDITION: number must be a string or an integer

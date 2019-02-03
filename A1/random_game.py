@@ -2,6 +2,12 @@ import random
 
 
 def computer_choice():
+    """
+    Generate a random choice of Rock, Paper, or Scissors
+
+    Generates a random number from 0 to 2 to represent rock, paper, or scissors
+    RETURN: a choice of Rock, Paper, or Scissors as a string in title case
+    """
     choice = random.randint(0, 2)
     if choice == 0:
         return "Rock"
@@ -11,7 +17,17 @@ def computer_choice():
         return "Scissors"
 
 
-def who_wins(choice1,choice2):
+def who_wins(choice1, choice2):
+    """
+    Decide which choice will win
+
+    PARAM: choice1, a string
+    PARAM: choice2, a string
+    PRE-CONDITION: choice1 must be a string in title case with no leading or trailing whitespace
+    PRE-CONDITION: choice2 must be a string in title case with no leading or trailing whitespace
+    POST-CONDITION: returns the winner based on choice1 and choice2
+    RETURN: Computer Wins, Draw, Or You Win as a string
+    """
     if choice1 == "Paper" and choice2 == "Rock":
         return "Computer Wins"
     elif choice1 == "Paper" and choice2 == "Scissors":
@@ -33,6 +49,15 @@ def who_wins(choice1,choice2):
 
 
 def rock_paper_scissors():
+    """
+    Play a game of Rock, Paper, Scissors with the user
+
+    Receive the users choice, generates the computer choice then returns the winner
+    PRE-CONDITION: user_choice must be a string
+    POST-CONDITION: If user choice = Rock, Paper, Or Scissors decides the winner, else returns helpful message
+    RETURN: the user choice, the computer choice and the winner as a concatenated string or
+    a helpful message to correct user input as a string
+    """
     user_choice = input("Input your guess: ").strip().title()
     cpu_choice = computer_choice()
     if user_choice == "Rock" or user_choice == "Paper" or user_choice == "Scissors":
@@ -41,7 +66,13 @@ def rock_paper_scissors():
         return "Please choose between rock, paper or scissors to play the game"
 
 
-print(rock_paper_scissors())
+def main():
+    print(rock_paper_scissors())
+
+
+if __name__ == '__main__':
+    main()
+
 
 
 
