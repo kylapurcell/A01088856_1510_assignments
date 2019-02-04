@@ -38,7 +38,7 @@ def main():
     """
     import doctest
     doctest.testmod()
-    print(compound_interest(4.2, 1.36, 3, 9))
+    print(compound_interest(5.3, 1.36, 3, 9))
 
 
 if __name__ == '__main__':

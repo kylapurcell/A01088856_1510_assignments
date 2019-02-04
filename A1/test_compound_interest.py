@@ -13,3 +13,6 @@ class TestCompoundInterest(TestCase):
     def test_compound_interest3(self):
         self.assertEqual(368.0462271001469, compound_interest.compound_interest(4.5, 0.7, 3, 7))  # Tests higher bounds
 
+    def test_compound_interest4(self):
+        self.assertEqual(2126.048271773767, compound_interest.compound_interest(7.8, 1.36, 3, 5))  # Tests higher bounds
+
