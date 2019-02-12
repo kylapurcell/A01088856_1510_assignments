@@ -59,6 +59,13 @@ def generate_consonant():
     return random.choice(consonants)
 
 
+def generate_syllable():
+    return generate_consonant() + generate_vowel()
+
+
+print(generate_syllable())
+
+
 def create_character(name_length):
     """
     Create a Dungeons and Dragons character.
@@ -75,7 +82,7 @@ def create_character(name_length):
     list4 = ["Intelligence", roll_die(3, 6)]
     list5 = ["Wisdom", roll_die(3, 6)]
     list6 = ["Charisma", roll_die(3, 6)]
-    list_final = [create_name(name_length), list1, list2, list3, list4, list5, list6]
+    list_final = ["Name", list1, list2, list3, list4, list5, list6]
     if name_length > 0:
         return list_final
     else:
