@@ -63,7 +63,15 @@ def generate_syllable():
     return generate_consonant() + generate_vowel()
 
 
-print(generate_syllable())
+def generate_name(syllables):
+    name = ""
+    name_list = []
+    while len(name_list) < syllables:
+        name_list.append(generate_syllable())
+    return name.join(name_list).title()
+
+
+
 
 
 def create_character(name_length):
