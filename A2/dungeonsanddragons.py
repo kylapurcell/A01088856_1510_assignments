@@ -172,18 +172,18 @@ def combat_round(opponent_one, opponent_two):
         attack1 = attack_round(opponent_one, opponent_two)
         print('Attack equals ' + str(attack1))
         opponent_two['Health'] = opponent_two['Health'] - attack1
-        print(str(opponent_two))
+        if opponent_two['Health'] < 0:
+            print(opponent_two['Name'] + ' has died')
+        else:
+            print(opponent_two['Name'] + ' survived but their health is now ' + str(opponent_two['Health']))
     else:
         attack2 = attack_round(opponent_two, opponent_one)
         print('Attack equals ' + str(attack2))
         opponent_one['Health'] = opponent_one['Health'] - attack2
-        print(str(opponent_one))
-
-
-
-
-
-
+        if opponent_one['Health'] < 0:
+            print(opponent_one['Name'] + ' has died')
+        else:
+            print(opponent_one['Name'] + ' survived but their health is now ' + str(opponent_one['Health']))
 
 
 def print_character(character):
