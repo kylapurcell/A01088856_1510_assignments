@@ -138,7 +138,26 @@ def create_character(name_length):
         return None
 
 
-print(create_character(4))
+def who_rolls_first():
+    opponent_one = roll_die(1, 20)
+    opponent_two = roll_die(1, 20)
+    if opponent_one > opponent_two:
+        print('Opponent one rolled a ' + str(opponent_one) + ' and opponent two rolled a ' + str(opponent_two))
+        print('Opponent one rolls first')
+        return True
+    elif opponent_two > opponent_one:
+        print('Opponent one rolled a ' + str(opponent_one) + ' and opponent two rolled a ' + str(opponent_two))
+        print('Opponent two rolls first')
+        return False
+    else:
+        print('Opponent one rolled a ' + str(opponent_one) + ' and opponent two rolled a ' + str(opponent_two))
+        print('Roll again')
+        return who_rolls_first()
+
+
+
+
+#def combat_round(opponent_one,opponent_two):
 
 
 def print_character(character):
