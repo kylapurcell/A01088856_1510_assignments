@@ -53,6 +53,12 @@ def generate_vowel():
     return random.choice(vowels)
 
 
+def generate_consonant():
+    consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P',
+                  'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']
+    return random.choice(consonants)
+
+
 def create_character(name_length):
     """
     Create a Dungeons and Dragons character.
