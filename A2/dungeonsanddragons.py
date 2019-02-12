@@ -85,7 +85,7 @@ def choose_class():
     Sorcerer: A spell caster with inherited magic
     Warlock: A wielder of magic given from a bargain
     Wizard: A scholarly magic-user
-    Blood Hunter: A fanatical slayer, similar to dark souls Bloodborne""")
+    Blood Hunter: A fanatical slayer, similar to Dark Souls Bloodborne""")
     class1 = input("Choose your class: ").lower()
     if class1 == 'barbarian' or class1 == 'bard' or class1 == 'cleric' or class1 == 'druid' or class1 == 'fighter':
         return class1
@@ -95,6 +95,23 @@ def choose_class():
         return class1
     else:
         print('You must choose one of the given classes')
+        return None
+
+
+def create_health(character_class):
+    if character_class == 'barbarian':
+        return roll_die(1, 12)
+    elif character_class == 'bard' or character_class == 'cleric' or character_class == 'druid':
+        return roll_die(1, 8)
+    elif character_class == 'monk' or character_class == 'warlock' or character_class == 'rogue':
+        return roll_die(1, 8)
+    elif character_class == 'fighter' or character_class == 'paladin' or character_class == 'ranger':
+        return roll_die(1, 10)
+    elif character_class == 'blood hunter':
+        return roll_die(1, 10)
+    elif character_class == 'wizard' or character_class == 'sorcerer':
+        return roll_die(1, 6)
+    else:
         return None
 
 
@@ -108,14 +125,20 @@ def create_character(name_length):
     POST-CONDITION: returns a random list containing character name, and lists of attributes
     RETURN: a random list containing character name as a string and attributes as two item lists
     """
-    my_character = {'Name': generate_name(name_length), 'Strength': roll_die(3, 6),
-                    'Dexterity': roll_die(3, 6), 'Constitution': roll_die(3, 6), 'Intelligence': roll_die(3, 6),
-                    'Wisdom': roll_die(3, 6), 'Charisma': roll_die(3, 6), 'Inventory': []}
+    my_character = {'Name': generate_name(name_length), 'Class': choose_class(), 'Health': 0,
+                    'Strength': roll_die(3, 6), 'Dexterity': roll_die(3, 6), 'Constitution': roll_die(3, 6),
+                    'Intelligence': roll_die(3, 6), 'Wisdom': roll_die(3, 6),
+                    'Charisma': roll_die(3, 6), 'XP': 0, 'Inventory': []}
+    class2 = my_character['Class']
+    my_character['Health'] = create_health(class2)
     if name_length > 0:
         return my_character
     else:
         print("Name length must be greater than zero")
         return None
+
+
+print(create_character(4))
 
 
 def print_character(character):
