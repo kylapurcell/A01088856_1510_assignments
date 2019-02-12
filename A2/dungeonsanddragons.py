@@ -158,11 +158,13 @@ def who_rolls_first():
 def attack_round(attacker, opponent):
     attack_roll = create_health(attacker['Class'])
     if attack_roll > opponent['Dexterity']:
-        print('Attacker rolled ' + str(attack_roll) + ' and the opponents dexterity is ' + str(opponent['Dexterity']))
+        print(str(attacker['Name']) + ' attacked with a roll of ' + str(attack_roll) + ' , ' + str(opponent['Name'])
+              + ' has a dexterity of ' + str(opponent['Dexterity']))
         print('Attack was successfully struck')
         return attack_roll
     elif attack_roll <= opponent['Dexterity']:
-        print('Attacker rolled ' + str(attack_roll) + ' and the opponents dexterity is ' + str(opponent['Dexterity']))
+        print(str(attacker['Name']) + ' attacked with a roll of ' + str(attack_roll) + ' , ' + str(opponent['Name'])
+              + ' has a dexterity of ' + str(opponent['Dexterity']))
         print('Attack did not strike')
         return 0
 
