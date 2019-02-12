@@ -48,6 +48,10 @@ def choose_inventory(inventory, selection):
         return sorted(list(random.choices(inventory, k=selection)))
 
 
+def generate_vowel():
+    vowels = ['A', 'E', 'I', 'O', 'U', 'Y']
+    return random.choice(vowels)
+
 
 def create_character(name_length):
     """
