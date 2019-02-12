@@ -71,7 +71,31 @@ def generate_name(syllables):
     return name.join(name_list).title()
 
 
-
+def choose_class():
+    print("""There are several classes you may choose for your character.
+    Barbarian: A fierce warrior of primitive background
+    Bard : An inspiring magician 
+    Cleric : A priestly champion 
+    Druid: A priest of old faith
+    Fighter: A master of martial arts combat
+    Monk: A master of the mind and body
+    Paladin: A holy warrior bound to a sacred oath
+    Ranger: A warrior who combats threats on the edges of civilization
+    Rogue: A scoundrel who uses stealth and trickery
+    Sorcerer: A spell caster with inherited magic
+    Warlock: A wielder of magic given from a bargain
+    Wizard: A scholarly magic-user
+    Blood Hunter: A fanatical slayer, similar to dark souls Bloodborne""")
+    class1 = input("Choose your class: ").lower()
+    if class1 == 'barbarian' or class1 == 'bard' or class1 == 'cleric' or class1 == 'druid' or class1 == 'fighter':
+        return class1
+    elif class1 == 'monk' or class1 == 'paladin' or class1 == 'ranger' or class1 == 'rogue' or class1 == 'sorcerer':
+        return class1
+    elif class1 == 'warlock' or class1 == 'wizard' or class1 == 'blood hunter':
+        return class1
+    else:
+        print('You must choose one of the given classes')
+        return None
 
 
 def create_character(name_length):
@@ -84,15 +108,11 @@ def create_character(name_length):
     POST-CONDITION: returns a random list containing character name, and lists of attributes
     RETURN: a random list containing character name as a string and attributes as two item lists
     """
-    list1 = ["Strength", roll_die(3, 6)]        # Determines attributes based on 3 rolls of a six sided die
-    list2 = ["Dexterity", roll_die(3, 6)]
-    list3 = ["Constitution", roll_die(3, 6)]   # Attributes are selected this way from D&D 3d6 rule
-    list4 = ["Intelligence", roll_die(3, 6)]
-    list5 = ["Wisdom", roll_die(3, 6)]
-    list6 = ["Charisma", roll_die(3, 6)]
-    list_final = ["Name", list1, list2, list3, list4, list5, list6]
+    my_character = {'Name': generate_name(name_length), 'Strength': roll_die(3, 6),
+                    'Dexterity': roll_die(3, 6), 'Constitution': roll_die(3, 6), 'Intelligence': roll_die(3, 6),
+                    'Wisdom': roll_die(3, 6), 'Charisma': roll_die(3, 6), 'Inventory': []}
     if name_length > 0:
-        return list_final
+        return my_character
     else:
         print("Name length must be greater than zero")
         return None
