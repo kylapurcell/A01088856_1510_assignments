@@ -72,7 +72,12 @@ def generate_consonant():
 
 
 def generate_syllable():
+    """
+    Generate a random syllable made up of a vowel and a consonant.
 
+    POST-CONDITION: concatenates a vowel and a consonant and returns a syllable
+    RETURN: a syllable as a string
+    """
     return generate_consonant() + generate_vowel()
 
 
