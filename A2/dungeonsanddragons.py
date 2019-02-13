@@ -49,6 +49,12 @@ def choose_inventory(inventory, selection):
 
 
 def generate_vowel():
+    """
+    Generate a single random vowel from a list of vowels
+
+    POST-CONDITION: returns a random vowel from a list of vowels
+    RETURN: a vowel as a string
+    """
     vowels = ['A', 'E', 'I', 'O', 'U', 'Y']
     return random.choice(vowels)
 
@@ -143,11 +149,11 @@ def who_rolls_first():
     opponent_two = roll_die(1, 20)
     if opponent_one > opponent_two:
         print('Opponent one rolled a ' + str(opponent_one) + ' and opponent two rolled a ' + str(opponent_two))
-        print('Opponent one rolls first')
+        print('Opponent one attacks first')
         return True
     elif opponent_two > opponent_one:
         print('Opponent one rolled a ' + str(opponent_one) + ' and opponent two rolled a ' + str(opponent_two))
-        print('Opponent two rolls first')
+        print('Opponent two attacks first')
         return False
     else:
         print('Opponent one rolled a ' + str(opponent_one) + ' and opponent two rolled a ' + str(opponent_two))
@@ -214,6 +220,8 @@ def print_character(character):
 
 
 def main():
+    import doctest
+    doctest.testmod()
     print('Welcome to dungeons and dragons, I am ' + generate_name(2) 
           + ' I will be the Dungeon Master, your trusted guide through this journey.')
     print('Lets start by creating a unique character for you to play.')
@@ -249,4 +257,8 @@ def main():
     print_character(character)
 
 
-main()
+if __name__ == '__main__':
+    main()
+
+
+
