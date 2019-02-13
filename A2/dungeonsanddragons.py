@@ -174,7 +174,7 @@ def combat_round(opponent_one, opponent_two):
         attack1 = attack_round(opponent_one, opponent_two)
         print('Attack equals ' + str(attack1))
         opponent_two['Health'] = opponent_two['Health'] - attack1
-        if opponent_two['Health'] < 0:
+        if opponent_two['Health'] <= 0:
             print(opponent_two['Name'] + ' has died')
         else:
             print(opponent_two['Name'] + ' survived but their health is now ' + str(opponent_two['Health']))
@@ -182,7 +182,7 @@ def combat_round(opponent_one, opponent_two):
         attack2 = attack_round(opponent_two, opponent_one)
         print('Attack equals ' + str(attack2))
         opponent_one['Health'] = opponent_one['Health'] - attack2
-        if opponent_one['Health'] < 0:
+        if opponent_one['Health'] <= 0:
             print(opponent_one['Name'] + ' has died')
         else:
             print(opponent_one['Name'] + ' survived but their health is now ' + str(opponent_one['Health']))
@@ -198,17 +198,17 @@ def print_character(character):
     POST-CONDITION: prints the contents of a character list with attributes and an inventory if available
     RETURN: None
     """
-    name = 'Name: ' + str(character[0]) + "\n"
-    strength = 'Strength: ' + str(character[1][1]) + "\n"  # Prints name and attributes on multiple lines
-    dexterity = 'Dexterity: ' + str(character[2][1]) + "\n"
-    constitution = 'Constitution: ' + str(character[3][1]) + "\n"
-    intelligence = 'Intelligence: ' + str(character[4][1]) + "\n"
-    wisdom = 'Wisdom: ' + str(character[5][1]) + "\n"
-    charisma = 'Charisma: ' + str(character[6][1])
-    if len(character) > 7:
-        inventory = "\n" + 'Inventory : ' + str(character[7])  # If inventory is in character it will be printed too
-        print(name + strength + dexterity + constitution + intelligence + wisdom + charisma + inventory)
+    name = 'Name: ' + str(character['Name']) + "\n"
+    character_class = 'Class: ' + str(character['Class']) + "\n"
+    health = 'Health: ' + str(character['Health']) + "\n"
+    strength = 'Strength: ' + str(character['Strength']) + "\n"
+    dexterity = 'Dexterity: ' + str(character['Dexterity']) + "\n"
+    constitution = 'Constitution: ' + str(character['Constitution']) + "\n"
+    intelligence = 'Intelligence: ' + str(character['Intelligence']) + "\n"
+    wisdom = 'Wisdom: ' + str(character['Wisdom']) + "\n"
+    charisma = 'Charisma: ' + str(character['Charisma']) + "\n"
+    inventory = 'Inventory: ' + str(character['Inventory'])
+    print(name + character_class + health + strength + dexterity
+          + constitution + intelligence + wisdom + charisma + inventory)
 
-    else:
-        print(name + strength + dexterity + constitution + intelligence + wisdom + charisma)
-
+print_character(create_character(3))
