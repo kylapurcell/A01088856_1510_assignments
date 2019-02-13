@@ -265,10 +265,10 @@ def print_character(character):
     """
     Print a Dungeons and Dragons character.
 
-    Prints a characters name, attributes and possible inventory from a given character's dictionary
-    PARAM: character, a list
-    PRE-CONDITION: character must be of length 7 or 8
-    POST-CONDITION: prints the contents of a character list with attributes and an inventory if available
+    Prints a characters name, class, health, attributes, inventory, and XP from a given character's dictionary
+    PARAM: character, a dictionary
+    PRE-CONDITION: character must be a complete character's dictionary
+    POST-CONDITION: prints the contents of a character dictionary 
     RETURN: None
     """
     name = 'Name: ' + str(character['Name']) + "\n"
