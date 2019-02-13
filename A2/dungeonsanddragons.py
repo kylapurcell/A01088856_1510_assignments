@@ -72,7 +72,7 @@ def generate_name(syllables):
 
 
 def choose_class():
-    print("""There are several classes you may choose for your character.
+    print("""There are several classes you may choose.
     Barbarian: A fierce warrior of primitive background
     Bard : An inspiring magician 
     Cleric : A priestly champion 
@@ -207,8 +207,45 @@ def print_character(character):
     intelligence = 'Intelligence: ' + str(character['Intelligence']) + "\n"
     wisdom = 'Wisdom: ' + str(character['Wisdom']) + "\n"
     charisma = 'Charisma: ' + str(character['Charisma']) + "\n"
+    xp = 'XP: ' + str(character['XP']) + "\n"
     inventory = 'Inventory: ' + str(character['Inventory'])
     print(name + character_class + health + strength + dexterity
-          + constitution + intelligence + wisdom + charisma + inventory)
+          + constitution + intelligence + wisdom + charisma + xp + inventory)
 
-print_character(create_character(3))
+
+def main():
+    print('Welcome to dungeons and dragons, I am ' + generate_name(2) 
+          + ' I will be the Dungeon Master, your trusted guide through this journey.')
+    print('Lets start by creating a unique character for you to play.')
+    print('First I will need you to answer a few questions before we begin.')
+    character_name = int(input('How many syllables would you like for your characters name? '))
+    print('Now lets talk character class')
+    character = create_character(character_name)
+    print('Good, your character is: ')
+    print_character(character)
+    print('\n')
+    print('Now lets roll a dice and see if something happens')
+    dice_roll = int(input('how many times do you want to roll a six-sided dice? '))
+    print('You rolled ' + str(roll_die(dice_roll, 6)) + "\n")
+    print('Oh no several enemies appeared, pick a class to choose who you will fight: ')
+    enemy = create_character(3)
+    print('Oh I see the enemy is: ')
+    print_character(enemy)
+    print('Now lets do a round of combat')
+    combat_round(character, enemy)
+    print('\n')
+    print('One more question: ')
+    inventory_selected = int(input('If your character had 10 grocery bags how many could they carry? '))
+    print('You awaken anew in a dark forest, in front of you is a small chest with several items inside ')
+    inventory_available = ['Potion', 'Gold Sword', 'Magic Ring', 'Cursed Apple',
+                           'Crown', 'Staff', 'Dragon Egg', 'Blood vile', 'Bow and Arrows', 'Snacks']
+    print('You slowly open the chest and find ' + str(inventory_available) + '\n')
+    inventory1 = choose_inventory(inventory_available, inventory_selected)
+    print('Since you told us your character could only carry ' + str(inventory_selected)
+          + " items, that's what you pick up. Your new inventory is: " + str(inventory1))
+    character['Inventory'] = inventory1
+    print('Your stats have been updated: ')
+    print_character(character)
+
+
+main()
