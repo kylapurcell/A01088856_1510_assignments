@@ -231,6 +231,18 @@ def attack_round(attacker, opponent):
 
 
 def combat_round(opponent_one, opponent_two):
+    """
+    Engage in a single round of combat.
+
+    Uses helper functions to decide which opponent attacks and how much damage is dealt, and then minuses the damage
+    from the defending opponents health.
+    PARAM: opponent_one, a dictionary
+    PARAM: opponent_two, a dictionary
+    PRE-CONDITION: opponent_one must be a complete character dictionary
+    PRE-CONDITION: opponent_two must be a complete character dictionary
+    POST-CONDITION: modifies the health value of one of the character's dictionary and prints the result of combat
+    RETURN: None
+    """
     if who_rolls_first():
         attack1 = attack_round(opponent_one, opponent_two)
         print('Attack equals ' + str(attack1))
