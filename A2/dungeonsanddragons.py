@@ -82,6 +82,15 @@ def generate_syllable():
 
 
 def generate_name(syllables):
+    """
+    Generate a random name from a specified amount of syllables.
+
+    Uses helper functions to generate a specified number of syllables into and list then concatenates them together
+    PARAM: syllables, a positive integer
+    PRE-CONDITION: syllables must be a positive integer
+    POST-CONDITION: returns a name made up of a specified number of syllables
+    RETURN: a name as a string
+    """
     name = ""
     name_list = []
     while len(name_list) < syllables:
