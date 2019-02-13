@@ -95,7 +95,7 @@ def choose_class():
         return class1
     else:
         print('You must choose one of the given classes')
-        return None
+        return choose_class()
 
 
 def create_health(character_class):
@@ -236,6 +236,7 @@ def main():
     print('\n')
     print('One more question: ')
     inventory_selected = int(input('If your character had 10 grocery bags how many could they carry? '))
+    print('\n')
     print('You awaken anew in a dark forest, in front of you is a small chest with several items inside ')
     inventory_available = ['Potion', 'Gold Sword', 'Magic Ring', 'Cursed Apple',
                            'Crown', 'Staff', 'Dragon Egg', 'Blood vile', 'Bow and Arrows', 'Snacks']
