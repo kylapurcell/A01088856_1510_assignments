@@ -132,6 +132,15 @@ def choose_class():
 
 
 def create_health(character_class):
+    """
+    Create health points for a Dungeons and Dragons Character.
+
+    Creates health points for a character by randomly rolling a die based on the character's class
+    PARAM: character_class, a string
+    PRE-CONDITION: character_class must be a lowercase string
+    POST-CONDITION: returns a positive integer from a random die roll whose range is dependant on character_class
+    RETURN: Health points as a integer
+    """
     if character_class == 'barbarian':
         return roll_die(1, 12)
     elif character_class == 'bard' or character_class == 'cleric' or character_class == 'druid':
@@ -152,7 +161,8 @@ def create_character(name_length):
     """
     Create a Dungeons and Dragons character.
 
-    Creates a character with a randomly generated name and attribute totals generated from random dice roll
+    Creates a character with a randomly generated name, inputted class , Health that is
+     dependant on class, attribute totals generated from random dice roll, inventory and experience points.
     PARAM: name_length, an integer
     PRE-CONDITION: name_length must be a positive integer
     POST-CONDITION: returns a random list containing character name, and lists of attributes
