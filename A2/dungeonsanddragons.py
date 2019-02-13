@@ -268,7 +268,7 @@ def print_character(character):
     Prints a characters name, class, health, attributes, inventory, and XP from a given character's dictionary
     PARAM: character, a dictionary
     PRE-CONDITION: character must be a complete character's dictionary
-    POST-CONDITION: prints the contents of a character dictionary 
+    POST-CONDITION: prints the contents of a character dictionary
     RETURN: None
     """
     name = 'Name: ' + str(character['Name']) + "\n"
@@ -287,6 +287,9 @@ def print_character(character):
 
 
 def main():
+    """
+    Drive the program.
+    """
     import doctest
     doctest.testmod()
     print('Welcome to dungeons and dragons, I am ' + generate_name(2) 
