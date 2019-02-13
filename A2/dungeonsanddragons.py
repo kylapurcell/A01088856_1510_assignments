@@ -157,27 +157,27 @@ def create_health(character_class):
         return None
 
 
-def create_character(name_length):
+def create_character(number_of_syllables):
     """
     Create a Dungeons and Dragons character.
 
     Creates a character with a randomly generated name, inputted class , Health that is
-     dependant on class, attribute totals generated from random dice roll, inventory and experience points.
-    PARAM: name_length, an integer
-    PRE-CONDITION: name_length must be a positive integer
-    POST-CONDITION: returns a random list containing character name, and lists of attributes
-    RETURN: a random list containing character name as a string and attributes as two item lists
+    dependant on class, attribute totals generated from random dice roll, inventory and experience points.
+    PARAM: number_of_syllables, an integer
+    PRE-CONDITION: number_of_syllables must be a positive integer
+    POST-CONDITION: returns a random dictionary containing character name, class, health , attributes, inventory, and XP
+    RETURN: a randomly generated dictionary 
     """
-    my_character = {'Name': generate_name(name_length), 'Class': choose_class(), 'Health': 0,
+    my_character = {'Name': generate_name(number_of_syllables), 'Class': choose_class(), 'Health': 0,
                     'Strength': roll_die(3, 6), 'Dexterity': roll_die(3, 6), 'Constitution': roll_die(3, 6),
                     'Intelligence': roll_die(3, 6), 'Wisdom': roll_die(3, 6),
                     'Charisma': roll_die(3, 6), 'XP': 0, 'Inventory': []}
     class2 = my_character['Class']
     my_character['Health'] = create_health(class2)
-    if name_length > 0:
+    if number_of_syllables > 0:
         return my_character
     else:
-        print("Name length must be greater than zero")
+        print("Number of syllables must be greater than zero")
         return None
 
 
@@ -235,7 +235,7 @@ def print_character(character):
     """
     Print a Dungeons and Dragons character.
 
-    Prints a characters name, attributes and possible inventory from a given character's list
+    Prints a characters name, attributes and possible inventory from a given character's dictionary
     PARAM: character, a list
     PRE-CONDITION: character must be of length 7 or 8
     POST-CONDITION: prints the contents of a character list with attributes and an inventory if available
