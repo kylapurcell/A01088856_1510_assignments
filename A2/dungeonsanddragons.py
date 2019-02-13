@@ -206,6 +206,17 @@ def who_rolls_first():
 
 
 def attack_round(attacker, opponent):
+    """
+    Decide if an attack will be successful.
+
+    Rolls an attack based on attacker's class and if > opponent's dexterity, will return the attack value
+    PARAM: attacker, a dictionary
+    PARAM: opponent, a dictionary
+    PRE-CONDITION: attacker must be a complete character's dictionary
+    PRE-CONDITION: opponent must be a complete character's dictionary
+    POST-CONDITION: returns an attack value if attack is successful and 0 if it is not
+    RETURN: an attack as an integer or 0
+    """
     attack_roll = create_health(attacker['Class'])
     if attack_roll > opponent['Dexterity']:
         print(str(attacker['Name']) + ' attacked with a roll of ' + str(attack_roll) + ' , ' + str(opponent['Name'])
