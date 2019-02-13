@@ -161,12 +161,12 @@ def create_character(number_of_syllables):
     """
     Create a Dungeons and Dragons character.
 
-    Creates a character with a randomly generated name, inputted class , Health that is
+    Creates a character with a randomly generated name, inputted class , health that is
     dependant on class, attribute totals generated from random dice roll, inventory and experience points.
     PARAM: number_of_syllables, an integer
     PRE-CONDITION: number_of_syllables must be a positive integer
     POST-CONDITION: returns a random dictionary containing character name, class, health , attributes, inventory, and XP
-    RETURN: a randomly generated dictionary 
+    RETURN: a randomly generated dictionary
     """
     my_character = {'Name': generate_name(number_of_syllables), 'Class': choose_class(), 'Health': 0,
                     'Strength': roll_die(3, 6), 'Dexterity': roll_die(3, 6), 'Constitution': roll_die(3, 6),
@@ -182,6 +182,13 @@ def create_character(number_of_syllables):
 
 
 def who_rolls_first():
+    """
+    Decide who will roll an attack first.
+
+    Rolls a 1D20 dice for each opponent and whoever rolls higher will attack first
+    POST-CONDITION: returns true or false based on which random die roll is higher
+    RETURN: true or false as a boolean
+    """
     opponent_one = roll_die(1, 20)
     opponent_two = roll_die(1, 20)
     if opponent_one > opponent_two:
