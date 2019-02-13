@@ -50,7 +50,7 @@ def choose_inventory(inventory, selection):
 
 def generate_vowel():
     """
-    Generate a single random vowel from a list of vowels
+    Generate a single random vowel from a list of vowels.
 
     POST-CONDITION: returns a random vowel from a list of vowels
     RETURN: a vowel as a string
@@ -60,12 +60,19 @@ def generate_vowel():
 
 
 def generate_consonant():
+    """
+    Generate a single random consonant from a list of consonants.
+
+    POST-CONDITION: returns a random consonant from a list of consonants
+    RETURN: a consonant as a string
+    """
     consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P',
                   'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']
     return random.choice(consonants)
 
 
 def generate_syllable():
+
     return generate_consonant() + generate_vowel()
 
 
