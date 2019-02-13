@@ -99,6 +99,12 @@ def generate_name(syllables):
 
 
 def choose_class():
+    """
+    Print a message and return an inputted class.
+
+    POST-CONDITION: prints a message about the different classes and returns the inputted class
+    RETURN: a class as a string
+    """
     print("""There are several classes you may choose.
     Barbarian: A fierce warrior of primitive background
     Bard : An inspiring magician 
