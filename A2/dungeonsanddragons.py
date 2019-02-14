@@ -246,24 +246,35 @@ def combat_round(opponent_one, opponent_two):
     POST-CONDITION: modifies the health value of one of the character's dictionary and prints the result of combat
     RETURN: None
     """
-    while opponent_one['Health'] > 0 and opponent_two['Health'] > 0:
-        if who_rolls_first():
-            attack1 = attack_round(opponent_one, opponent_two)
-            print('Attack equals ' + str(attack1))
-            opponent_two['Health'] = opponent_two['Health'] - attack1
-            if opponent_two['Health'] <= 0:
-                print(opponent_two['Name'] + ' has died')
-            else:
-                print(opponent_two['Name'] + ' survived but their health is now ' + str(opponent_two['Health']))
+    if who_rolls_first():
+        while opponent_one['Health'] > 0:
+                attack1 = attack_round(opponent_one, opponent_two)
+                print('Attack equals ' + str(attack1))
+                opponent_two['Health'] = opponent_two['Health'] - attack1
+                if opponent_two['Health'] <= 0:
+                    print(opponent_two['Name'] + ' has died')
+                    break
+                elif attack1 == 0 or opponent_two['Health'] > 0:
+                    print(opponent_two['Name'] + ' survived but their health is now ' + str(opponent_two['Health']))
+                    attack3 = attack_round(opponent_two, opponent_one)
+                    opponent_one['Health'] = opponent_one['Health'] - attack3
+                    print(opponent_one['Name'] + ' survived but their health is now ' + str(opponent_one['Health']))
         else:
+            print(opponent_one['Name'] + ' has died')
+
+    else:
+        while opponent_two['Health'] > 0:
             attack2 = attack_round(opponent_two, opponent_one)
             print('Attack equals ' + str(attack2))
             opponent_one['Health'] = opponent_one['Health'] - attack2
             if opponent_one['Health'] <= 0:
                 print(opponent_one['Name'] + ' has died')
+                break
             else:
                 print(opponent_one['Name'] + ' survived but their health is now ' + str(opponent_one['Health']))
 
+
+print(combat_round(create_character(2),create_character(2)))
 
 def print_character(character):
     """
