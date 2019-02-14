@@ -217,14 +217,17 @@ def attack_round(attacker, opponent):
     POST-CONDITION: returns an attack value if attack is successful and 0 if it is not
     RETURN: an attack as an integer or 0
     """
-    attack_roll = create_health(attacker['Class'])
+    attack_roll = roll_die(1, 20)
+    damage = create_health(attacker['Class'])
     if attack_roll > opponent['Dexterity']:
-        print(str(attacker['Name']) + ' attacked with a roll of ' + str(attack_roll) + ' , ' + str(opponent['Name'])
+        opponent['Health'] = opponent['Health'] - damage
+        print(str(attacker['Name']) + ' rolled a ' + str(attack_roll) + ' , ' + str(opponent['Name'])
               + ' has a dexterity of ' + str(opponent['Dexterity']))
         print('Attack was successfully struck')
-        return attack_roll
+        print(attacker['Name'] + ' attacked with a roll of ' + str(damage))
+        return damage
     elif attack_roll <= opponent['Dexterity']:
-        print(str(attacker['Name']) + ' attacked with a roll of ' + str(attack_roll) + ' , ' + str(opponent['Name'])
+        print(str(attacker['Name']) + ' rolled a ' + str(attack_roll) + ' , ' + str(opponent['Name'])
               + ' has a dexterity of ' + str(opponent['Dexterity']))
         print('Attack did not strike')
         return 0
@@ -243,22 +246,23 @@ def combat_round(opponent_one, opponent_two):
     POST-CONDITION: modifies the health value of one of the character's dictionary and prints the result of combat
     RETURN: None
     """
-    if who_rolls_first():
-        attack1 = attack_round(opponent_one, opponent_two)
-        print('Attack equals ' + str(attack1))
-        opponent_two['Health'] = opponent_two['Health'] - attack1
-        if opponent_two['Health'] <= 0:
-            print(opponent_two['Name'] + ' has died')
+    while opponent_one['Health'] > 0 and opponent_two['Health'] > 0:
+        if who_rolls_first():
+            attack1 = attack_round(opponent_one, opponent_two)
+            print('Attack equals ' + str(attack1))
+            opponent_two['Health'] = opponent_two['Health'] - attack1
+            if opponent_two['Health'] <= 0:
+                print(opponent_two['Name'] + ' has died')
+            else:
+                print(opponent_two['Name'] + ' survived but their health is now ' + str(opponent_two['Health']))
         else:
-            print(opponent_two['Name'] + ' survived but their health is now ' + str(opponent_two['Health']))
-    else:
-        attack2 = attack_round(opponent_two, opponent_one)
-        print('Attack equals ' + str(attack2))
-        opponent_one['Health'] = opponent_one['Health'] - attack2
-        if opponent_one['Health'] <= 0:
-            print(opponent_one['Name'] + ' has died')
-        else:
-            print(opponent_one['Name'] + ' survived but their health is now ' + str(opponent_one['Health']))
+            attack2 = attack_round(opponent_two, opponent_one)
+            print('Attack equals ' + str(attack2))
+            opponent_one['Health'] = opponent_one['Health'] - attack2
+            if opponent_one['Health'] <= 0:
+                print(opponent_one['Name'] + ' has died')
+            else:
+                print(opponent_one['Name'] + ' survived but their health is now ' + str(opponent_one['Health']))
 
 
 def print_character(character):
