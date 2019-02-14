@@ -249,7 +249,6 @@ def combat_round(opponent_one, opponent_two):
     if who_rolls_first():
         while opponent_one['Health'] > 0:
                 attack1 = attack_round(opponent_one, opponent_two)
-                print('Attack equals ' + str(attack1))
                 opponent_two['Health'] = opponent_two['Health'] - attack1
                 if opponent_two['Health'] <= 0:
                     print(opponent_two['Name'] + ' has died')
@@ -270,9 +269,12 @@ def combat_round(opponent_one, opponent_two):
             if opponent_one['Health'] <= 0:
                 print(opponent_one['Name'] + ' has died')
                 break
-            else:
+            elif attack2 == 0 or opponent_one['Health'] > 0:
+                attack4 = attack_round(opponent_one, opponent_two)
+                opponent_two['Health'] = opponent_two['Health'] - attack4
                 print(opponent_one['Name'] + ' survived but their health is now ' + str(opponent_one['Health']))
-
+        else:
+            print(opponent_two['Name'] + ' has died')
 
 print(combat_round(create_character(2),create_character(2)))
 
