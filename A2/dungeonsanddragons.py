@@ -207,30 +207,52 @@ def who_rolls_first():
 
 def attack_round(attacker, opponent):
     """
-    Decide if an attack will be successful.
+    Decide if an attack will be successful and reduce damage.
 
-    Rolls an attack based on attacker's class and if > opponent's dexterity, will return the attack value
+    Rolls an attack based on attacker's class and if > opponent's dexterity, will reduce opponent's
+    health by that amount, if they miss or opponent is still alive, opponent gets a chance to attack.
     PARAM: attacker, a dictionary
     PARAM: opponent, a dictionary
     PRE-CONDITION: attacker must be a complete character's dictionary
     PRE-CONDITION: opponent must be a complete character's dictionary
-    POST-CONDITION: returns an attack value if attack is successful and 0 if it is not
-    RETURN: an attack as an integer or 0
+    POST-CONDITION: Prints information about the fight and reduces health of opponent or attacker if applicable
+    RETURN: None
     """
-    attack_roll = roll_die(1, 20)
-    damage = create_health(attacker['Class'])
-    if attack_roll > opponent['Dexterity']:
-        opponent['Health'] = opponent['Health'] - damage
-        print(str(attacker['Name']) + ' rolled a ' + str(attack_roll) + ' , ' + str(opponent['Name'])
+    attack_one = roll_die(1, 20)
+    attack_two = roll_die(1, 20)
+    damage_one = create_health(attacker['Class'])
+    damage_two = create_health(opponent['Class'])
+    if attack_one > opponent['Dexterity']:
+        opponent['Health'] = opponent['Health'] - damage_one
+        print(str(attacker['Name']) + ' rolled a ' + str(attack_one) + ' , ' + str(opponent['Name'])
               + ' has a dexterity of ' + str(opponent['Dexterity']))
-        print('Attack was successfully struck')
-        print(attacker['Name'] + ' attacked with a roll of ' + str(damage))
-        return damage
-    elif attack_roll <= opponent['Dexterity']:
-        print(str(attacker['Name']) + ' rolled a ' + str(attack_roll) + ' , ' + str(opponent['Name'])
+        print('Attack of ' + str(damage_one) + ' was successfully struck')
+        if opponent['Health'] > 0:
+            print(opponent['Name'] + ' gets a chance to attack')
+            if attack_two > attacker['Dexterity']:
+                attacker['Health'] = attacker['Health'] - damage_two
+                print(str(opponent['Name']) + ' rolled a ' + str(attack_two) + ' , ' + str(attacker['Name'])
+                      + ' has a dexterity of ' + str(attacker['Dexterity']))
+                print('Attack of ' + str(damage_two) + ' was successfully struck')
+            else:
+                print(str(opponent['Name']) + ' rolled a ' + str(attack_two) + ' , ' + str(attacker['Name'])
+                      + ' has a dexterity of ' + str(attacker['Dexterity']))
+                print('Attack did not strike')
+
+    else:
+        print(str(attacker['Name']) + ' rolled a ' + str(attack_one) + ' , ' + str(opponent['Name'])
               + ' has a dexterity of ' + str(opponent['Dexterity']))
-        print('Attack did not strike')
-        return 0
+        print('Attack did not strike and now ' + opponent['Name'] + ' gets a chance to attack')
+        if attack_two > attacker['Dexterity']:
+            attacker['Health'] = attacker['Health'] - damage_two
+            print(str(opponent['Name']) + ' rolled a ' + str(attack_two) + ' , ' + str(attacker['Name'])
+                  + ' has a dexterity of ' + str(attacker['Dexterity']))
+            print('Attack of ' + str(damage_two) + ' was successfully struck')
+        else:
+            print(str(opponent['Name']) + ' rolled a ' + str(attack_two) + ' , ' + str(attacker['Name'])
+                  + ' has a dexterity of ' + str(attacker['Dexterity']))
+            print('Attack did not strike')
+        
 
 
 def combat_round(opponent_one, opponent_two):
@@ -246,35 +268,7 @@ def combat_round(opponent_one, opponent_two):
     POST-CONDITION: modifies the health value of one of the character's dictionary and prints the result of combat
     RETURN: None
     """
-    if who_rolls_first():
-        while opponent_one['Health'] > 0:
-                attack1 = attack_round(opponent_one, opponent_two)
-                opponent_two['Health'] = opponent_two['Health'] - attack1
-                if opponent_two['Health'] <= 0:
-                    print(opponent_two['Name'] + ' has died')
-                    break
-                elif attack1 == 0 or opponent_two['Health'] > 0:
-                    print(opponent_two['Name'] + ' survived but their health is now ' + str(opponent_two['Health']))
-                    attack3 = attack_round(opponent_two, opponent_one)
-                    opponent_one['Health'] = opponent_one['Health'] - attack3
-                    print(opponent_one['Name'] + ' survived but their health is now ' + str(opponent_one['Health']))
-        else:
-            print(opponent_one['Name'] + ' has died')
 
-    else:
-        while opponent_two['Health'] > 0:
-            attack2 = attack_round(opponent_two, opponent_one)
-            print('Attack equals ' + str(attack2))
-            opponent_one['Health'] = opponent_one['Health'] - attack2
-            if opponent_one['Health'] <= 0:
-                print(opponent_one['Name'] + ' has died')
-                break
-            elif attack2 == 0 or opponent_one['Health'] > 0:
-                attack4 = attack_round(opponent_one, opponent_two)
-                opponent_two['Health'] = opponent_two['Health'] - attack4
-                print(opponent_one['Name'] + ' survived but their health is now ' + str(opponent_one['Health']))
-        else:
-            print(opponent_two['Name'] + ' has died')
 
 print(combat_round(create_character(2),create_character(2)))
 
