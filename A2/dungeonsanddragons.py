@@ -252,22 +252,41 @@ def attack_round(attacker, opponent):
             print(str(opponent['Name']) + ' rolled a ' + str(attack_two) + ' , ' + str(attacker['Name'])
                   + ' has a dexterity of ' + str(attacker['Dexterity']))
             print('Attack did not strike')
+
         
-
-
 def combat_round(opponent_one, opponent_two):
     """
     Engage in a single round of combat.
 
-    Uses helper functions to decide which opponent attacks and how much damage is dealt, and then minuses the damage
-    from the defending opponents health.
+    Uses helper functions to decide which opponent attacks and how much damage is dealt, and then prints
+    information about the status of the opponents.
     PARAM: opponent_one, a dictionary
     PARAM: opponent_two, a dictionary
     PRE-CONDITION: opponent_one must be a complete character dictionary
     PRE-CONDITION: opponent_two must be a complete character dictionary
-    POST-CONDITION: modifies the health value of one of the character's dictionary and prints the result of combat
+    POST-CONDITION: Checks the value of each characters health and prints out information about the fight
     RETURN: None
     """
+    if who_rolls_first():
+        attack_round(opponent_one, opponent_two)
+        if opponent_two['Health'] <= 0:
+            print(opponent_two['Name'] + ' has died')
+        elif opponent_one['Health'] <= 0:
+            print(opponent_one['Name'] + ' has died')
+        else:
+            print('Both combatants survived the fight. ' + opponent_one['Name'] + ' now has a health of '
+                  + str(opponent_one['Health']) + ' and ' + opponent_two['Name'] + ' now has a health of'
+                  + str(opponent_two['Health']))
+    else:
+        attack_round(opponent_two, opponent_one)
+        if opponent_two['Health'] <= 0:
+            print(opponent_two['Name'] + ' has died')
+        elif opponent_one['Health'] <= 0:
+            print(opponent_one['Name'] + ' has died')
+        else:
+            print('Both combatants survived the fight. ' + opponent_one['Name'] + ' now has a health of '
+                  + str(opponent_one['Health']) + ' and ' + opponent_two['Name'] + ' now has a health of '
+                  + str(opponent_two['Health']))
 
 
 print(combat_round(create_character(2),create_character(2)))
