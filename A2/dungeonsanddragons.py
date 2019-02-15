@@ -228,7 +228,7 @@ def attack_round(attacker, opponent):
               + ' has a dexterity of ' + str(opponent['Dexterity']))
         print('Attack of ' + str(damage_one) + ' was successfully struck')
         if opponent['Health'] > 0:
-            print(opponent['Name'] + ' gets a chance to attack')
+            print(opponent['Name'] + ' survived and gets a chance to attack')
             if attack_two > attacker['Dexterity']:
                 attacker['Health'] = attacker['Health'] - damage_two
                 print(str(opponent['Name']) + ' rolled a ' + str(attack_two) + ' , ' + str(attacker['Name'])
@@ -253,7 +253,7 @@ def attack_round(attacker, opponent):
                   + ' has a dexterity of ' + str(attacker['Dexterity']))
             print('Attack did not strike')
 
-        
+
 def combat_round(opponent_one, opponent_two):
     """
     Engage in a single round of combat.
@@ -275,7 +275,7 @@ def combat_round(opponent_one, opponent_two):
             print(opponent_one['Name'] + ' has died')
         else:
             print('Both combatants survived the fight. ' + opponent_one['Name'] + ' now has a health of '
-                  + str(opponent_one['Health']) + ' and ' + opponent_two['Name'] + ' now has a health of'
+                  + str(opponent_one['Health']) + ' and ' + opponent_two['Name'] + ' now has a health of '
                   + str(opponent_two['Health']))
     else:
         attack_round(opponent_two, opponent_one)
@@ -285,11 +285,9 @@ def combat_round(opponent_one, opponent_two):
             print(opponent_one['Name'] + ' has died')
         else:
             print('Both combatants survived the fight. ' + opponent_one['Name'] + ' now has a health of '
-                  + str(opponent_one['Health']) + ' and ' + opponent_two['Name'] + ' now has a health of '
+                  + str(opponent_one['Health']) + ' and ' + opponent_two['Name'] + ' now has a health of  '
                   + str(opponent_two['Health']))
 
-
-print(combat_round(create_character(2),create_character(2)))
 
 def print_character(character):
     """
@@ -329,6 +327,7 @@ def main():
     character_name = int(input('How many syllables would you like for your characters name? '))
     print('Now lets talk character class')
     character = create_character(character_name)
+    print('\n')
     print('Good, your character is: ')
     print_character(character)
     print('\n')
@@ -337,6 +336,7 @@ def main():
     print('You rolled ' + str(roll_die(dice_roll, 6)) + "\n")
     print('Oh no several enemies appeared, pick a class to choose who you will fight: ')
     enemy = create_character(3)
+    print('\n')
     print('Oh I see the enemy is: ')
     print_character(enemy)
     print('Now lets do a round of combat')
@@ -345,7 +345,8 @@ def main():
     print('One more question: ')
     inventory_selected = int(input('If your character had 10 grocery bags how many could they carry? '))
     print('\n')
-    print('You awaken anew in a dark forest, in front of you is a small chest with several items inside ')
+    print('You awaken anew (dead or alive) in a dark forest, '
+          'in front of you is a small chest with several items inside ')
     inventory_available = ['Potion', 'Gold Sword', 'Magic Ring', 'Cursed Apple',
                            'Crown', 'Staff', 'Dragon Egg', 'Blood vile', 'Bow and Arrows', 'Snacks']
     print('You slowly open the chest and find ' + str(inventory_available) + '\n')
@@ -353,6 +354,7 @@ def main():
     print('Since you told us your character could only carry ' + str(inventory_selected)
           + " items, that's what you pick up. Your new inventory is: " + str(inventory1))
     character['Inventory'] = inventory1
+    print('\n')
     print('Your stats have been updated: ')
     print_character(character)
 
