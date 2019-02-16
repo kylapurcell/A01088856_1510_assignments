@@ -13,6 +13,12 @@ def roll_die(number_of_rolls, number_of_sides):
         PRE-CONDITION: number_of_sides must be an integer > 0
         POST-CONDITION: returns a random sum of a die rolled a specified number of times with specified number of sides
         RETURN: a random total as a positive integer
+
+        >>> random.seed(1)
+        >>> roll_die(1, 20)
+        5
+        >>> roll_die(3,6)
+        5
         """
         range_roll_1 = number_of_rolls        # Min total is the rolls
         range_roll_2 = number_of_sides*number_of_rolls   # Max total is sides * rolls
