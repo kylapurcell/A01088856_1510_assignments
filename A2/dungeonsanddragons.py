@@ -107,6 +107,7 @@ def generate_syllable():
     >>> random.seed(5)
     >>> generate_syllable()
     'YI'
+    >>> random.seed()
     """
     return generate_consonant() + generate_vowel()
 
@@ -124,6 +125,7 @@ def generate_name(syllables):
     >>> random.seed(4)
     >>> generate_name(2)
     'Kify'
+    >>> random.seed()
     """
     name = ""
     name_list = []
@@ -178,6 +180,7 @@ def create_health(character_class):
     >>> random.seed(2)
     >>> create_health('blood hunter')
     1
+    >>> random.seed()
     """
     if character_class == 'barbarian':
         return roll_die(1, 12)
