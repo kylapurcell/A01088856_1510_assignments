@@ -1,5 +1,6 @@
 from unittest import TestCase
 from A2 import dungeonsanddragons
+import random
 
 
 class TestChooseInventory(TestCase):
@@ -22,10 +23,14 @@ class TestChooseInventory(TestCase):
         self.assertEqual(2, len(dungeonsanddragons.choose_inventory([1, 2, 3, 4], 2)))
         # Tests that length of list = selection
 
-
     def test_choose_inventory6(self):
         self.assertEqual(list, type(dungeonsanddragons.choose_inventory([1, 2], 2)))
         # Tests that output is of type list
+
+    def test_choose_inventory7(self):
+        random.seed(3)
+        self.assertEqual(['Ring', 'Staff'], dungeonsanddragons.choose_inventory(['Ring', 'Staff', 'Scroll'], 2))
+        random.seed()
 
 
 
