@@ -69,6 +69,10 @@ def generate_vowel():
 
     POST-CONDITION: returns a random vowel from a list of vowels
     RETURN: a vowel as a string
+
+    >>> random.seed(2)
+    >>> generate_vowel()
+    'A'
     """
     vowels = ['A', 'E', 'I', 'O', 'U', 'Y']
     return random.choice(vowels)
@@ -80,6 +84,10 @@ def generate_consonant():
 
     POST-CONDITION: returns a random consonant from a list of consonants
     RETURN: a consonant as a string
+
+    >>> random.seed(3)
+    >>> generate_consonant()
+    'K'
     """
     consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P',
                   'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']
@@ -92,6 +100,10 @@ def generate_syllable():
 
     POST-CONDITION: concatenates a vowel and a consonant and returns a syllable
     RETURN: a syllable as a string
+
+    >>> random.seed(5)
+    >>> generate_syllable()
+    'YI'
     """
     return generate_consonant() + generate_vowel()
 
@@ -105,6 +117,10 @@ def generate_name(syllables):
     PRE-CONDITION: syllables must be a positive integer
     POST-CONDITION: returns a name made up of a specified number of syllables
     RETURN: a name as a string
+
+    >>> random.seed(4)
+    >>> generate_name(2)
+    'Kify'
     """
     name = ""
     name_list = []
@@ -155,6 +171,10 @@ def create_health(character_class):
     PRE-CONDITION: character_class must be a lowercase string
     POST-CONDITION: returns a positive integer from a random die roll whose range is dependant on character_class
     RETURN: Health points as a integer
+
+    >>> random.seed(2)
+    >>> create_health('blood hunter')
+    1
     """
     if character_class == 'barbarian':
         return roll_die(1, 12)
