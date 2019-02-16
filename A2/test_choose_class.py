@@ -16,4 +16,6 @@ class TestChooseClass(TestCase):
     def test_choose_class3(self, mock_class2):
         self.assertEqual('blood hunter', dungeonsanddragons.choose_class())
 
-   
+    @patch('builtins.input', return_value='barbarian')
+    def test_choose_class4(self, mock_class3):
+        self.assertEqual(str, type(dungeonsanddragons.choose_class()))
