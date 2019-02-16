@@ -153,7 +153,7 @@ def choose_class():
     Warlock: A wielder of magic given from a bargain
     Wizard: A scholarly magic-user
     Blood Hunter: A fanatical slayer, similar to Dark Souls Bloodborne""")
-    class1 = input("Choose your class: ").lower()
+    class1 = input("Choose your class: ").lower().strip()
     if class1 == 'barbarian' or class1 == 'bard' or class1 == 'cleric' or class1 == 'druid' or class1 == 'fighter':
         return class1
     elif class1 == 'monk' or class1 == 'paladin' or class1 == 'ranger' or class1 == 'rogue' or class1 == 'sorcerer':
