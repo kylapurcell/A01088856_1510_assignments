@@ -19,6 +19,7 @@ def roll_die(number_of_rolls, number_of_sides):
         5
         >>> roll_die(3,6)
         5
+        >>> random.seed()
         """
         range_roll_1 = number_of_rolls        # Min total is the rolls
         range_roll_2 = number_of_sides*number_of_rolls   # Max total is sides * rolls
@@ -73,6 +74,7 @@ def generate_vowel():
     >>> random.seed(2)
     >>> generate_vowel()
     'A'
+    >>> random.seed()
     """
     vowels = ['A', 'E', 'I', 'O', 'U', 'Y']
     return random.choice(vowels)
@@ -88,6 +90,7 @@ def generate_consonant():
     >>> random.seed(3)
     >>> generate_consonant()
     'K'
+    >>> random.seed()
     """
     consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P',
                   'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']
@@ -223,6 +226,13 @@ def who_rolls_first():
     Rolls a 1D20 dice for each opponent and whoever rolls higher will attack first
     POST-CONDITION: returns true or false based on which random die roll is higher
     RETURN: true or false as a boolean
+
+    >>> random.seed(1)
+    >>> who_rolls_first()
+    Opponent one rolled a 5 and opponent two rolled a 19
+    Opponent two attacks first
+    False
+    >>> random.seed()
     """
     opponent_one = roll_die(1, 20)
     opponent_two = roll_die(1, 20)
@@ -252,6 +262,17 @@ def attack_round(attacker, opponent):
     PRE-CONDITION: opponent must be a complete character's dictionary
     POST-CONDITION: Prints information about the fight and reduces health of opponent or attacker if applicable
     RETURN: None
+
+    >>> random.seed(2)
+    >>> attack_round({'Name': 'Texi', 'Class': 'wizard', 'Health': 6, 'Strength': 11,'Dexterity': 8, \
+    'Constitution': 6, 'Intelligence': 8, 'Wisdom': 4, 'Charisma': 13, 'XP': 0, 'Inventory': []},\
+    {'Name': 'Lexi', 'Class': 'bard', 'Health': 8, 'Strength': 11, 'Dexterity': 8, 'Constitution':6, \
+    'Intelligence': 8, 'Wisdom': 4, 'Charisma': 13, 'XP': 0, 'Inventory': []})
+    Texi rolled a 2 , Lexi has a dexterity of 8
+    Attack did not strike and now Lexi gets a chance to attack
+    Lexi rolled a 3 , Texi has a dexterity of 8
+    Attack did not strike
+    >>> random.seed()
     """
     attack_one = roll_die(1, 20)
     attack_two = roll_die(1, 20)
@@ -301,6 +322,20 @@ def combat_round(opponent_one, opponent_two):
     PRE-CONDITION: opponent_two must be a complete character dictionary
     POST-CONDITION: Checks the value of each characters health and prints out information about the fight
     RETURN: None
+
+    >>> random.seed(2)
+    >>> combat_round({'Name': 'Link', 'Class': 'sorcerer', 'Health': 2, 'Strength': 11, 'Dexterity': 16,\
+     'Constitution': 11, 'Intelligence': 15, 'Wisdom': 4, 'Charisma': 3, 'XP': 0, 'Inventory': []}, \
+     {'Name': 'Zelda', 'Class': 'sorcerer',\'Health': 2, 'Strength': 11, 'Dexterity': 16, 'Constitution': 11, \
+     'Intelligence': 15, 'Wisdom': 4,\'Charisma': 3, 'XP': 0, 'Inventory': []})
+    Opponent one rolled a 2 and opponent two rolled a 3
+    Opponent two attacks first
+    Zelda rolled a 3 , Link has a dexterity of 16
+    Attack did not strike and now Link gets a chance to attack
+    Link rolled a 12 , Zelda has a dexterity of 16
+    Attack did not strike
+    Both combatants survived the fight. Link now has a health of 2 and Zelda now has a health of  2
+    >>> random.seed()
     """
     if who_rolls_first():
         attack_round(opponent_one, opponent_two)
