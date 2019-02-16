@@ -26,6 +26,7 @@ class TestCreateHealth(TestCase):
     def test_create_health5(self):
         random.seed(8)
         self.assertIn(3, range(dungeonsanddragons.create_health('fighter')))
+        random.seed()
 
 
 
