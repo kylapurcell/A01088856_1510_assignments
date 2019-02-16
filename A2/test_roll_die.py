@@ -24,3 +24,7 @@ class TestRollDie(TestCase):
         self.assertEqual(4, dungeonsanddragons.roll_die(3, 6))  # Tests output by holding randomization in place
         random.seed()
 
+    def test_roll_die7(self):
+        with self.assertRaises(TypeError):             # Tests that arguments passed must not be strings
+            dungeonsanddragons.roll_die('', 6)
+
