@@ -368,6 +368,20 @@ def print_character(character):
     PRE-CONDITION: character must be a complete character's dictionary
     POST-CONDITION: prints the contents of a character dictionary
     RETURN: None
+
+    >>> print_character({'Name': 'Gatsby', 'Class': 'rogue', 'Health': 5, 'Strength': 11, 'Dexterity': 16,\
+     'Constitution': 11, 'Intelligence': 15, 'Wisdom': 4, 'Charisma': 3, 'XP': 0, 'Inventory': []})
+    Name: Gatsby
+    Class: rogue
+    Health: 5
+    Strength: 11
+    Dexterity: 16
+    Constitution: 11
+    Intelligence: 15
+    Wisdom: 4
+    Charisma: 3
+    XP: 0
+    Inventory: []
     """
     name = 'Name: ' + str(character['Name']) + "\n"
     character_class = 'Class: ' + str(character['Class']) + "\n"
