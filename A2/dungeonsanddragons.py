@@ -33,14 +33,23 @@ def choose_inventory(inventory, selection):
     PRE-CONDITION: selection must be > 0
     POST-CONDITION: returns a sorted list of inventory items with length of selection
     RETURN: a sorted list with length of selection or a copy of the given list
+
+    >>> choose_inventory([], 0)
+    []
+    >>> choose_inventory([], -1)
+    You cannot have a selection less than zero
+    >>> choose_inventory(['Ring','Gem'],3)
+    Your selection cannot be greater than the inventory length
+    >>> choose_inventory(['Ring','Gem'],2)
+    ['Ring', 'Gem']
     """
     if inventory == [] and selection == 0:        # an empty list and selection of zero returns empty list
         return []
     elif selection < 0:
-        print(" you cannot have a selection less than zero")
+        print("You cannot have a selection less than zero")
         return None
     elif selection > len(inventory):
-        print(" Your selection cannot be greater than the inventory length")
+        print("Your selection cannot be greater than the inventory length")
         return None
     elif selection == len(inventory):        # Selection is equal to list length a copy of inventory will be returned
         return inventory[:]
