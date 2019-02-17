@@ -77,7 +77,7 @@ def generate_vowel():
     >>> random.seed()
     """
     vowels = ['A', 'E', 'I', 'O', 'U', 'Y']
-    return random.choice(vowels)
+    return random.choice(vowels)   # Selects a single random vowel from list
 
 
 def generate_consonant():
@@ -94,7 +94,7 @@ def generate_consonant():
     """
     consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P',
                   'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']
-    return random.choice(consonants)
+    return random.choice(consonants)  # Selects a single random consonant from list
 
 
 def generate_syllable():
@@ -109,7 +109,7 @@ def generate_syllable():
     'YI'
     >>> random.seed()
     """
-    return generate_consonant() + generate_vowel()
+    return generate_consonant() + generate_vowel()   # concatenates a randomly selected vowel and consonant together
 
 
 def generate_name(syllables):
@@ -129,9 +129,9 @@ def generate_name(syllables):
     """
     name = ""
     name_list = []
-    while len(name_list) < syllables:
+    while len(name_list) < syllables:         # Adds syllables to list while list length < given name_length
         name_list.append(generate_syllable())
-    return name.join(name_list).title()
+    return name.join(name_list).title()      # Joins items in list together in string
 
 
 def choose_class():
@@ -182,7 +182,7 @@ def create_health(character_class):
     1
     >>> random.seed()
     """
-    if character_class == 'barbarian':
+    if character_class == 'barbarian':   # Health is dependant on class and calculated by die rolls given by D&D website
         return roll_die(1, 12)
     elif character_class == 'bard' or character_class == 'cleric' or character_class == 'druid':
         return roll_die(1, 8)
@@ -214,7 +214,7 @@ def create_character(number_of_syllables):
                     'Intelligence': roll_die(3, 6), 'Wisdom': roll_die(3, 6),
                     'Charisma': roll_die(3, 6), 'XP': 0, 'Inventory': []}
     class2 = my_character['Class']
-    my_character['Health'] = create_health(class2)
+    my_character['Health'] = create_health(class2)    # Health is appended to dictionary after class is given by user
     if number_of_syllables > 0:
         return my_character
     else:
@@ -237,7 +237,7 @@ def who_rolls_first():
     False
     >>> random.seed()
     """
-    opponent_one = roll_die(1, 20)
+    opponent_one = roll_die(1, 20)      # Each opponent rolls 1D20 to see who attacks first
     opponent_two = roll_die(1, 20)
     if opponent_one > opponent_two:
         print('Opponent one rolled a ' + str(opponent_one) + ' and opponent two rolled a ' + str(opponent_two))
@@ -250,7 +250,7 @@ def who_rolls_first():
     else:
         print('Opponent one rolled a ' + str(opponent_one) + ' and opponent two rolled a ' + str(opponent_two))
         print('Roll again')
-        return who_rolls_first()
+        return who_rolls_first()    # If each opponent rolls the same number dice is rolled again
 
 
 def attack_round(attacker, opponent):
@@ -277,16 +277,16 @@ def attack_round(attacker, opponent):
     Attack did not strike
     >>> random.seed()
     """
-    attack_one = roll_die(1, 20)
-    attack_two = roll_die(1, 20)
-    damage_one = create_health(attacker['Class'])
+    attack_one = roll_die(1, 20)     # Attacker rolls 1D20
+    attack_two = roll_die(1, 20)     # If attacker misses opponent rolls 1D20
+    damage_one = create_health(attacker['Class'])  # Damage dealt is dependant on class
     damage_two = create_health(opponent['Class'])
     if attack_one > opponent['Dexterity']:
-        opponent['Health'] = opponent['Health'] - damage_one
+        opponent['Health'] = opponent['Health'] - damage_one  # Damage is subtracted from health if attack successful
         print(str(attacker['Name']) + ' rolled a ' + str(attack_one) + ' , ' + str(opponent['Name'])
               + ' has a dexterity of ' + str(opponent['Dexterity']))
         print('Attack of ' + str(damage_one) + ' was successfully struck')
-        if opponent['Health'] > 0:
+        if opponent['Health'] > 0:                               # Opponent must have health > 0 to counter attacker
             print(opponent['Name'] + ' survived and gets a chance to attack')
             if attack_two > attacker['Dexterity']:
                 attacker['Health'] = attacker['Health'] - damage_two
@@ -340,26 +340,26 @@ def combat_round(opponent_one, opponent_two):
     Both combatants survived the fight. Link now has a health of 2 and Zelda now has a health of  2
     >>> random.seed()
     """
-    if who_rolls_first():
+    if who_rolls_first():                       # If who_rolls_first = True opponent one attacks first
         attack_round(opponent_one, opponent_two)
-        if opponent_two['Health'] <= 0:
+        if opponent_two['Health'] <= 0:       # If health of either opponent drops below zero , a death note is printed
             print(opponent_two['Name'] + ' has died')
         elif opponent_one['Health'] <= 0:
             print(opponent_one['Name'] + ' has died')
         else:
             print('Both combatants survived the fight. ' + opponent_one['Name'] + ' now has a health of '
                   + str(opponent_one['Health']) + ' and ' + opponent_two['Name'] + ' now has a health of '
-                  + str(opponent_two['Health']))
+                  + str(opponent_two['Health']))     # If health of both opponents > zero , a survival note is printed
     else:
-        attack_round(opponent_two, opponent_one)
+        attack_round(opponent_two, opponent_one)     # If who_rolls_first = False , opponent_two attacks first
         if opponent_two['Health'] <= 0:
             print(opponent_two['Name'] + ' has died')
-        elif opponent_one['Health'] <= 0:
+        elif opponent_one['Health'] <= 0:     # If health of either opponent drops below zero , a death note is printed
             print(opponent_one['Name'] + ' has died')
         else:
             print('Both combatants survived the fight. ' + opponent_one['Name'] + ' now has a health of '
                   + str(opponent_one['Health']) + ' and ' + opponent_two['Name'] + ' now has a health of  '
-                  + str(opponent_two['Health']))
+                  + str(opponent_two['Health']))   # If health of both opponents > zero , a survival note is printed
 
 
 def print_character(character):
