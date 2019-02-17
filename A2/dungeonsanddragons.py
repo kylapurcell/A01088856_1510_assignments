@@ -1,3 +1,8 @@
+# Kyla Purcell
+
+# A01088856
+
+# February 16th 2019
 
 import random
 
