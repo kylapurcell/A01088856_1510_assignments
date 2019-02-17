@@ -27,7 +27,7 @@ class TestChooseInventory(TestCase):
         self.assertEqual(list, type(dungeonsanddragons.choose_inventory([1, 2], 2)))
         # Tests that output is of type list
 
-    def test_choose_inventory7(self):
+    def test_choose_inventory7(self):                                        # Tests random output
         random.seed(3)
         self.assertEqual(['Ring', 'Staff'], dungeonsanddragons.choose_inventory(['Ring', 'Staff', 'Scroll'], 2))
         random.seed()

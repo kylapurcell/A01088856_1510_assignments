@@ -4,7 +4,7 @@ import unittest.mock
 import io
 
 
-class TestPrintCharacter(TestCase):
+class TestPrintCharacter(TestCase):                              # Tests printed output
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def test_print_character(self, mock_stdout):
         character = {'Name': 'Kiwo', 'Class': 'sorcerer', 'Health': 6,

@@ -6,11 +6,12 @@ import io
 
 
 class TestCombatRound(TestCase):
-    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=True)
-    @patch('A2.dungeonsanddragons.roll_die', side_effect=[11, 3])
-    @patch('A2.dungeonsanddragons.create_health', side_effect=[2, 3])
-    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=True)  # Mock opponent one rolls first
+    @patch('A2.dungeonsanddragons.roll_die', side_effect=[11, 3])      # Mock die rolls for attack
+    @patch('A2.dungeonsanddragons.create_health', side_effect=[2, 3])  # Mock damage dealt
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)      # Mock printed output
     def test_combat_round(self, mock_stdout, mock_first, mock_roll, mock_damage):
+        # Tests case where opponent_one attacks first and dies
         attacker_loser = {'Name': 'Legoxo', 'Class': 'blood hunter', 'Health': 1, 'Strength': 4, 'Dexterity': 2,
                           'Constitution': 9, 'Intelligence': 13, 'Wisdom': 11, 'Charisma': 10,
                           'XP': 0, 'Inventory': []}
@@ -26,11 +27,12 @@ class TestCombatRound(TestCase):
         dungeonsanddragons.combat_round(attacker_loser, opponent_winner)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=True)
-    @patch('A2.dungeonsanddragons.roll_die', side_effect=[13, 3])
-    @patch('A2.dungeonsanddragons.create_health', side_effect=[4, 3])
-    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=True)  # Mock opponent one rolls first
+    @patch('A2.dungeonsanddragons.roll_die', side_effect=[13, 3])      # Mock die rolls for attack
+    @patch('A2.dungeonsanddragons.create_health', side_effect=[4, 3])  # Mock damage dealt
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)       # Mock printed output
     def test_combat_round2(self, mock_stdout, mock_first, mock_roll, mock_damage):
+        # Tests case where opponent_one goes first and opponent_two dies
         attacker_winner = {'Name': 'Legoxo', 'Class': 'blood hunter', 'Health': 1, 'Strength': 4, 'Dexterity': 2,
                            'Constitution': 9, 'Intelligence': 13, 'Wisdom': 11, 'Charisma': 10,
                            'XP': 0, 'Inventory': []}
@@ -44,11 +46,12 @@ class TestCombatRound(TestCase):
         dungeonsanddragons.combat_round(attacker_winner, opponent_loser)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=False)
-    @patch('A2.dungeonsanddragons.roll_die', side_effect=[13, 3])
-    @patch('A2.dungeonsanddragons.create_health', side_effect=[4, 3])
-    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=False)  # Mock opponent two goes first
+    @patch('A2.dungeonsanddragons.roll_die', side_effect=[13, 3])       # Mock die rolls for attack
+    @patch('A2.dungeonsanddragons.create_health', side_effect=[4, 3])   # Mock damage dealt
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)        # Mock printed output
     def test_combat_round3(self, mock_stdout, mock_first, mock_roll, mock_damage):
+        # Tests case where opponent_two goes first and opponent_one dies
         attacker_loser = {'Name': 'Legoxo', 'Class': 'blood hunter', 'Health': 1, 'Strength': 4, 'Dexterity': 2,
                           'Constitution': 9, 'Intelligence': 13, 'Wisdom': 11, 'Charisma': 10,
                           'XP': 0, 'Inventory': []}
@@ -62,11 +65,12 @@ class TestCombatRound(TestCase):
         dungeonsanddragons.combat_round(attacker_loser, opponent_winner)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=False)
-    @patch('A2.dungeonsanddragons.roll_die', side_effect=[3, 3])
-    @patch('A2.dungeonsanddragons.create_health', side_effect=[4, 3])
-    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=False)  # Mock opponent two goes first
+    @patch('A2.dungeonsanddragons.roll_die', side_effect=[3, 3])         # Mock die rolls for attack
+    @patch('A2.dungeonsanddragons.create_health', side_effect=[4, 3])    # Mock damage dealt
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)         # Mock printed output
     def test_combat_round4(self, mock_stdout, mock_first, mock_roll, mock_damage):
+        # Tests case where opponent_two goes first and opponent_two dies
         attacker_winner = {'Name': 'Legoxo', 'Class': 'blood hunter', 'Health': 1, 'Strength': 4, 'Dexterity': 20,
                            'Constitution': 9, 'Intelligence': 13, 'Wisdom': 11, 'Charisma': 10,
                            'XP': 0, 'Inventory': []}
@@ -82,11 +86,12 @@ class TestCombatRound(TestCase):
         dungeonsanddragons.combat_round(attacker_winner, opponent_loser)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=False)
-    @patch('A2.dungeonsanddragons.roll_die', side_effect=[3, 3])
-    @patch('A2.dungeonsanddragons.create_health', side_effect=[4, 3])
-    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
+    @patch('A2.dungeonsanddragons.who_rolls_first', return_value=False)  # Mock opponent two goes first
+    @patch('A2.dungeonsanddragons.roll_die', side_effect=[3, 3])         # Mock die rolls for attack
+    @patch('A2.dungeonsanddragons.create_health', side_effect=[4, 3])    # Mock damage dealt
+    @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)         # Mock printed output
     def test_combat_round5(self, mock_stdout, mock_first, mock_roll, mock_damage):
+        # Tests case where opponent_one and opponent_two survive the fight
         attacker_survive = {'Name': 'Legoxo', 'Class': 'blood hunter', 'Health': 10, 'Strength': 4, 'Dexterity': 20,
                             'Constitution': 9, 'Intelligence': 13, 'Wisdom': 11, 'Charisma': 10,
                             'XP': 0, 'Inventory': []}
@@ -104,13 +109,16 @@ class TestCombatRound(TestCase):
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
     def test_combat_round6(self):
+        # Tests that opponent_one and opponent_two must be dictionaries and not string type
         with self.assertRaises(TypeError):
             dungeonsanddragons.combat_round('', '')
 
     def test_combat_round7(self):
+        # Tests that opponent_one and opponent_two must be dictionaries and not integer type
         with self.assertRaises(TypeError):
             dungeonsanddragons.combat_round(1, 2)
 
     def test_combat_round8(self):
+        # Tests that opponent_one and opponent_two must be dictionaries and not float type
         with self.assertRaises(TypeError):
             dungeonsanddragons.combat_round(2.5, 6.7)
