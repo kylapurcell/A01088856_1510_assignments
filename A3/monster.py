@@ -1,4 +1,6 @@
 import random
+
+
 def roll_die(number_of_rolls, number_of_sides):
         """
         Simulate the rolling of a die a specified number of times with a specified number of sides.
@@ -25,8 +27,32 @@ def roll_die(number_of_rolls, number_of_sides):
         else:
             return 0     # Returns zero if rolls and sides = zero
 
+def monster_class_choice():
+    """
+    What kind of monster that appears is dependant on a random number between 1 and 4,
+    an extra rare monster may appear if a number between 1,100 is chosen
+    :return:
+    """
+    normal_chance = random.randint(1, 4)
+    rare_chance = random.randint(1, 100)
+    if rare_chance == 50:
+        return 'Pax'
+    elif normal_chance == 1:
+        return 'Ghoul'
+    elif normal_chance == 2:
+        return 'Radioactive Rat'
+    elif normal_chance == 3:
+        return 'Rogue Robot'
+    elif normal_chance == 4:
+        return 'Mutated Creature'
+
+
 
 def generate_monster():
+    """
+    Generate a monster.
+    :return:
+    """
     #monster = {#'Class':monster_class_choice(), 'Health': 5, 'Damage': roll_die(1, 4),'Special': 0 }
     # class2 = monster_class()
     # monster[special]= monster_class_perk(class2)
