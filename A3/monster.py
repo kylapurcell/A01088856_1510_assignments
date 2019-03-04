@@ -60,6 +60,15 @@ def monster_class_perk(class_type):
         return 0
 
 
+def monster_dexterity(class_type):
+    if class_type == 'Radioactive Rat' or class_type == 'Rogue Robot':
+        return roll_die(3, 4)
+    elif class_type == 'Mutated Creature' or 'Ghoul':
+        return roll_die(3, 6)
+    elif class_type == 'Pax':
+        return roll_die(3, 8)
+
+
 def generate_monster():
     """
     Generate a monster.
@@ -67,7 +76,8 @@ def generate_monster():
     """
     monster = {'Class': monster_class_choice(), 'Health': 5,
                'Damage': roll_die(1, 4), 'Dexterity': roll_die(3, 6), 'Special': 0}
-    class2 = monster_class_choice()
+    class2 = monster['Class']
+    monster['Dexterity'] = monster_dexterity(class2)
     monster['Special'] = monster_class_perk(class2)
     return monster
 
