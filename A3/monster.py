@@ -49,11 +49,15 @@ def monster_class_choice():
 
 
 def monster_class_perk(class_type):
+    """
+    If a monster is a rare class a identifier will be added to the dictionary for special events to occur
+    :param class_type:
+    :return:
+    """
     if class_type == 'Pax':
         return 1
     else:
         return 0
-
 
 
 def generate_monster():
@@ -61,11 +65,10 @@ def generate_monster():
     Generate a monster.
     :return:
     """
-    #monster = {#'Class':monster_class_choice(), 'Health': 5, 'Damage': roll_die(1, 4),
-    # 'Dexterity': roll_die(3, 6),'Special': 0 }
-    # class2 = monster_class()
-    # monster[special]= monster_class_perk(class2)
-    pass
+    monster = {'Class': monster_class_choice(), 'Health': 5,
+               'Damage': roll_die(1, 4), 'Dexterity': roll_die(3, 6), 'Special': 0}
+    class2 = monster_class_choice()
+    monster['Special'] = monster_class_perk(class2)
     return monster
 
 
