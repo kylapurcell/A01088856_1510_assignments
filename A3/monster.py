@@ -76,6 +76,20 @@ def monster_about():
     :return:
     """
 
+
+def generate_monster():
+    """
+    Generate a monster.
+    :return:
+    """
+    monster = {'Name': monster_class_choice(), 'Health': 5,
+               'Damage': roll_die(1, 4), 'Dexterity': roll_die(3, 6), 'Special': 0}
+    class2 = monster['Class']
+    monster['Dexterity'] = monster_dexterity(class2)
+    monster['Special'] = monster_class_perk(class2)
+    return monster
+
+
 def attack_round(attacker, opponent):
     """
     Decide if an attack will be successful.
@@ -103,22 +117,53 @@ def attack_round(attacker, opponent):
         print('Attack did not strike')
         return 0
 
-def monster_combat():
+
+def monster_run_away(my_character, monster):
+    chance_damage = random.randint(1, 10)
+    if chance_damage is not 5:
+        print('You escaped successfully and without a scratch too')
+    else:
+        my_character['Health'] = my_character['Health'] - monster['Damage']
+        print(str(monster['Name']), 'attacked as you were running away with a attack of', str(monster['Damage']),
+              'your health is now', str(my_character['Health']))
+        if my_character['Health'] < 0:
+            print('You died')
+        print('You survived to fight another day')
+
+
+def monster_combat(my_character, monster):
     """
     Engage in combat to the death.
     :return:
     """
+    choice = input(' Would you like to run away or fight? (type run or fight) ').lower().strip()
+    if choice == 'run':
+        monster_run_away(my_character, monster)
+    elif choice == 'fight':
+        while my_character['Health'] > 0:
+            attack1 = attack_round(my_character, monster)
+            my_character['Health'] = monster['Health'] - attack1
+            if monster['Health'] <= 0:
+                print(monster['Name'] + ' has died')
+                break
+            elif attack1 == 0 or monster['Health'] > 0:
+                print(monster['Name'] + ' now has a health of ' + str(monster['Health']))
+                attack3 = attack_round(monster, my_character)
+                my_character['Health'] = my_character['Health'] - attack3
+                print(my_character['Name'] + ' now has a health of ' + str(my_character['Health']))
 
-def generate_monster():
-    """
-    Generate a monster.
-    :return:
-    """
-    monster = {'Class': monster_class_choice(), 'Health': 5,
-               'Damage': roll_die(1, 4), 'Dexterity': roll_die(3, 6), 'Special': 0}
-    class2 = monster['Class']
-    monster['Dexterity'] = monster_dexterity(class2)
-    monster['Special'] = monster_class_perk(class2)
-    return monster
+        else:
+            print(my_character['Name'] + ' has died')
+
+
+monster_combat({'Name': 'Kyla', 'Health': 10, 'Dexterity':5, 'Damage':2},
+                   {'Name': 'xxx', 'Health': 10, 'Dexterity':5, 'Damage':2})
+
+
+
+
+
+
+
 
 
