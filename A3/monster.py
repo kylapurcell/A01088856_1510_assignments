@@ -120,15 +120,15 @@ def attack_round(attacker, opponent):
 
 def monster_run_away(my_character, monster):
     chance_damage = random.randint(1, 10)
-    if chance_damage is not 5:
-        print('You escaped successfully and without a scratch too')
-    else:
+    if chance_damage == 5:
         my_character['Health'] = my_character['Health'] - monster['Damage']
         print(str(monster['Name']), 'attacked as you were running away with a attack of', str(monster['Damage']),
               'your health is now', str(my_character['Health']))
         if my_character['Health'] < 0:
             print('You died')
         print('You survived to fight another day')
+    else:
+        print('You escaped successfully and without a scratch too')
 
 
 def monster_combat(my_character, monster):
