@@ -24,6 +24,7 @@ def map(character):
             print('\n')
         if character['Location'] == list2[i]:
             print('$' + '  ', end='')
+            continue
         print('*' + '  ', end='')
     print('\n')
 
@@ -54,6 +55,7 @@ def movement_conditions(character, command):
         print(" You've reached the end of this world please turn back or head north or south")
     else:
         movement(character, command)
+
 
 def practice():
     command = ''
