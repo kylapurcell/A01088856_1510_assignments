@@ -25,9 +25,34 @@ def map(character):
         if character['Location'] == list2[i]:
             print('$' + '  ', end='')
         print('*' + '  ', end='')
+    print('\n')
 
 
+def movement(character, command):
+    while 5 > character['Location'][1] > 0 and 5 > character['Location'][0] > 0:
+        if command == 'North':
+            character['Location'][1] = (character['Location'][1] - 1)
+        elif command == 'South':
+            character['Location'][1] = (character['Location'][1] + 1)
+        elif command == 'East':
+            character['Location'][0] = (character['Location'][0] + 1)
+        elif command == 'West':
+            character['Location'][0] = (character['Location'][0] - 1)
+    else:
+        print("You've reached the edge of this world please turn back")
 
+def practice():
+    command = ''
+    character = {'Location': [2, 2]}
+    map(character)
+    while command != 'Quit':
+        command = input('Input a direction or quit: ').title()
+        movement(character, command)
+        map(character)
+        print(character['Location'])
+    return None
+
+practice()
 
 
 
