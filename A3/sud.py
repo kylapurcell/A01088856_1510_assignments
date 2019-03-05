@@ -29,17 +29,31 @@ def map(character):
 
 
 def movement(character, command):
-    while 5 > character['Location'][1] > 0 and 5 > character['Location'][0] > 0:
-        if command == 'North':
+    if command == 'North':
             character['Location'][1] = (character['Location'][1] - 1)
-        elif command == 'South':
+    elif command == 'South':
             character['Location'][1] = (character['Location'][1] + 1)
-        elif command == 'East':
+    elif command == 'East':
             character['Location'][0] = (character['Location'][0] + 1)
-        elif command == 'West':
+    elif command == 'West':
             character['Location'][0] = (character['Location'][0] - 1)
+
+
+def movement_conditions(character, command):
+    if character['Location'] == [4, 4] and command == 'South' or command == 'East':
+        print(" You've reached the end of this world please head north or west")
+    if character['Location'][1] == [0, 0] and command == 'North' or command == 'West':
+        print(" You've reached the end of this world please head east or south")
+    elif character['Location'][1] == 0 and command == 'North':
+        print(" You've reached the end of this world please turn back or head east or west")
+    elif character['Location'][0] == 0 and command == 'West':
+        print(" You've reached the end of this world please turn back or head north or south")
+    elif character['Location'][1] == 4 and command == 'South':
+        print(" You've reached the end of this world please turn back or head east or west")
+    elif character['Location'][0] == 4 and command == 'East':
+        print(" You've reached the end of this world please turn back or head north or south")
     else:
-        print("You've reached the edge of this world please turn back")
+        movement(character, command)
 
 def practice():
     command = ''
@@ -47,7 +61,7 @@ def practice():
     map(character)
     while command != 'Quit':
         command = input('Input a direction or quit: ').title()
-        movement(character, command)
+        movement_conditions(character, command)
         map(character)
         print(character['Location'])
     return None
