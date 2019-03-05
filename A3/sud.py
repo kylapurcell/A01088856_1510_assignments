@@ -2,8 +2,8 @@ def create_coordinates():
     list1 = []
     list2 = []
     list3 = []
-    for i in range(0, 7):
-        for j in range(0, 7):
+    for i in range(0, 5):
+        for j in range(0, 5):
             list1.append(i)
             list2.append(j)
     for i in list1:
@@ -12,6 +12,19 @@ def create_coordinates():
         list3[i].insert(1, list2[i])
     return list3
 
+
+def map(character):
+    coord = create_coordinates()
+    list2 = []
+    for i in range(0, len(coord)):
+        list2.append([coord[i][1]])
+        list2[i].insert(1, coord[i][0])
+    for i in range(0, len(coord)):
+        if i % 5 == 0:
+            print('\n')
+        if character['Location'] == list2[i]:
+            print('$' + '  ', end='')
+        print('*' + '  ', end='')
 
 
 
