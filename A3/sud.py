@@ -19,7 +19,6 @@ def map(character):
     for i in range(0, len(coord)):
         list2.append([coord[i][1]])
         list2[i].insert(1, coord[i][0])
-    for i in range(0, len(coord)):
         if i % 5 == 0:
             print('\n')
         if character['Location'] == list2[i]:
@@ -30,22 +29,18 @@ def map(character):
 
 
 def movement(character, command):
-    if command == 'North':
+        if command == 'North':
             character['Location'][1] = (character['Location'][1] - 1)
-    elif command == 'South':
+        elif command == 'South':
             character['Location'][1] = (character['Location'][1] + 1)
-    elif command == 'East':
+        elif command == 'East':
             character['Location'][0] = (character['Location'][0] + 1)
-    elif command == 'West':
+        elif command == 'West':
             character['Location'][0] = (character['Location'][0] - 1)
 
 
 def movement_conditions(character, command):
-    if character['Location'] == [4, 4] and command == 'South' or command == 'East':
-        print(" You've reached the end of this world please head north or west")
-    if character['Location'][1] == [0, 0] and command == 'North' or command == 'West':
-        print(" You've reached the end of this world please head east or south")
-    elif character['Location'][1] == 0 and command == 'North':
+    if character['Location'][1] == 0 and command == 'North':
         print(" You've reached the end of this world please turn back or head east or west")
     elif character['Location'][0] == 0 and command == 'West':
         print(" You've reached the end of this world please turn back or head north or south")
