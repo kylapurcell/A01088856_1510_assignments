@@ -1,3 +1,22 @@
+def create_coordinates():
+    list1 = []
+    list2 = []
+    list3 = []
+    for i in range(0, 7):
+        for j in range(0, 7):
+            list1.append(i)
+            list2.append(j)
+    for i in list1:
+        list3.append([i])
+    for i in range(0, len(list3)):
+        list3[i].insert(1, list2[i])
+    return list3
+
+
+
+
+
+
 
 
 
@@ -31,4 +50,3 @@ X     `-.....-------./ /
     (_/ (_/      ((_/""")                   # Ascii art from https://textart.io/art/
 
 
-main()
