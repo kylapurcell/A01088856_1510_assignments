@@ -13,7 +13,7 @@ def create_coordinates():
     return list3
 
 
-def map(character):
+def game_map(character):
     coord = create_coordinates()
     for i in range(0, len(coord)):
         if i % 5 == 0:
@@ -64,7 +64,7 @@ def location_one(character):
 def practice():
     command = ''
     character = {'Location': [2, 2]}
-    map(character)
+    game_map(character)
     while command != 'Quit':
         command = input('Input a direction or quit: ').title()
         movement_conditions(character, command)
