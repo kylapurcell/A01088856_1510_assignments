@@ -1,5 +1,5 @@
 import random
-import character
+from A3 import character
 
 
 def roll_die(number_of_rolls, number_of_sides):
@@ -72,7 +72,7 @@ def generate_monster():
     """
     monster = {'Name': monster_class_choice(), 'Health': 5,
                'Damage': roll_die(1, 4), 'Dexterity': roll_die(3, 6)}
-    class2 = monster['Class']
+    class2 = monster['Name']
     monster['Dexterity'] = monster_dexterity(class2)
     return monster
 
@@ -139,12 +139,11 @@ def monster_combat(my_character, monster):
         else:
             print(my_character['Name'] + ' has died')
 
-    def rare_encounter(character,monster):
-        
 
 
-monster_combat({'Name': 'Kyla', 'Health': 10, 'Dexterity':5, 'Damage':2},
-                   {'Name': 'xxx', 'Health': 10, 'Dexterity':5, 'Damage':2})
+
+#monster_combat({'Name': 'Kyla', 'Health': 10, 'Dexterity':5, 'Damage':2},
+                   #{'Name': 'xxx', 'Health': 10, 'Dexterity':5, 'Damage':2})
 
 
 

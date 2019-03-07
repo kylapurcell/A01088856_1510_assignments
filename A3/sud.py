@@ -1,6 +1,7 @@
 import random
 import monster
 import character
+import json
 
 
 def create_coordinates():
@@ -56,7 +57,7 @@ def movement_conditions(character, command):
         movement(character, command)
 
 
-def location_one(character):
+def location_special(character):
     if character['Location'] == [1, 3]:
         print('龴ↀ◡ↀ龴')
         test = input('what would you like to do?')
@@ -64,6 +65,10 @@ def location_one(character):
             print('works')
     elif character['Location'] == [1, 2]:
         print('not working')
+
+
+def location_normal(character):
+    pass
 
 
 def monster_encounter_chance():
@@ -79,12 +84,18 @@ def monster_encounter(monster):
         print(monster['Name'],' is hereee')
 
 
+def save_game(character):
+    filename = str(character['Name']) + 'savefile.json'
+    with open(filename, 'w') as file_object: json.dump(character, file_object)
+
+
 def game_loop():
-    command = ''
     my_character = character.create_character()
     game_map(my_character)
-    while command != 'Quit':
-        command = input('Input a direction or quit: ').title()
+    while True:
+        command = input('Input a direction or quit: ').title().strip()
+        if command == 'Quit':
+            break
         movement_conditions(my_character, command)
         game_map(my_character)
         print(my_character['Location'])
@@ -92,14 +103,15 @@ def game_loop():
             my_monster = monster.generate_monster()
             monster_encounter(my_monster)
             monster.monster_combat(my_character, my_monster)
-        location_one(my_character)
-    return None
+        location_special(my_character)
+        location_normal(my_character)
+    return save_game(my_character)
 print('龴ↀ◡ↀ龴')
 print('ᕙ༼ ,,ԾܫԾ,, ༽ᕗ')
 
 
 
-practice()
+game_loop()
 
 
 
