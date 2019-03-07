@@ -91,17 +91,14 @@ def attack_round(attacker, opponent):
     """
     attack_roll = roll_die(1, 20)
     damage = roll_die(1, 6)
+    print(str(attacker['Name']), 'has a chance to attack')
     if attack_roll > opponent['Dexterity']:
         opponent['Health'] = opponent['Health'] - damage
-        print(str(attacker['Name']) + ' rolled a ' + str(attack_roll) + ' , ' + str(opponent['Name'])
-              + ' has a dexterity of ' + str(opponent['Dexterity']))
         print('Attack was successfully struck')
-        print(attacker['Name'] + ' attacked with a roll of ' + str(damage))
+        print(attacker['Name'] + ' attacked with damage of ' + str(damage))
         return damage
     elif attack_roll <= opponent['Dexterity']:
-        print(str(attacker['Name']) + ' rolled a ' + str(attack_roll) + ' , ' + str(opponent['Name'])
-              + ' has a dexterity of ' + str(opponent['Dexterity']))
-        print('Attack did not strike')
+        print('Attack missed')
         return 0
 
 
@@ -141,6 +138,9 @@ def monster_combat(my_character, monster):
 
         else:
             print(my_character['Name'] + ' has died')
+
+    def rare_encounter(character,monster):
+        
 
 
 monster_combat({'Name': 'Kyla', 'Health': 10, 'Dexterity':5, 'Damage':2},
