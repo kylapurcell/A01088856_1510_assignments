@@ -15,13 +15,10 @@ def create_coordinates():
 
 def map(character):
     coord = create_coordinates()
-    list2 = []
     for i in range(0, len(coord)):
-        list2.append([coord[i][1]])
-        list2[i].insert(1, coord[i][0])
         if i % 5 == 0:
             print('\n')
-        if character['Location'] == list2[i]:
+        if character['Location'] == coord[i]:
             print('$' + '  ', end='')
             continue
         print('*' + '  ', end='')
@@ -29,27 +26,39 @@ def map(character):
 
 
 def movement(character, command):
-        if command == 'North':
+        if command == 'West':
             character['Location'][1] = (character['Location'][1] - 1)
-        elif command == 'South':
-            character['Location'][1] = (character['Location'][1] + 1)
         elif command == 'East':
+            character['Location'][1] = (character['Location'][1] + 1)
+        elif command == 'South':
             character['Location'][0] = (character['Location'][0] + 1)
-        elif command == 'West':
+        elif command == 'North':
             character['Location'][0] = (character['Location'][0] - 1)
+        else:
+            print('I do not understand that command, type help if you want to hear the rules')
 
 
 def movement_conditions(character, command):
-    if character['Location'][1] == 0 and command == 'North':
+    if character['Location'][0] == 0 and command == 'North':
         print(" You've reached the end of this world please turn back or head east or west")
-    elif character['Location'][0] == 0 and command == 'West':
+    elif character['Location'][1] == 0 and command == 'West':
         print(" You've reached the end of this world please turn back or head north or south")
-    elif character['Location'][1] == 4 and command == 'South':
+    elif character['Location'][0] == 4 and command == 'South':
         print(" You've reached the end of this world please turn back or head east or west")
-    elif character['Location'][0] == 4 and command == 'East':
+    elif character['Location'][1] == 4 and command == 'East':
         print(" You've reached the end of this world please turn back or head north or south")
     else:
         movement(character, command)
+
+
+def location_one(character):
+    if character['Location'] == [1, 3]:
+        print('龴ↀ◡ↀ龴')
+        test = input('what would you like to do?')
+        if test == 'test':
+            print('works')
+    elif character['Location'] == [1, 2]:
+        print('not working')
 
 
 def practice():
@@ -61,7 +70,12 @@ def practice():
         movement_conditions(character, command)
         map(character)
         print(character['Location'])
+        location_one(character)
     return None
+print('龴ↀ◡ↀ龴')
+print('ᕙ༼ ,,ԾܫԾ,, ༽ᕗ')
+
+
 
 practice()
 

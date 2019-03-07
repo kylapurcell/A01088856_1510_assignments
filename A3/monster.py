@@ -63,9 +63,9 @@ def monster_class_perk(class_type):
 
 def monster_dexterity(class_type):
     if class_type == 'Radioactive Rat' or class_type == 'Rogue Robot':
-        return roll_die(3, 4)
+        return roll_die(1, 4)
     elif class_type == 'Mutated Creature' or 'Ghoul':
-        return roll_die(3, 6)
+        return roll_die(1, 6)
     elif class_type == 'Pax':
         return roll_die(3, 8)
 
