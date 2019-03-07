@@ -30,8 +30,8 @@ def choose_class():
 
 
 def create_character():
-    character = {'Name': input('What is your name? '), 'Class': 0, 'Health': 10, 'Damage': 0,
-                 'Dexterity': 0, 'Location': [0, 0], 'Inventory': [], 'Cursed': False}
+    character = {'Name': input('What is your name? '), 'Class': choose_class(), 'Health': 10, 'Damage': 0,
+                 'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}
     return character
 
 
