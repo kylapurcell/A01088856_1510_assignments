@@ -89,8 +89,22 @@ def save_game(character):
     with open(filename, 'w') as file_object: json.dump(character, file_object)
 
 
+def load_game():
+    choice = input('Do you want to start a new game or load? (new,load) ')
+    if choice == 'load':
+        try:
+            name = input("input your character's name ").title().strip()
+            filename = name + 'savefile.json'
+            with open(filename) as file_object: my_character = json.load(file_object)
+            return my_character
+        except FileNotFoundError:
+            print('We could not find that character in our system please create a new one')
+            return character.create_character()
+    return character.create_character()
+
+
 def game_loop():
-    my_character = character.create_character()
+    my_character = load_game()
     game_map(my_character)
     while True:
         command = input('Input a direction or quit: ').title().strip()
