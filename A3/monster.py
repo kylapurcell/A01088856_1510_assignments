@@ -49,18 +49,6 @@ def monster_class_choice():
         return 'Mutated Creature'
 
 
-def monster_class_perk(class_type):
-    """
-    If a monster is a rare class a identifier will be added to the dictionary for special events to occur
-    :param class_type:
-    :return:
-    """
-    if class_type == 'Pax':
-        return 1
-    else:
-        return 0
-
-
 def monster_dexterity(class_type):
     if class_type == 'Radioactive Rat' or class_type == 'Rogue Robot':
         return roll_die(1, 4)
@@ -83,10 +71,9 @@ def generate_monster():
     :return:
     """
     monster = {'Name': monster_class_choice(), 'Health': 5,
-               'Damage': roll_die(1, 4), 'Dexterity': roll_die(3, 6), 'Special': 0}
+               'Damage': roll_die(1, 4), 'Dexterity': roll_die(3, 6)}
     class2 = monster['Class']
     monster['Dexterity'] = monster_dexterity(class2)
-    monster['Special'] = monster_class_perk(class2)
     return monster
 
 
@@ -103,7 +90,7 @@ def attack_round(attacker, opponent):
     RETURN: an attack as an integer or 0
     """
     attack_roll = roll_die(1, 20)
-    damage = roll_die(1, 4)
+    damage = roll_die(1, 6)
     if attack_roll > opponent['Dexterity']:
         opponent['Health'] = opponent['Health'] - damage
         print(str(attacker['Name']) + ' rolled a ' + str(attack_roll) + ' , ' + str(opponent['Name'])
