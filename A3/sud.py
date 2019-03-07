@@ -1,3 +1,8 @@
+import random
+import monster
+import character
+
+
 def create_coordinates():
     list1 = []
     list2 = []
@@ -61,16 +66,33 @@ def location_one(character):
         print('not working')
 
 
-def practice():
+def monster_encounter_chance():
+    chance = random.randint(1, 10)
+    if chance == 4:
+        print('You have encountered a monster yikes')
+        return True
+    else:
+        print('You feel a calm wind blow in the air, At this moment you are truly alone in the wasteland')
+
+
+def monster_encounter(monster):
+        print(monster['Name'],' is hereee')
+
+
+def game_loop():
     command = ''
-    character = {'Location': [2, 2]}
-    game_map(character)
+    my_character = character.create_character()
+    game_map(my_character)
     while command != 'Quit':
         command = input('Input a direction or quit: ').title()
-        movement_conditions(character, command)
-        map(character)
-        print(character['Location'])
-        location_one(character)
+        movement_conditions(my_character, command)
+        game_map(my_character)
+        print(my_character['Location'])
+        if monster_encounter_chance():
+            my_monster = monster.generate_monster()
+            monster_encounter(my_monster)
+            monster.monster_combat(my_character, my_monster)
+        location_one(my_character)
     return None
 print('龴ↀ◡ↀ龴')
 print('ᕙ༼ ,,ԾܫԾ,, ༽ᕗ')
