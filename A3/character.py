@@ -35,3 +35,9 @@ def create_character():
     return character
 
 
+def character_healing(character):
+    if 10 > character['Health'] > 0:
+        character['Health'] = character['Health'] + 1
+        print('Your health has revitalized to', str(character['Health']))
+
+

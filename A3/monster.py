@@ -142,9 +142,6 @@ def monster_combat(my_character, monster):
 
 
 
-#monster_combat({'Name': 'Kyla', 'Health': 10, 'Dexterity':5, 'Damage':2},
-                   #{'Name': 'xxx', 'Health': 10, 'Dexterity':5, 'Damage':2})
-
 
 
 

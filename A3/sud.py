@@ -4,12 +4,13 @@ import character
 import json
 import os
 
+
 def create_coordinates():
     list1 = []
     list2 = []
     list3 = []
-    for i in range(0, 5):
-        for j in range(0, 5):
+    for i in range(0, 7):
+        for j in range(0, 7):
             list1.append(i)
             list2.append(j)
     for i in list1:
@@ -22,12 +23,12 @@ def create_coordinates():
 def game_map(character):
     coord = create_coordinates()
     for i in range(0, len(coord)):
-        if i % 5 == 0:
+        if i % 7 == 0:
             print('\n')
         if character['Location'] == coord[i]:
-            print('$' + '  ', end='')
+            print('=^..^=','  ', end='')
             continue
-        print('*' + '  ', end='')
+        print('*****' + '    ', end='')
     print('\n')
 
 
@@ -49,9 +50,9 @@ def movement_conditions(character, command):
         print(" You've reached the end of this world please turn back or head east or west")
     elif character['Location'][1] == 0 and command == 'West':
         print(" You've reached the end of this world please turn back or head north or south")
-    elif character['Location'][0] == 4 and command == 'South':
+    elif character['Location'][0] == 6 and command == 'South':
         print(" You've reached the end of this world please turn back or head east or west")
-    elif character['Location'][1] == 4 and command == 'East':
+    elif character['Location'][1] == 6 and command == 'East':
         print(" You've reached the end of this world please turn back or head north or south")
     else:
         movement(character, command)
@@ -81,7 +82,7 @@ def monster_encounter_chance():
 
 
 def monster_encounter(monster):
-        print(monster['Name'],' is hereee')
+        print(monster['Name'],' appeared')
 
 
 def save_game(character):
@@ -96,7 +97,6 @@ def save_game(character):
             with open(new_filename, 'w') as file_object: json.dump(character, file_object)
     with open(filename, 'w') as file_object: json.dump(character, file_object)
     print('Your game has been saved, Thank you for playing =^..^=')
-
 
 
 def load_game():
@@ -129,6 +129,7 @@ def game_loop():
         location_special(my_character)
         location_normal(my_character)
     return save_game(my_character)
+
 print('龴ↀ◡ↀ龴')
 print('ᕙ༼ ,,ԾܫԾ,, ༽ᕗ')
 
