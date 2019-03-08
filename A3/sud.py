@@ -2,7 +2,7 @@ import random
 import monster
 import character
 import json
-
+import os
 
 def create_coordinates():
     list1 = []
@@ -86,7 +86,17 @@ def monster_encounter(monster):
 
 def save_game(character):
     filename = str(character['Name']) + 'savefile.json'
+    if os.path.isfile(filename):
+        over_write = input('There is already a save file with your character name '
+                           'press 1 to overwrite and 2 to create a new file? ')
+        if over_write == '1':
+            print('Okay your character file will be overwritten')
+        elif over_write == '2':
+            new_filename = input('What would you like your new character file to be called? ') + 'savefile.json'
+            with open(new_filename, 'w') as file_object: json.dump(character, file_object)
     with open(filename, 'w') as file_object: json.dump(character, file_object)
+    print('Your game has been saved, Thank you for playing =^..^=')
+
 
 
 def load_game():
@@ -112,7 +122,6 @@ def game_loop():
             break
         movement_conditions(my_character, command)
         game_map(my_character)
-        print(my_character['Location'])
         if monster_encounter_chance():
             my_monster = monster.generate_monster()
             monster_encounter(my_monster)
