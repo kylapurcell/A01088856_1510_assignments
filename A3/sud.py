@@ -58,12 +58,32 @@ def movement_conditions(character, command):
         movement(character, command)
 
 
+def location_one(character):
+    print('\n')
+    print("Oh wait, Someone appeared. In front of you, you see a scraggly looking cat with red eyes and a robotic arm."
+          " He's wearing a beanie with the phrase 'One Love' on it. ")
+    print('龴ↀ◡ↀ龴')
+    if character['Cursed']:
+        print('龴ↀ__ↀ龴')
+        print("There's something different about you... I'm too scared to accept catnip from you...head south west")
+    elif 'CatNip' in character['Inventory']:
+        print('Hello again man!')
+        print('龴ↀ 0 ↀ龴')
+        print('OMG you found it thank you!! Here take this')
+        print("Its a golden medal. You're surprised someone like him has something this nice")
+        character['Inventory'].remove('CatNip')
+        character['Inventory'].append('I Beat Catpocalpse Medal')
+        print('your inventory:', str(character['Inventory']))
+    else:
+        print('Hey man. I really need some CatNip. Can you bring me some?'
+              ' Try the store in the city ruins, south-east of here. Please man I gotta have it')
+        print('your inventory: ', str(character['Inventory']))
+
+
+
 def location_special(character):
-    if character['Location'] == [1, 3]:
-        print('龴ↀ◡ↀ龴')
-        test = input('what would you like to do?')
-        if test == 'test':
-            print('works')
+    if character['Location'] == [2, 3]:
+        location_one(character)
     elif character['Location'] == [1, 2]:
         print('not working')
 
@@ -125,7 +145,7 @@ def is_character_dead(character):
             return True
         else:
             print('Please choose yes or no')
-            return character_death(character)
+            return is_character_dead(character)
 
 
 def game_loop():
@@ -142,7 +162,7 @@ def game_loop():
             my_monster = monster.generate_monster()
             monster_encounter(my_monster)
             monster.monster_combat(my_character, my_monster)
-        if character_death(my_character):
+        if is_character_dead(my_character):
             break
         location_special(my_character)
         location_normal(my_character)
