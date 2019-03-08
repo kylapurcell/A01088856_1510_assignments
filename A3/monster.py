@@ -1,7 +1,6 @@
 import random
 from A3 import character
 
-
 def roll_die(number_of_rolls, number_of_sides):
         """
         Simulate the rolling of a die a specified number of times with a specified number of sides.
@@ -96,10 +95,8 @@ def attack_round(attacker, opponent):
         opponent['Health'] = opponent['Health'] - damage
         print('Attack was successfully struck')
         print(attacker['Name'] + ' attacked with damage of ' + str(damage))
-        return damage
     elif attack_roll <= opponent['Dexterity']:
         print('Attack missed')
-        return 0
 
 
 def monster_run_away(my_character, monster):
@@ -125,19 +122,19 @@ def monster_combat(my_character, monster):
         monster_run_away(my_character, monster)
     elif choice == 'fight':
         while my_character['Health'] > 0:
-            attack1 = attack_round(my_character, monster)
-            my_character['Health'] = monster['Health'] - attack1
+            attack_round(my_character, monster)
+            print(monster['Name'] + ' now has a health of ' + str(monster['Health']))
             if monster['Health'] <= 0:
                 print(monster['Name'] + ' has died')
                 break
-            elif attack1 == 0 or monster['Health'] > 0:
-                print(monster['Name'] + ' now has a health of ' + str(monster['Health']))
-                attack3 = attack_round(monster, my_character)
-                my_character['Health'] = my_character['Health'] - attack3
+            elif monster['Health'] > 0:
+                attack_round(monster, my_character)
                 print(my_character['Name'] + ' now has a health of ' + str(my_character['Health']))
-
         else:
             print(my_character['Name'] + ' has died')
+
+
+
 
 
 
