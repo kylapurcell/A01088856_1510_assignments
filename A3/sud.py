@@ -82,7 +82,7 @@ def monster_encounter_chance():
 
 
 def monster_encounter(monster):
-        print(monster['Name'],' appeared')
+        print(monster['Name'],'appeared')
 
 
 def save_game(character):
@@ -113,17 +113,19 @@ def load_game():
     return character.create_character()
 
 
-def character_death(character):
+def is_character_dead(character):
     if character['Health'] <= 0:
         character['Health'] = 10
         character['Location'] = [2, 2]
         survival = input(' Would you like to continue the game? (yes/no) ').lower().strip()
         if survival == 'yes':
             print('You awaken at the center of this world, where you started your journey')
+            return False
         elif survival == 'no':
-            save_game(character)
-    else:
-        print('You survived')
+            return True
+        else:
+            print('Please choose yes or no')
+            return character_death(character)
 
 
 def game_loop():
@@ -140,7 +142,8 @@ def game_loop():
             my_monster = monster.generate_monster()
             monster_encounter(my_monster)
             monster.monster_combat(my_character, my_monster)
-            character_death(my_character)
+        if character_death(my_character):
+            break
         location_special(my_character)
         location_normal(my_character)
     return save_game(my_character)

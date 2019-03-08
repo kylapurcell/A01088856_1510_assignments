@@ -93,7 +93,6 @@ def attack_round(attacker, opponent):
     print(str(attacker['Name']), 'has a chance to attack')
     if attack_roll > opponent['Dexterity']:
         opponent['Health'] = opponent['Health'] - damage
-        print('Attack was successfully struck')
         print(attacker['Name'] + ' attacked with damage of ' + str(damage))
     elif attack_roll <= opponent['Dexterity']:
         print('Attack missed')
@@ -132,6 +131,9 @@ def monster_combat(my_character, monster):
                 print(my_character['Name'] + ' now has a health of ' + str(my_character['Health']))
         else:
             print(my_character['Name'] + ' has died')
+    else:
+        print('You must run or fight')
+        return monster_combat(my_character,monster)
 
 
 
