@@ -83,7 +83,6 @@ def location_one(character):
 def location_two(character):
     print("You have entered the large ruins of a library, in the middle of the room stands a studious "
           "looking cat wearing glasses with the word 'Google' written on them.")
-    print("Upon further inspection you see the glasses are mechanically fused to her head.")
     print("^⨀ᴥ⨀^,Hello welcome to the library, I can use my state of art technology to "
           " help you access information about this world")
     choice = input('If you have something for me to look at type 1, if you would like to view information '
@@ -99,7 +98,8 @@ def location_two(character):
         character['Inventory'].append('Apple')
     elif choice == '2':
         monster.monster_about()
-    print('You do not seem to have anything out of the ordinary :( come again if you do!')
+    elif choice == '1':
+        print('You do not seem to have anything out of the ordinary :( come again if you do!')
     print('Thanks for coming. If you require my service again please visit this location again')
 
 
@@ -110,8 +110,12 @@ def location_special(character):
         location_two(character)
 
 
+
 def location_normal(character):
-    pass
+    if character['Location'] != [1, 1] and character['Location'][0] < 4 and character['Location'][1] < 4:
+        print("You are in the valley, a barren location that likely used to be a suburb before the war")
+        print("In the distance you see the charred ruins of a large building with tall pillars")
+
 
 
 def monster_encounter_chance():
@@ -195,7 +199,7 @@ print('ᕙ༼ ,,ԾܫԾ,, ༽ᕗ')
 
 
 
-game_loop()
+
 
 
 
@@ -229,5 +233,8 @@ X     `-.....-------./ /
      | | \        || |
      | |\ \       || )
     (_/ (_/      ((_/""")                   # Ascii art from https://textart.io/art/
+    game_loop()
 
 
+
+main()
