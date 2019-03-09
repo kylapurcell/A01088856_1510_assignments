@@ -89,18 +89,34 @@ def location_two(character):
                    ' about the monsters of this world type 2, and anything else to be left alone: ').strip()
     if character['Cursed']:
         print('^⨀__⨀^')
-        print("Oh, it appears you've been visited by Pax I think you should read this and head south from here ")
-        monster.monster_about()
+        print("Oh, it appears you've been visited by Pax I think you should head south from here ")
     elif choice == '1' and 'Unknown Item' in character['Inventory']:
-        print('^⨀0⨀^ Oh my, this is very rare indeed, its a Apple but how could that grow after the war. '
-              'Hmm you should go to the lab and check it out its located East from here  ')
+        print('^⨀0⨀^ Oh my, this is very rare indeed, its a Apple but how could that grow after the war')
         character['Inventory'].remove('Unknown Item')
         character['Inventory'].append('Apple')
     elif choice == '2':
         monster.monster_about()
-    elif choice == '1':
+    else:
         print('You do not seem to have anything out of the ordinary :( come again if you do!')
     print('Thanks for coming. If you require my service again please visit this location again')
+
+
+def location_three(character):
+    print('You see the ruins of a grocery store. Sitting on top of a cash register is a fat cat smoking a cigarette!')
+    print('ᕙ༼ ,,ԾܫԾ,, ༽ᕗ')
+    if character['Cursed']:
+        print('ᕙ༼ ,,Ծ___Ծ,, ༽ᕗ uhm...we are closed. Begone!')
+    elif 'Cigarettes' in character['Inventory']:
+        print('Wow ya got em thanks Bub! I put the Cat Nip in your inventory ;)')
+        character['Inventory'].append('CatNip')
+    else:
+        money = input('Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
+        print('What?', money, '?', "Look I know you don't got any money "
+                                   "but can you go to the Human Museum and get me cigarettes?")
+        print('Head North and take this and tell them I sent ya')
+        character['Inventory'].append('Me0w M1x: Binary Edition!')
+    print('your inventory:', str(character['Inventory']))
+    print("You can't figure out how a cat would start smoking cigarettes but you head on your way")
 
 
 def location_special(character):
@@ -108,6 +124,8 @@ def location_special(character):
         location_one(character)
     elif character['Location'] == [1, 1]:
         location_two(character)
+    elif character['Location'] == [5,5]:
+        location_three(character)
 
 
 
