@@ -80,12 +80,34 @@ def location_one(character):
         print('your inventory: ', str(character['Inventory']))
 
 
+def location_two(character):
+    print("You have entered the large ruins of a library, in the middle of the room stands a studious "
+          "looking cat wearing glasses with the word 'Google' written on them.")
+    print("Upon further inspection you see the glasses are mechanically fused to her head.")
+    print("^⨀ᴥ⨀^,Hello welcome to the library, I can use my state of art technology to "
+          " help you access information about this world")
+    choice = input('If you have something for me to look at type 1, if you would like to view information '
+                   ' about the monsters of this world type 2, and anything else to be left alone: ').strip()
+    if character['Cursed']:
+        print('^⨀__⨀^')
+        print("Oh, it appears you've been visited by Pax I think you should read this and head south from here ")
+        monster.monster_about()
+    elif choice == '1' and 'Unknown Item' in character['Inventory']:
+        print('^⨀0⨀^ Oh my, this is very rare indeed, its a Apple but how could that grow after the war. '
+              'Hmm you should go to the lab and check it out its located East from here  ')
+        character['Inventory'].remove('Unknown Item')
+        character['Inventory'].append('Apple')
+    elif choice == '2':
+        monster.monster_about()
+    print('You do not seem to have anything out of the ordinary :( come again if you do!')
+    print('Thanks for coming. If you require my service again please visit this location again')
+
 
 def location_special(character):
     if character['Location'] == [2, 3]:
         location_one(character)
-    elif character['Location'] == [1, 2]:
-        print('not working')
+    elif character['Location'] == [1, 1]:
+        location_two(character)
 
 
 def location_normal(character):
