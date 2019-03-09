@@ -85,19 +85,13 @@ def location_two(character):
           "looking cat wearing glasses with the word 'Google' written on them.")
     print("^⨀ᴥ⨀^,Hello welcome to the library, I can use my state of art technology to "
           " help you access information about this world")
-    choice = input('If you have something for me to look at type 1, if you would like to view information '
-                   ' about the monsters of this world type 2, and anything else to be left alone: ').strip()
+    choice = input('If if you would like to view information about the monsters of this world type 1,'
+                   ' and type anything else to be left alone: ').strip()
     if character['Cursed']:
         print('^⨀__⨀^')
         print("Oh, it appears you've been visited by Pax I think you should head south from here ")
-    elif choice == '1' and 'Unknown Item' in character['Inventory']:
-        print('^⨀0⨀^ Oh my, this is very rare indeed, its a Apple but how could that grow after the war')
-        character['Inventory'].remove('Unknown Item')
-        character['Inventory'].append('Apple')
-    elif choice == '2':
+    elif choice == '1':
         monster.monster_about()
-    else:
-        print('You do not seem to have anything out of the ordinary :( come again if you do!')
     print('Thanks for coming. If you require my service again please visit this location again')
 
 
@@ -108,24 +102,49 @@ def location_three(character):
         print('ᕙ༼ ,,Ծ___Ծ,, ༽ᕗ uhm...we are closed. Begone!')
     elif 'Cigarettes' in character['Inventory']:
         print('Wow ya got em thanks Bub! I put the Cat Nip in your inventory ;)')
+        character['Inventory'].remove('Cigarettes')
         character['Inventory'].append('CatNip')
     else:
         money = input('Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
         print('What?', money, '?', "Look I know you don't got any money "
                                    "but can you go to the Human Museum and get me cigarettes?")
-        print('Head North and take this and tell them I sent ya')
+        print('Head North West and take this and tell them I sent ya')
         character['Inventory'].append('Me0w M1x: Binary Edition!')
     print('your inventory:', str(character['Inventory']))
     print("You can't figure out how a cat would start smoking cigarettes but you head on your way")
+
+def location_four(character):
+    print("You see building with a sign that reads 'Museum', a small robotic cat sits inside")
+    print('龴ↀ=ↀ龴')
+    print('Welcome to the Human Museum, your source for the most accurate info about our extinct friends')
+    random_fact = random.randint(0, 2)
+    facts = ['Humans used to place items on tables and never get the urge to push them on the floor',
+             'Humans had the most comfortable chairs *Holds up a laptop*',
+             'Humans always closed the door when in the bathroom...but why?!']
+    print('Did you know', facts[random_fact])
+    if character['Cursed']:
+        print('龴ↀ-0-ↀ龴...Please leave')
+    elif 'Me0w M1x: Binary Edition!' in character['Inventory']:
+        print('Oh Cigarettes? The fat cat at the grocery store again! Every week with that guy...')
+        print('Fine just take them and go')
+        character['Inventory'].remove('Me0w M1x: Binary Edition!')
+        character['Inventory'].append('Cigarettes')
+        print('your inventory:', str(character['Inventory']))
+        print('He seems mad. Better be on your way')
+
+def location_five(character):
+    pass
 
 
 def location_special(character):
     if character['Location'] == [2, 3]:
         location_one(character)
-    elif character['Location'] == [1, 1]:
+    elif character['Location'] == [1, 5]:
         location_two(character)
     elif character['Location'] == [5,5]:
         location_three(character)
+    elif character['Location'] == [1,1]:
+        location_four(character)
 
 
 

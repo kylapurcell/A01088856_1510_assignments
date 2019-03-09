@@ -31,7 +31,7 @@ def choose_class():
 
 def create_character():
     character = {'Name': input('What is your name? '), 'Class': choose_class(), 'Health': 2, 'Damage': 0,
-                 'Dexterity': 0, 'Location': [2, 2], 'Inventory': ['Unknown Item'], 'Cursed': True}
+                 'Dexterity': 0, 'Location': [2, 2], 'Inventory': ['Me0w M1x: Binary Edition!'], 'Cursed': False}
     return character
 
 
