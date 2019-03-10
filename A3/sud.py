@@ -177,8 +177,12 @@ def monster_encounter_chance():
         print('You feel a calm wind blow in the air, At this moment you are truly alone in the wasteland')
 
 
-def monster_encounter(monster):
-        print(monster['Name'],'appeared')
+def monster_encounter(monster,character):
+    print(monster['Name'], 'appeared!')
+    if monster['Name'] == 'Pax':
+        character['Cursed'] = True
+        print('You have encountered the demon thief of destiny')
+        print('ᕙ༼ Ծ^6^Ծ ༽ᕗ')
 
 
 def save_game(character):
