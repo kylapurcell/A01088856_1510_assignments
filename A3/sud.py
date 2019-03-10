@@ -6,6 +6,12 @@ import os
 
 
 def create_coordinates():
+    """
+    Create a list of coordinates for a game map.
+
+    POST-CONDITION: Returns a list containing 7 sub-lists that contain coordinates to a game map as pairs of integers.
+    RETURN: a nested list.
+    """
     list1 = []
     list2 = []
     list3 = []
@@ -62,7 +68,7 @@ def movement_conditions(user_character, command):
 
 def location_one(user_character):
     print("\n Oh wait, Someone appeared. In front of you, you see a scraggly looking cat "
-          "with red eyes and a robotic arm.\n He's wearing a beanie with the phrase 'One Love' on it.\n 龴ↀ◡ↀ龴 ")
+          "with red eyes and a robotic arm.\n He's wearing a beanie with the phrase 'One Love' on it.\n 龴ↀ◡ↀ龴 \n ")
     if user_character['Cursed']:
         print(" \n 龴ↀ__ↀ龴 \n... I'm too scared to accept catnip from you like this...head south west")
     elif 'CatNip' in user_character['Inventory']:
@@ -70,11 +76,10 @@ def location_one(user_character):
         print("Its a golden medal. You're surprised someone like him has something this nice")
         user_character['Inventory'].remove('CatNip')
         user_character['Inventory'].append('I Beat Catpocalpse Medal')
-        print('your inventory:', str(user_character['Inventory']))
     else:
         print('Hey man. I really need some CatNip. Can you bring me some?'
               ' Try the store in the city ruins, south-east of here. Please man I gotta have it')
-        print('your inventory: ', str(user_character['Inventory']))
+    print('your inventory: ', str(user_character['Inventory']))
 
 
 def location_two():
@@ -240,11 +245,12 @@ def game_loop():
         if movement_conditions(my_character, command):
             movement(my_character, command)
             game_map(my_character)
-            character.character_healing(my_character)
             if monster_encounter_chance():
                 my_monster = monster.generate_monster()
                 monster_encounter(my_monster, my_character)
                 monster.monster_combat(my_character, my_monster)
+            else:
+                character.character_healing(my_character)
             if is_character_dead(my_character):
                 break
             location_special(my_character)
@@ -279,5 +285,5 @@ X     `-.....-------./ /
     game_loop()
 
 
-
-main()
+if __name__ == '__main__':
+    main()
