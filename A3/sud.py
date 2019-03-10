@@ -27,6 +27,15 @@ def create_coordinates():
 
 
 def game_map(user_character):
+    """
+    Print a game map.
+
+    Prints out a game map with a character icon located on the map based on the character's current location
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: prints out a a game map with a character icon located at character's current coordinate
+    RETURN: None
+    """
     coord = create_coordinates()
     for i in range(0, len(coord)):
         if i % 7 == 0:
