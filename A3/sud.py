@@ -87,10 +87,7 @@ def location_two(character):
           " help you access information about this world")
     choice = input('If if you would like to view information about the monsters of this world type 1,'
                    ' and type anything else to be left alone: ').strip()
-    if character['Cursed']:
-        print('^⨀__⨀^')
-        print("Oh, it appears you've been visited by Pax I think you should head south from here ")
-    elif choice == '1':
+    if choice == '1':
         monster.monster_about()
     print('Thanks for coming. If you require my service again please visit this location again')
 
@@ -98,12 +95,12 @@ def location_two(character):
 def location_three(character):
     print('You see the ruins of a grocery store. Sitting on top of a cash register is a fat cat smoking a cigarette!')
     print('ᕙ༼ ,,ԾܫԾ,, ༽ᕗ')
-    if character['Cursed']:
-        print('ᕙ༼ ,,Ծ___Ծ,, ༽ᕗ uhm...we are closed. Begone!')
-    elif 'Cigarettes' in character['Inventory']:
+    if 'Cigarettes' in character['Inventory']:
         print('Wow ya got em thanks Bub! I put the Cat Nip in your inventory ;)')
         character['Inventory'].remove('Cigarettes')
         character['Inventory'].append('CatNip')
+    elif 'Me0w M1x: Binary Edition!' in character['Inventory']:
+        print('ᕙ༼ ,,Ծ__Ծ,, ༽ᕗ No Cigarettes no Cat Nip , sorry Bub.')
     else:
         money = input('Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
         print('What?', money, '?', "Look I know you don't got any money "
@@ -122,9 +119,7 @@ def location_four(character):
              'Humans had the most comfortable chairs *Holds up a laptop*',
              'Humans always closed the door when in the bathroom...but why?!']
     print('Did you know', facts[random_fact])
-    if character['Cursed']:
-        print('龴ↀ-0-ↀ龴...Please leave')
-    elif 'Me0w M1x: Binary Edition!' in character['Inventory']:
+    if 'Me0w M1x: Binary Edition!' in character['Inventory']:
         print('Oh Cigarettes? The fat cat at the grocery store again! Every week with that guy...')
         print('Fine just take them and go')
         character['Inventory'].remove('Me0w M1x: Binary Edition!')
@@ -132,8 +127,16 @@ def location_four(character):
         print('your inventory:', str(character['Inventory']))
         print('He seems mad. Better be on your way')
 
-def location_five(character):
-    pass
+def location_secret(character):
+    if character['Cursed']:
+        print("""Hey you've found me. I'm the developer of this game. You are here because you are one of the lucky
+              individuals to find my easter egg. I added this in my game because I love Black Mirror's Bandersnatch.
+              If you have not seen it yet, you should. Anyway I'll un-curse you so you can beat the game! 
+              Thanks for playing!!!""" )
+        character['Cursed'] = False
+    else:
+        print('You notice something strange about this area but cannot quit put your finger on it')
+
 
 
 def location_special(character):
@@ -145,6 +148,8 @@ def location_special(character):
         location_three(character)
     elif character['Location'] == [1,1]:
         location_four(character)
+    elif character['Location'] == [5,1]:
+        location_secret(character)
 
 
 
