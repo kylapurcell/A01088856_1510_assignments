@@ -48,14 +48,24 @@ def game_map(user_character):
 
 
 def movement(user_character, command):
-        if command == 'West':
-            user_character['Location'][1] = (user_character['Location'][1] - 1)
-        elif command == 'East':
-            user_character['Location'][1] = (user_character['Location'][1] + 1)
-        elif command == 'South':
-            user_character['Location'][0] = (user_character['Location'][0] + 1)
-        elif command == 'North':
-            user_character['Location'][0] = (user_character['Location'][0] - 1)
+    """
+    Move the character across a game map.
+
+    PARAM: user_character, a dictionary
+    PARAM: command, a string
+    PRE-CONDITION: user_character must be a complete character dictionary
+    PRE-CONDITION: command must be a string
+    POST-CONDITION: Changes the characters current location based on the command they inputted
+    RETURN: None
+    """
+    if command == 'West':
+        user_character['Location'][1] = (user_character['Location'][1] - 1)
+    elif command == 'East':
+        user_character['Location'][1] = (user_character['Location'][1] + 1)
+    elif command == 'South':
+        user_character['Location'][0] = (user_character['Location'][0] + 1)
+    elif command == 'North':
+        user_character['Location'][0] = (user_character['Location'][0] - 1)
 
 
 def movement_conditions(user_character, command):
