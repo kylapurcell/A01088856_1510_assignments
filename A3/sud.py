@@ -41,12 +41,14 @@ def movement(character, command):
             character['Location'][0] = (character['Location'][0] + 1)
         elif command == 'North':
             character['Location'][0] = (character['Location'][0] - 1)
-        else:
-            print('I do not understand that command, type help if you want to hear the rules')
+
 
 
 def movement_conditions(character, command):
-    if character['Location'][0] == 0 and command == 'North':
+    valid = False
+    if command != 'North' and command != 'South' and command != 'West' and command != 'East':
+        print('I do not understand that command. Please type North ,West, South, East, or Quit')
+    elif character['Location'][0] == 0 and command == 'North':
         print(" You've reached the end of this world please turn back or head east or west")
     elif character['Location'][1] == 0 and command == 'West':
         print(" You've reached the end of this world please turn back or head north or south")
@@ -55,7 +57,8 @@ def movement_conditions(character, command):
     elif character['Location'][1] == 6 and command == 'East':
         print(" You've reached the end of this world please turn back or head north or south")
     else:
-        movement(character, command)
+        valid = True
+    return valid
 
 
 def location_one(character):
@@ -99,13 +102,13 @@ def location_three(character):
         print('Wow ya got em thanks Bub! I put the Cat Nip in your inventory ;)')
         character['Inventory'].remove('Cigarettes')
         character['Inventory'].append('CatNip')
-    elif 'Me0w M1x: Binary Edition!' in character['Inventory']:
+    elif 'Me0w M1x: Binary Edition!' in character['Inventory'] or 'CatNip' in character['Inventory']:
         print('ᕙ༼ ,,Ծ__Ծ,, ༽ᕗ No Cigarettes no Cat Nip , sorry Bub.')
     else:
         money = input('Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
         print('What?', money, '?', "Look I know you don't got any money "
                                    "but can you go to the Human Museum and get me cigarettes?")
-        print('Head North West and take this and tell them I sent ya')
+        print('Head north west and take this. Tell them I sent ya')
         character['Inventory'].append('Me0w M1x: Binary Edition!')
     print('your inventory:', str(character['Inventory']))
     print("You can't figure out how a cat would start smoking cigarettes but you head on your way")
@@ -135,7 +138,7 @@ def location_secret(character):
               Thanks for playing!!!""" )
         character['Cursed'] = False
     else:
-        print('You notice something strange about this area but cannot quit put your finger on it')
+        print('You notice something strange about this area but cannot quite put your finger on it')
 
 
 
@@ -154,9 +157,14 @@ def location_special(character):
 
 
 def location_normal(character):
-    if character['Location'] != [1, 1] and character['Location'][0] < 4 and character['Location'][1] < 4:
+    if character['Location'] != [1, 1] and character['Location'][0] < 3 and character['Location'][1] < 3:
         print("You are in the valley, a barren location that likely used to be a suburb before the war")
         print("In the distance you see the charred ruins of a large building with tall pillars")
+    elif character['Location'] != [5,5] and character['Location'][0] > 4 and character['Location'][1]> 4:
+        print('You are in the city ruins, a charred location filled with decaying buildings')
+        print('In the distance stands the beat up remains of a store')
+
+
 
 
 
@@ -220,24 +228,24 @@ def game_loop():
     my_character = load_game()
     game_map(my_character)
     while True:
-        command = input('Input a direction or quit: ').title().strip()
+        command = input('Input North,East,South, or West to move. Input quit to exit the game: ').title().strip()
         if command == 'Quit':
             break
-        movement_conditions(my_character, command)
-        game_map(my_character)
-        character.character_healing(my_character)
-        if monster_encounter_chance():
-            my_monster = monster.generate_monster()
-            monster_encounter(my_monster)
-            monster.monster_combat(my_character, my_monster)
-        if is_character_dead(my_character):
-            break
-        location_special(my_character)
-        location_normal(my_character)
+        if movement_conditions(my_character, command):
+            movement(my_character,command)
+            game_map(my_character)
+            character.character_healing(my_character)
+            if monster_encounter_chance():
+                my_monster = monster.generate_monster()
+                monster_encounter(my_monster)
+                monster.monster_combat(my_character, my_monster)
+            if is_character_dead(my_character):
+                break
+            location_special(my_character)
+            location_normal(my_character)
     return save_game(my_character)
 
-print('龴ↀ◡ↀ龴')
-print('ᕙ༼ ,,ԾܫԾ,, ༽ᕗ')
+
 
 
 
