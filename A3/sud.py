@@ -160,9 +160,10 @@ def location_normal(character):
     if character['Location'] != [1, 1] and character['Location'][0] < 3 and character['Location'][1] < 3:
         print("You are in the valley, a barren location that likely used to be a suburb before the war")
         print("In the distance you see the charred ruins of a large building with tall pillars")
-    elif character['Location'] != [5,5] and character['Location'][0] > 4 and character['Location'][1]> 4:
+    elif character['Location'] != [5,5] and character['Location'][0] >= 4 and character['Location'][1]>= 4:
         print('You are in the city ruins, a charred location filled with decaying buildings')
         print('In the distance stands the beat up remains of a store')
+
 
 
 

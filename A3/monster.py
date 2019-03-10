@@ -62,6 +62,12 @@ def monster_about():
     Print information about the monsters of this world
     :return:
     """
+    print("""The Monster Encyclopedia:
+      Ghoul: Radioactive, humanoid creature with green flesh. Rumored to be whats left of humans.
+      Radioactive Rat : An over sized rat. Sometimes a tasty snack for certain cat species.
+      Rogue Robot: A robot with glitched programming. 
+      Mutated Creature: Mutated beyond belief. Hard to tell what this creature is. 
+      Pax: The demon thief of destiny. Feared by all and said to curse those unlucky enough to meet him.""")
 
 
 def generate_monster():
