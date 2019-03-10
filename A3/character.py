@@ -1,4 +1,5 @@
 import random
+import monster
 
 
 def choose_class():
@@ -29,9 +30,21 @@ def choose_class():
         return choose_class()
 
 
+def determine_dexterity(character_class):
+    if character_class == 'Big Chonk':
+        return monster.roll_die(1, 12)
+    elif character_class == 'Grumpy Cat' or character_class == 'Robotic Cat' or character_class == 'Glowing One':
+        return monster.roll_die(1, 8)
+    elif character_class == 'Great Gatsby' or character_class == 'Orange Julius':
+        return monster.roll_die(1, 10)
+    elif character_class == 'Hello Kitty' or character_class == 'Long Boi':
+        return monster.roll_die(1, 6)
+
+
 def create_character():
     character = {'Name': input('What is your name? '), 'Class': choose_class(), 'Health': 10, 'Damage': 0,
                  'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}
+    character['Dexterity'] = determine_dexterity(character['Class'])
     return character
 
 
@@ -39,5 +52,7 @@ def character_healing(character):
     if 10 > character['Health'] > 0:
         character['Health'] = character['Health'] + 1
         print('Your health has revitalized to', str(character['Health']))
+
+
 
 
