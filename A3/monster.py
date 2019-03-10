@@ -1,5 +1,5 @@
 import random
-from A3 import character
+import character
 
 def roll_die(number_of_rolls, number_of_sides):
         """
@@ -139,7 +139,7 @@ def monster_combat(my_character, monster):
             print(my_character['Name'] + ' has died')
     else:
         print('You must run or fight')
-        return monster_combat(my_character,monster)
+        return monster_combat(my_character, monster)
 
 
 

@@ -110,8 +110,9 @@ def location_three(character):
                                    "but can you go to the Human Museum and get me cigarettes?")
         print('Head north west and take this. Tell them I sent ya')
         character['Inventory'].append('Me0w M1x: Binary Edition!')
+        print("You can't figure out how a cat would start smoking cigarettes but you head on your way")
     print('your inventory:', str(character['Inventory']))
-    print("You can't figure out how a cat would start smoking cigarettes but you head on your way")
+
 
 def location_four(character):
     print("You see building with a sign that reads 'Museum', a small robotic cat sits inside")
@@ -165,10 +166,6 @@ def location_normal(character):
         print('In the distance stands the beat up remains of a store')
 
 
-
-
-
-
 def monster_encounter_chance():
     chance = random.randint(1, 10)
     if chance == 4:
@@ -191,27 +188,33 @@ def save_game(character):
     if os.path.isfile(filename):
         over_write = input('There is already a save file with your character name '
                            'press 1 to overwrite and 2 to create a new file? ')
+
         if over_write == '1':
             print('Okay your character file will be overwritten')
         elif over_write == '2':
             new_filename = input('What would you like your new character file to be called? ') + 'savefile.json'
             with open(new_filename, 'w') as file_object: json.dump(character, file_object)
+        else:
+            return save_game(character)
     with open(filename, 'w') as file_object: json.dump(character, file_object)
     print('Your game has been saved, Thank you for playing =^..^=')
 
 
 def load_game():
-    choice = input('Do you want to start a new game or load? (new,load) ')
+    choice = input('Do you want to start a new game or load? (new,load) ').lower().strip()
     if choice == 'load':
         try:
-            name = input("input your character's name ").title().strip()
+            name = input("Input your character's name ").title().strip()
             filename = name + 'savefile.json'
             with open(filename) as file_object: my_character = json.load(file_object)
             return my_character
         except FileNotFoundError:
-            print('We could not find that character in our system please create a new one')
-            return character.create_character()
-    return character.create_character()
+            print('We could not find that character in our system')
+    elif choice == 'new':
+        print('Okay we will create a new game for you')
+        return character.create_character()
+    return load_game()
+
 
 
 def is_character_dead(character):
@@ -237,12 +240,12 @@ def game_loop():
         if command == 'Quit':
             break
         if movement_conditions(my_character, command):
-            movement(my_character,command)
+            movement(my_character, command)
             game_map(my_character)
             character.character_healing(my_character)
             if monster_encounter_chance():
                 my_monster = monster.generate_monster()
-                monster_encounter(my_monster)
+                monster_encounter(my_monster, my_character)
                 monster.monster_combat(my_character, my_monster)
             if is_character_dead(my_character):
                 break
