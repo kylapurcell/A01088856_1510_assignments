@@ -120,7 +120,7 @@ def location_one(user_character):
 
     PARAM: user_character, a dictionary
     PRE-CONDITION: user_character must be a complete character dictionary
-    POST-CONDITION: Depending on what the character has in their inventory initiates different dialogue and appends or
+    POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends or
     removes items from their inventory list.
     RETURN: None
     """
@@ -149,7 +149,7 @@ def location_two():
     """
     print("You have entered the large ruins of a library, in the middle of the room stands a studious "
           "looking cat wearing glasses with the word 'Google' written on them.")
-    print("^⨀ᴥ⨀^,Hello welcome to the library, I can use my state of art technology to "
+    print("\n^⨀ᴥ⨀^\n,Hello welcome to the library, I can use my state of art technology to "
           " help you access information about this world")
     choice = input('If if you would like to view information about the monsters of this world type 1,'
                    ' and type anything else to be left alone: ').strip()
@@ -164,7 +164,7 @@ def location_three(user_character):
 
     PARAM: user_character, a dictionary
     PRE-CONDITION: user_character must be a complete character dictionary
-    POST-CONDITION: Depending on what the character has in their inventory initiates different dialogue and appends or
+    POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends or
     removes items from their inventory list.
     RETURN: None
     """
@@ -205,7 +205,7 @@ def location_four(user_character):
 
     PARAM: user_character, a dictionary
     PRE-CONDITION: user_character must be a complete character dictionary
-    POST-CONDITION: Depending on what the character has in their inventory initiates different dialogue and appends or
+    POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends or
     removes items from their inventory list.
     RETURN: None
     """
@@ -220,6 +220,15 @@ def location_four(user_character):
 
 
 def location_secret(user_character):
+    """
+    Initiate special dialogue for an easter egg/secret location.
+
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Depending on if the character is cursed or not prints different dialogue options
+    and changes the character's status.
+    RETURN: None
+    """
     if user_character['Cursed']:
         print("""Hey you've found me. I'm the developer of this game. You are here because you are one of the lucky
               individuals to find my easter egg. I added this in my game because I love Black Mirror's Bandersnatch.
