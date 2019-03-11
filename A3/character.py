@@ -62,7 +62,7 @@ def create_character():
     RETURN: A character, as a dictionary
     :return:
     """
-    character = {'Name': input('What is your name? '), 'Class': choose_class(), 'Health': 10, 'Damage': 0,
+    character = {'Name': input('What is your name? '), 'Class': choose_class(), 'Health': 10,
                  'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}
     character['Dexterity'] = determine_dexterity(character['Class'])
     return character
