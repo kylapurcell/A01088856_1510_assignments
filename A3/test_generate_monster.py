@@ -39,7 +39,7 @@ class TestGenerateMonster(TestCase):
     def test_generate_monster(self, mock_class, mock_dexterity, mock_damage):
         self.assertEqual({'Name': 'Pax', 'Health': 5, 'Damage': 2,
                           'Dexterity': 3}, monster.generate_monster())
-        
+
     def test_generate_monster5(self):
         self.assertEqual(dict, type(monster.generate_monster()))
 
