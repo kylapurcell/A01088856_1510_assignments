@@ -75,6 +75,12 @@ def character_healing(character):
     PRE-CONDITION: character, must be a full character dictionary
     POST-CONDITION: Adds one to character's health if their health is < 10 and prints output
     RETURN: None
+    >>> character_healing({'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 1,\
+                     'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False})
+    Your health has revitalized to 2
+    >>> character_healing({'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 7,\
+                     'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False})
+    Your health has revitalized to 8
     """
     if 10 > character['Health'] > 0:
         character['Health'] = character['Health'] + 1
