@@ -57,6 +57,8 @@ def movement(user_character, command):
     PRE-CONDITION: command must be a string
     POST-CONDITION: Changes the characters current location based on the command they inputted
     RETURN: None
+
+    Not sure how to doctest or unit test this function
     """
     if command == 'West':
         user_character['Location'][1] = (user_character['Location'][1] - 1)
@@ -184,21 +186,6 @@ def location_three(user_character):
     print('your inventory:', str(user_character['Inventory']))
 
 
-def human_facts():
-    """
-    Print a random fact.
-
-    POST-CONDITION: Prints a random fact from a list of facts at the index specified by a random integer
-    RETURN: None
-    """
-
-    random_fact = random.randint(0, 2)
-    facts = ['Humans used to place items on tables and never get the urge to push them on the floor',
-             'Humans had the most comfortable chairs *Holds up a laptop*',
-             'Humans always closed the door when in the bathroom...but why?!']
-    print('Did you know', facts[random_fact])
-
-
 def location_four(user_character):
     """
     Initiate quest dialogue for location three.
@@ -211,7 +198,11 @@ def location_four(user_character):
     """
     print("You see building with a sign that reads 'Museum', a small robotic cat sits inside \n \n龴ↀ=ↀ龴")
     print('Welcome to the Human Museum, your source for the most accurate info about our extinct friends')
-    human_facts()
+    random_fact = random.randint(0, 2)
+    facts = ['Humans used to place items on tables and never get the urge to push them on the floor',
+             'Humans had the most comfortable chairs *Holds up a laptop*',
+             'Humans always closed the door when in the bathroom...but why?!']
+    print('Did you know', facts[random_fact])
     if 'Me0w M1x: Binary Edition!' in user_character['Inventory']:
         print('\nOh Cigarettes? The fat cat at the grocery store again! Every week with that guy...Fine just take them')
         inventory_modify('Me0w M1x: Binary Edition!', 'Cigarettes', user_character)
@@ -311,8 +302,10 @@ def save_game(user_character):
 
     PARAM: user_character, a dictionary
     PRE-CONDITION: user_character must be a complete character dictionary
-    POST-CONDITION: Saves the character dictionary in a json file
+    POST-CONDITION: Saves the character dictionary by writing it into a json file
     RETURN: None
+
+    Not sure how to doctest or unittest this function
     """
     filename = str(user_character['Name']) + 'savefile.json'
     if os.path.isfile(filename):
@@ -334,6 +327,8 @@ def load_game():
 
     POST-CONDITION: Loads a character dictionary from a json file or calls a function to create a new character
     RETURN: A character as a dictionary
+
+    Not sure how to doctest or unittest this function
     """
     choice = input('Do you want to start a new game or load? (new,load) ').lower().strip()
     if choice == 'load':
