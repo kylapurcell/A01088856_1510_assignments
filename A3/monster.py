@@ -7,7 +7,7 @@ def monster_class_choice():
     Determine what type of monster will appear.
 
     What kind of monster that appears is dependant on a random number between 1 and 4,
-    an extra rare monster may appear if a number between 1 and 100 is chosen
+    an extra rare monster may appear if a number between 1 and 60 is chosen
     POST-CONDITION: Based on two random integers determines which monster class will be returned
     RETURN: Monster's name as a string
     >>> random.seed(4)
@@ -19,7 +19,7 @@ def monster_class_choice():
     >>> random.seed()
     """
     normal_chance = random.randint(1, 4)
-    rare_chance = random.randint(1, 100)
+    rare_chance = random.randint(1, 60)
     if rare_chance == 50:
         return 'Pax'
     elif normal_chance == 1:
@@ -76,6 +76,10 @@ def generate_monster():
 
     POST-CONDITION: Creates a monster based on random type choice and dexterity helper functions
     RETURN:  a monster, as a dictionary
+    >>> random.seed(3)
+    >>> generate_monster()
+    {'Name': 'Radioactive Rat', 'Health': 5, 'Damage': 2, 'Dexterity': 3}
+    >>> random.seed()
     """
     monster = {'Name': monster_class_choice(), 'Health': 5,
                'Damage': random.randint(1, 4), 'Dexterity': 0}
@@ -95,6 +99,14 @@ def attack_round(attacker, opponent):
     PRE-CONDITION: opponent must be a dictionary
     POST-CONDITION: Prints output and modifies the health of the opponent if attack successful
     RETURN: None
+    >>> random.seed(2)
+    >>> attack_round({'Name': 'Pikachu', 'Class': 'Hello Kitty', 'Health': 10,\
+                     'Dexterity': 4, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}, \
+                     {'Name': 'Ghoul', 'Health': 5,\
+               'Damage': 3, 'Dexterity': 3})
+    Pikachu has a chance to attack
+    Attack missed
+    >>> random.seed()
     """
     attack_roll = random.randint(1, 20)
     damage = random.randint(1, 6)
