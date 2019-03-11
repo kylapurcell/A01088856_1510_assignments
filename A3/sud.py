@@ -69,6 +69,20 @@ def movement(user_character, command):
 
 
 def movement_conditions(user_character, command):
+    """
+    Decide if movement command is valid.
+
+    PARAM: user_character, a dictionary
+    PARAM: command, a string
+    PRE-CONDITION: user_character must be a complete character dictionary
+    PRE-CONDITION: command must be a string
+    POST-CONDITION: Determine if move is valid by returning True or False and print a helpful message if it is not
+    RETURN: True or False as a boolean
+    >>> movement_conditions({'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10, 'Damage': 7, \
+    'Dexterity': 5, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}, 'North')
+     You've reached the end of this world please turn back or head east or west
+    False
+    """
     valid = False
     if command != 'North' and command != 'South' and command != 'West' and command != 'East':
         print('I do not understand that command. Please type North ,West, South, East, or Quit')
@@ -85,7 +99,21 @@ def movement_conditions(user_character, command):
     return valid
 
 
+def inventory_modify(item1, item2, user_character):
+    user_character['Inventory'].remove(item1)
+    user_character['Inventory'].append(item2)
+
+
 def location_one(user_character):
+    """
+    Initiate quest dialogue for location one.
+
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Depending on what the character has in their inventory initiates different dialogue and appends or
+    removes items from their inventory list.
+    RETURN: None
+    """
     print("\n Oh wait, Someone appeared. In front of you, you see a scraggly looking cat "
           "with red eyes and a robotic arm.\n He's wearing a beanie with the phrase 'One Love' on it.\n 龴ↀ◡ↀ龴 \n ")
     if user_character['Cursed']:
@@ -93,8 +121,7 @@ def location_one(user_character):
     elif 'CatNip' in user_character['Inventory']:
         print('Hello again man! \n 龴ↀ 0 ↀ龴 \n OMG you found it thank you!! Here take this')
         print("Its a golden medal. You're surprised someone like him has something this nice")
-        user_character['Inventory'].remove('CatNip')
-        user_character['Inventory'].append('I Beat Catpocalpse Medal')
+        inventory_modify('CatNip','I Beat Catpocalpse Medal', user_character)
     else:
         print('Hey man. I really need some CatNip. Can you bring me some?'
               ' Try the store in the city ruins, south-east of here. Please man I gotta have it')
@@ -114,16 +141,14 @@ def location_two():
 
 
 def location_three(user_character):
-    print('You see the ruins of a grocery store. Sitting on top of a cash register is a fat cat smoking a cigarette!')
-    print('ᕙ༼ ,,ԾܫԾ,, ༽ᕗ')
+    print('You see the ruins of a grocery store. On top of a cash register is a fat cat smoking a cigarette!')
     if 'Cigarettes' in user_character['Inventory']:
         print('Wow ya got em thanks Bub! I put the Cat Nip in your inventory ;)')
-        user_character['Inventory'].remove('Cigarettes')
-        user_character['Inventory'].append('CatNip')
+        inventory_modify('Cigarettes', 'CatNip', user_character)
     elif 'Me0w M1x: Binary Edition!' in user_character['Inventory'] or 'CatNip' in user_character['Inventory']:
         print('ᕙ༼ ,,Ծ__Ծ,, ༽ᕗ No Cigarettes no Cat Nip , sorry Bub.')
     else:
-        money = input('Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
+        money = input('\n ᕙ༼ ,,ԾܫԾ,, ༽ᕗ \n Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
         print('What?', money, '?', "Look I know you don't got any money "
                                    "but can you go to the Human Museum and get me cigarettes?")
         print('Head north west and take this. Tell them I sent ya')
@@ -133,8 +158,7 @@ def location_three(user_character):
 
 
 def location_four(user_character):
-    print("You see building with a sign that reads 'Museum', a small robotic cat sits inside")
-    print('龴ↀ=ↀ龴')
+    print("You see building with a sign that reads 'Museum', a small robotic cat sits inside \n 龴ↀ=ↀ龴 \n")
     print('Welcome to the Human Museum, your source for the most accurate info about our extinct friends')
     random_fact = random.randint(0, 2)
     facts = ['Humans used to place items on tables and never get the urge to push them on the floor',
@@ -142,10 +166,8 @@ def location_four(user_character):
              'Humans always closed the door when in the bathroom...but why?!']
     print('Did you know', facts[random_fact])
     if 'Me0w M1x: Binary Edition!' in user_character['Inventory']:
-        print('Oh Cigarettes? The fat cat at the grocery store again! Every week with that guy...')
-        print('Fine just take them and go')
-        user_character['Inventory'].remove('Me0w M1x: Binary Edition!')
-        user_character['Inventory'].append('Cigarettes')
+        print('Oh Cigarettes? The fat cat at the grocery store again! Every week with that guy..\n Fine just take them')
+        inventory_modify('Me0w M1x: Binary Edition!', 'Cigarettes', user_character)
         print('your inventory:', str(user_character['Inventory']))
         print('He seems mad. Better be on your way')
 
@@ -175,22 +197,32 @@ def location_special(user_character):
 
 
 def location_normal(user_character):
-    if user_character['Location'] != [1, 1] and user_character['Location'][0] < 3 and user_character['Location'][1] < 3:
+    if user_character['Location'] != [1, 1] and user_character['Location'] != [2, 3] \
+            and user_character['Location'][0] < 3 and user_character['Location'][1] < 3:
         print("You are in the valley, a barren location that likely used to be a suburb before the war")
-        print("In the distance you see the charred ruins of a large building with tall pillars")
-    elif user_character['Location'] != [5, 5] \
+    elif user_character['Location'] != [5, 5]\
             and user_character['Location'][0] >= 4 and user_character['Location'][1] >= 4:
         print('You are in the city ruins, a charred location filled with decaying buildings')
-        print('In the distance stands the beat up remains of a store')
     elif user_character['Location'] != [5, 1] and user_character['Location'][0] > 3 > user_character['Location'][1]:
         print('Testing Testing')
-    elif user_character['Location'] != [1, 5] and user_character['Location'][0]< 3 < user_character['Location'][1]:
+    elif user_character['Location'] != [1, 5] and user_character['Location'][0] < 3 < user_character['Location'][1]:
         print('something will go here')
-    elif user_character['Location'] != [2, 3]:
-        pass
+
 
 
 def monster_encounter_chance():
+    """
+    Simulate the rolling of a die a specified number of times with a specified number of sides.
+
+    POST-CONDITION: returns a random sum of a die rolled a specified number of times with specified number of sides
+    RETURN: a random total as a positive integer
+
+    >>> random.seed(3)
+    >>> monster_encounter_chance()
+    You have encountered a monster yikes
+    True
+    >>> random.seed()
+    """
     chance = random.randint(1, 10)
     if chance == 4:
         print('You have encountered a monster yikes')
@@ -210,8 +242,7 @@ def monster_encounter(monster,user_character):
 def save_game(user_character):
     filename = str(user_character['Name']) + 'savefile.json'
     if os.path.isfile(filename):
-        over_write = input('There is already a save file with your character name '
-                           'press 1 to overwrite and 2 to create a new file? ')
+        over_write = input('There is already a save file with your name, 1 to overwrite and 2 to create a new file: ')
         if over_write == '1':
             print('Okay your character file will be overwritten')
         elif over_write == '2':
@@ -302,6 +333,8 @@ X     `-.....-------./ /
      | |\ \       || )
     (_/ (_/      ((_/""")                   # Ascii art from https://textart.io/art/
     game_loop()
+    import doctest
+    doctest.testmod()
 
 
 if __name__ == '__main__':
