@@ -271,9 +271,9 @@ def location_normal(user_character):
             and user_character['Location'][0] >= 4 and user_character['Location'][1] >= 4:
         print('You are in the city ruins, a charred location filled with decaying buildings')
     elif user_character['Location'] != [5, 1] and user_character['Location'][0] > 3 > user_character['Location'][1]:
-        print('Testing Testing')
+        print('You are in the lake region, green radioactive particles shimmer in the waters located in the distance ')
     elif user_character['Location'] != [1, 5] and user_character['Location'][0] < 3 < user_character['Location'][1]:
-        print('something will go here')
+        print('You are crossing a bridge leading to the outskirts of the city ruins')
 
 
 def monster_encounter_chance(user_character):
@@ -351,7 +351,8 @@ def is_character_dead(user_character):
 
     PARAM: user_character, a dictionary
     PRE-CONDITION: user_character must be a complete character dictionary
-    POST-CONDITION: Regenerates the character's health and location, and prints output
+    POST-CONDITION: Regenerates the character's health and location, prints output and calls a helper function if user
+    decides to quit.
     RETURN: True or False as a boolean
     """
     if user_character['Health'] <= 0:

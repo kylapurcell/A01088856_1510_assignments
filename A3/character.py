@@ -30,6 +30,20 @@ def choose_class():
 
 
 def determine_dexterity(character_class):
+    """
+     Create dexterity points for a Character.
+
+     Creates dexterity points for a character based on a random integer determined by the character's class
+     PARAM: character_class, a string
+     PRE-CONDITION: character_class must be a lowercase string
+     POST-CONDITION: returns a positive integer whose range is dependant on character_class
+     RETURN: Dexterity points as a integer
+
+     >>> random.seed(2)
+     >>> determine_dexterity('Orange Julius')
+     1
+     >>> random.seed()
+     """
     if character_class == 'Big Chonk':
         return random.randint(1, 12)
     elif character_class == 'Grumpy Cat' or character_class == 'Robotic Cat' or character_class == 'Glowing One':
@@ -41,6 +55,13 @@ def determine_dexterity(character_class):
 
 
 def create_character():
+    """
+    Create a character.
+
+    POST-CONDITION: Asks the users input and calls helper functions to return a character as a dictionary
+    RETURN: A character, as a dictionary
+    :return:
+    """
     character = {'Name': input('What is your name? '), 'Class': choose_class(), 'Health': 10, 'Damage': 0,
                  'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}
     character['Dexterity'] = determine_dexterity(character['Class'])
@@ -48,6 +69,14 @@ def create_character():
 
 
 def character_healing(character):
+    """
+    Heal a character.
+
+    PARAM: character, a dictionary
+    PRE-CONDITION: character, must be a full character dictionary
+    POST-CONDITION: Adds one to character's health if their health is < 10 and prints output
+    RETURN: None
+    """
     if 10 > character['Health'] > 0:
         character['Health'] = character['Health'] + 1
         print('Your health has revitalized to', str(character['Health']))
