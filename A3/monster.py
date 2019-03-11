@@ -10,6 +10,13 @@ def monster_class_choice():
     an extra rare monster may appear if a number between 1 and 100 is chosen
     POST-CONDITION: Based on two random integers determines which monster class will be returned
     RETURN: Monster's name as a string
+    >>> random.seed(4)
+    >>> monster_class_choice()
+    'Radioactive Rat'
+    >>> random.seed(2)
+    >>> monster_class_choice()
+    'Ghoul'
+    >>>random.seed()
     """
     normal_chance = random.randint(1, 4)
     rare_chance = random.randint(1, 100)
