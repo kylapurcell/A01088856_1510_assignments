@@ -120,15 +120,21 @@ def attack_round(attacker, opponent):
 
 def monster_run_away(my_character, monster):
     """
-    Decide if an attack will be successful.
+    Decide if damage occurs while fleeing.
 
-    Rolls an attack and if it is > opponent's dexterity, will return the attack value
+
     PARAM: attacker, a dictionary
     PARAM: opponent, a dictionary
     PRE-CONDITION: attacker must be a dictionary
     PRE-CONDITION: opponent must be a dictionary
-    POST-CONDITION: Prints output and modifies the health of the opponent if attack successful
+    POST-CONDITION: Prints output and has 1 in 10 chance of subtracting damage from character's health
     RETURN: None
+    >>> random.seed(3)
+    >>> monster_run_away({'Name': 'Charmander', 'Class': 'Hello Kitty', 'Health': 10,\
+                              'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False},\
+                              {'Name': 'Ghoul', 'Health': 5, 'Damage': 0, 'Dexterity': 7})
+    You escaped successfully and without a scratch too
+    >>> random.seed()
     """
     chance_damage = random.randint(1, 10)
     if chance_damage == 5:
@@ -137,7 +143,8 @@ def monster_run_away(my_character, monster):
               'your health is now', str(my_character['Health']))
         if my_character['Health'] < 0:
             print('You died')
-        print('You survived to fight another day')
+        else:
+            print('You survived to fight another day')
     else:
         print('You escaped successfully and without a scratch too')
 
