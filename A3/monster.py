@@ -158,14 +158,19 @@ def monster_encounter(random_monster, user_character):
     PARAM: user_character, a dictionary
     PRE-CONDITION: random_monster must be a dictionary
     PRE-CONDITION: user_character must be a dictionary
-    POST-CONDITION: Prints output and modifies the character's cursed value if a certain monster appears
+    POST-CONDITION: Prints output and modifies the character's cursed value if a rare monster appears
     RETURN: None
+    >>> monster_encounter({'Name': 'Pax', 'Health': 5, 'Damage': 0, 'Dexterity': 7},{'Name': 'Charmander', \
+    'Class': 'Hello Kitty', 'Health': 10,'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False})
+    Pax appeared!
+    You have encountered the demon thief of destiny
+    ^( Ծ^6^Ծ )^
     """
     print(random_monster['Name'], 'appeared!')
     if random_monster['Name'] == 'Pax':
         user_character['Cursed'] = True
         print('You have encountered the demon thief of destiny')
-        print('ᕙ༼ Ծ^6^Ծ ༽ᕗ')
+        print('^( Ծ^6^Ծ )^')
 
 
 def monster_combat(my_character, monster):
