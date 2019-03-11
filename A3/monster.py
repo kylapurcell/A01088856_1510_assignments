@@ -2,33 +2,6 @@ import random
 import character
 
 
-def roll_die(number_of_rolls, number_of_sides):
-        """
-        Simulate the rolling of a die a specified number of times with a specified number of sides.
-
-        Calculates a random total with range dependant on number_of_rolls and number_of_sides
-        PARAM: number_of_rolls: a positive integer
-        PARAM: number_of_sides: a positive integer
-        PRE-CONDITION: number_of_rolls must be an integer > 0
-        PRE-CONDITION: number_of_sides must be an integer > 0
-        POST-CONDITION: returns a random sum of a die rolled a specified number of times with specified number of sides
-        RETURN: a random total as a positive integer
-
-        >>> random.seed(1)
-        >>> roll_die(1, 20)
-        5
-        >>> roll_die(3,6)
-        5
-        >>> random.seed()
-        """
-        range_roll_1 = number_of_rolls        # Min total is the rolls
-        range_roll_2 = number_of_sides*number_of_rolls   # Max total is sides * rolls
-        if number_of_rolls > 0 and number_of_sides > 0:
-            return random.randint(range_roll_1, range_roll_2)   # Generates random total with in (min,max) range
-        else:
-            return 0     # Returns zero if rolls and sides = zero
-
-
 def monster_class_choice():
     """
     What kind of monster that appears is dependant on a random number between 1 and 4,
@@ -51,11 +24,11 @@ def monster_class_choice():
 
 def monster_dexterity(class_type):
     if class_type == 'Radioactive Rat' or class_type == 'Rogue Robot':
-        return roll_die(1, 4)
+        return random.randint(1, 4)
     elif class_type == 'Mutated Creature' or 'Ghoul':
-        return roll_die(1, 6)
+        return random.randint(1, 6)
     elif class_type == 'Pax':
-        return roll_die(3, 8)
+        return random.randint(1, 20)
 
 
 def monster_about():
@@ -77,7 +50,7 @@ def generate_monster():
     :return:
     """
     monster = {'Name': monster_class_choice(), 'Health': 5,
-               'Damage': roll_die(1, 4), 'Dexterity': roll_die(3, 6)}
+               'Damage': random.randint(1, 4), 'Dexterity': 0}
     class2 = monster['Name']
     monster['Dexterity'] = monster_dexterity(class2)
     return monster
@@ -95,8 +68,8 @@ def attack_round(attacker, opponent):
     POST-CONDITION: returns an attack value if attack is successful and 0 if it is not
     RETURN: an attack as an integer or 0
     """
-    attack_roll = roll_die(1, 20)
-    damage = roll_die(1, 6)
+    attack_roll = random.randint(1, 20)
+    damage = random.randint(1, 6)
     print(str(attacker['Name']), 'has a chance to attack')
     if attack_roll > opponent['Dexterity']:
         opponent['Health'] = opponent['Health'] - damage
@@ -142,7 +115,6 @@ def monster_combat(my_character, monster):
                 print(my_character['Name'] + ' now has a health of ' + str(my_character['Health']))
             else:
                 print(my_character['Name'] + ' has died')
-
 
 
 def monster_fight(my_character, monster):
