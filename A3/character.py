@@ -60,7 +60,6 @@ def create_character():
 
     POST-CONDITION: Asks the users input and calls helper functions to return a character as a dictionary
     RETURN: A character, as a dictionary
-    :return:
     """
     character = {'Name': input('What is your name? '), 'Class': choose_class(), 'Health': 10,
                  'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}

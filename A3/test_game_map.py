@@ -53,4 +53,3 @@ class TestGameMap(TestCase):
         sud.game_map(character)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-   

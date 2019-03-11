@@ -80,6 +80,9 @@ def movement_conditions(user_character, command):
     >>> movement_conditions({'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10, 'Damage': 7, \
     'Dexterity': 5, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}, 'North')
      You've reached the end of this world please turn back or head east or west
+    >>> movement_conditions({'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10, 'Damage': 7, \
+    'Dexterity': 5, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}, 'West')
+    True
     """
     if command != 'North' and command != 'South' and command != 'West' and command != 'East':
         print('I do not understand that command. Please type North ,West, South, East, or Quit')
