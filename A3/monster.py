@@ -228,7 +228,7 @@ def monster_fight(my_character, monster):
     if choice == 'run':
         monster_run_away(my_character, monster)
     elif choice == 'fight':
-        monster_combat(my_character,monster)
+        monster_combat(my_character, monster)
     else:
         print('You must run or fight')
         return monster_combat(my_character, monster)
