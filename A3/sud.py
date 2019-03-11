@@ -75,15 +75,12 @@ def movement_conditions(user_character, command):
     PARAM: user_character, a dictionary
     PARAM: command, a string
     PRE-CONDITION: user_character must be a complete character dictionary
-    PRE-CONDITION: command must be a string
     POST-CONDITION: Determine if move is valid by returning True or False and print a helpful message if it is not
     RETURN: True or False as a boolean
     >>> movement_conditions({'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10, 'Damage': 7, \
     'Dexterity': 5, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}, 'North')
      You've reached the end of this world please turn back or head east or west
-    False
     """
-    valid = False
     if command != 'North' and command != 'South' and command != 'West' and command != 'East':
         print('I do not understand that command. Please type North ,West, South, East, or Quit')
     elif user_character['Location'][0] == 0 and command == 'North':
@@ -95,8 +92,7 @@ def movement_conditions(user_character, command):
     elif user_character['Location'][1] == 6 and command == 'East':
         print(" You've reached the end of this world please turn back or head north or south")
     else:
-        valid = True
-    return valid
+        return True
 
 
 def inventory_modify(item1, item2, user_character):
@@ -280,15 +276,17 @@ def location_normal(user_character):
         print('something will go here')
 
 
-def monster_encounter_chance():
+def monster_encounter_chance(user_character):
     """
-    Simulate the rolling of a die a specified number of times with a specified number of sides.
+    Determine if character encounters a monster or heals.
 
-    POST-CONDITION: returns a random sum of a die rolled a specified number of times with specified number of sides
-    RETURN: a random total as a positive integer
-
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a full character dictionary
+    POST-CONDITION: Prints output if monster encounter occurs and calls a helper function if it doesn't
+    RETURN: True or False as a boolean
     >>> random.seed(3)
-    >>> monster_encounter_chance()
+    >>> monster_encounter_chance({'Name':'Kyla', 'Class': 'Big Chonk', 'Health': 10, 'Damage': 0,\
+                 'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False})
     You have encountered a monster yikes
     True
     >>> random.seed()
@@ -299,9 +297,18 @@ def monster_encounter_chance():
         return True
     else:
         print('You feel a calm wind blow in the air, At this moment you are truly alone in the wasteland')
+        character.character_healing(user_character)
 
 
 def save_game(user_character):
+    """
+    Save a character in a json file.
+
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Saves the character dictionary in a json file
+    RETURN: None
+    """
     filename = str(user_character['Name']) + 'savefile.json'
     if os.path.isfile(filename):
         over_write = input('There is already a save file with your name, 1 to overwrite and 2 to create a new file: ')
@@ -317,6 +324,12 @@ def save_game(user_character):
 
 
 def load_game():
+    """
+    Load a character save file from a json file.
+
+    POST-CONDITION: Loads a character dictionary from a json file or calls a function to create a new character
+    RETURN: A character as a dictionary
+    """
     choice = input('Do you want to start a new game or load? (new,load) ').lower().strip()
     if choice == 'load':
         try:
@@ -333,6 +346,14 @@ def load_game():
 
 
 def is_character_dead(user_character):
+    """
+    Manage a dead character.
+
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Regenerates the character's health and location, and prints output
+    RETURN: True or False as a boolean
+    """
     if user_character['Health'] <= 0:
         user_character['Health'] = 10
         user_character['Location'] = [2, 2]
@@ -348,6 +369,9 @@ def is_character_dead(user_character):
 
 
 def game_loop():
+    """
+    Run the game.
+    """
     my_character = load_game()
     game_map(my_character)
     while True:
@@ -357,11 +381,9 @@ def game_loop():
         if movement_conditions(my_character, command):
             movement(my_character, command)
             game_map(my_character)
-            if monster_encounter_chance():
+            if monster_encounter_chance(my_character):
                 my_monster = monster.generate_monster()
                 monster.monster_fight(my_character, my_monster)
-            else:
-                character.character_healing(my_character)
             if is_character_dead(my_character):
                 break
             location_special(my_character)
@@ -370,6 +392,9 @@ def game_loop():
 
 
 def main():
+    """
+    Drive the program
+    """
     print("""          
    _  _      _                         _                
   / ___|__ _| |_ _ __   ___   ___ __ _| |_ __  ___  ___ 
