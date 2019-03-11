@@ -108,6 +108,8 @@ def inventory_modify(item1, item2, user_character):
     PRE-CONDITION: user_character must be a complete character dictionary
     POST-CONDITION: Removes an item from the character's dictionary and replaces it with another
     RETURN: None
+
+    Not sure how to doctest or unittest this function
     """
     user_character['Inventory'].remove(item1)
     user_character['Inventory'].append(item2)

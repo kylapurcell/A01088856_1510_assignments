@@ -28,8 +28,6 @@ class TestGameMap(TestCase):
         sud.game_map(character)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-
-
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_game_map2(self,mock_stdout):
         character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
