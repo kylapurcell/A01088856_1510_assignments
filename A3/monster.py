@@ -1,6 +1,7 @@
 import random
 import character
 
+
 def roll_die(number_of_rolls, number_of_sides):
         """
         Simulate the rolling of a die a specified number of times with a specified number of sides.
@@ -117,16 +118,20 @@ def monster_run_away(my_character, monster):
         print('You escaped successfully and without a scratch too')
 
 
+def monster_encounter(random_monster, user_character):
+    print(random_monster['Name'], 'appeared!')
+    if random_monster['Name'] == 'Pax':
+        user_character['Cursed'] = True
+        print('You have encountered the demon thief of destiny')
+        print('ᕙ༼ Ծ^6^Ծ ༽ᕗ')
+
+
 def monster_combat(my_character, monster):
     """
     Engage in combat to the death.
     :return:
     """
-    choice = input(' Would you like to run away or fight? (type run or fight) ').lower().strip()
-    if choice == 'run':
-        monster_run_away(my_character, monster)
-    elif choice == 'fight':
-        while my_character['Health'] > 0:
+    while my_character['Health'] > 0:
             attack_round(my_character, monster)
             print(monster['Name'] + ' now has a health of ' + str(monster['Health']))
             if monster['Health'] <= 0:
@@ -135,15 +140,21 @@ def monster_combat(my_character, monster):
             elif monster['Health'] > 0:
                 attack_round(monster, my_character)
                 print(my_character['Name'] + ' now has a health of ' + str(my_character['Health']))
-        else:
-            print(my_character['Name'] + ' has died')
+            else:
+                print(my_character['Name'] + ' has died')
+
+
+
+def monster_fight(my_character, monster):
+    monster_encounter(monster, my_character)
+    choice = input(' Would you like to run away or fight? (type run or fight) ').lower().strip()
+    if choice == 'run':
+        monster_run_away(my_character, monster)
+    elif choice == 'fight':
+        monster_combat(my_character,monster)
     else:
         print('You must run or fight')
         return monster_combat(my_character, monster)
-
-
-
-
 
 
 

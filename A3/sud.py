@@ -301,14 +301,6 @@ def monster_encounter_chance():
         print('You feel a calm wind blow in the air, At this moment you are truly alone in the wasteland')
 
 
-def monster_encounter(monster,user_character):
-    print(monster['Name'], 'appeared!')
-    if monster['Name'] == 'Pax':
-        user_character['Cursed'] = True
-        print('You have encountered the demon thief of destiny')
-        print('ᕙ༼ Ծ^6^Ծ ༽ᕗ')
-
-
 def save_game(user_character):
     filename = str(user_character['Name']) + 'savefile.json'
     if os.path.isfile(filename):
@@ -367,8 +359,7 @@ def game_loop():
             game_map(my_character)
             if monster_encounter_chance():
                 my_monster = monster.generate_monster()
-                monster_encounter(my_monster, my_character)
-                monster.monster_combat(my_character, my_monster)
+                monster.monster_fight(my_character, my_monster)
             else:
                 character.character_healing(my_character)
             if is_character_dead(my_character):
