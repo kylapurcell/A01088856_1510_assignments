@@ -173,12 +173,13 @@ def location_three(user_character):
     """
     print('You see the ruins of a grocery store. On top of a cash register is a fat cat smoking a cigarette!')
     if 'Cigarettes' in user_character['Inventory']:
-        print('\n ᕙ༼ ,,Ծ O Ծ,, ༽ᕗ \n Wow ya got em thanks Bub! I put the Cat Nip in your inventory ;)')
+        print('\n^(,,Ծ O Ծ,,)^\n')
+        print('\n Wow ya got em thanks Bub! I put the Cat Nip in your inventory ;)')
         inventory_modify('Cigarettes', 'CatNip', user_character)
     elif 'Me0w M1x: Binary Edition!' in user_character['Inventory'] or 'CatNip' in user_character['Inventory']:
-        print('\nᕙ༼ ,,Ծ__Ծ,, ༽ᕗ\n No Cigarettes no Cat Nip , sorry Bub.')
+        print('\n^(,,Ծ__Ծ,,)^\n No Cigarettes no Cat Nip , sorry Bub.')
     else:
-        money = input('\n ᕙ༼ ,,ԾܫԾ,, ༽ᕗ \n Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
+        money = input('\n ^(,,ԾܫԾ,,)^ \n Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
         print('What?', money, '?', "Look I know you don't got any money "
                                    "but to the Human Museum and get me cigarettes? \n Head north west and take this.")
         user_character['Inventory'].append('Me0w M1x: Binary Edition!')
