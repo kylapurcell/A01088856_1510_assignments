@@ -372,6 +372,8 @@ def is_character_dead(user_character):
 def game_loop():
     """
     Run the game.
+
+    Cannot unit test or doctest. However game was play tested by several people and bugs were patched accordingly.
     """
     my_character = load_game()
     game_map(my_character)

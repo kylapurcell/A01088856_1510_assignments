@@ -16,7 +16,7 @@ def monster_class_choice():
     >>> random.seed(2)
     >>> monster_class_choice()
     'Ghoul'
-    >>>random.seed()
+    >>> random.seed()
     """
     normal_chance = random.randint(1, 4)
     rare_chance = random.randint(1, 100)
@@ -40,6 +40,12 @@ def monster_dexterity(class_type):
     PRE-CONDITION: class_type must be a string
     POST-CONDITION: Based on two random integers determines which monster class will be returned
     RETURN: Monster's dexterity as an integer
+    >>> random.seed(5)
+    >>> monster_dexterity('Ghoul')
+    5
+    >>> monster_dexterity('Pax')
+    3
+    >>> random.seed()
     """
     if class_type == 'Radioactive Rat' or class_type == 'Rogue Robot':
         return random.randint(1, 4)
