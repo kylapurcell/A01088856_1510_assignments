@@ -120,12 +120,12 @@ def location_one(user_character):
 
     PARAM: user_character, a dictionary
     PRE-CONDITION: user_character must be a complete character dictionary
-    POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends or
-    removes items from their inventory list.
+    POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends/removes
+     items from their inventory list.
     RETURN: None
     """
     print("\n Oh wait, Someone appeared. In front of you, you see a scraggly looking cat "
-          "with red eyes and a robotic arm.\n He's wearing a beanie with the phrase 'One Love' on it.\n 龴ↀ◡ↀ龴 \n ")
+          "with red eyes and a robotic arm.\n He's wearing a beanie with the phrase 'One Love' on it.\n \n 龴ↀ◡ↀ龴 ")
     if user_character['Cursed']:
         print(" \n 龴ↀ__ↀ龴 \n... I'm too scared to accept catnip from you like this...head south west")
     elif 'CatNip' in user_character['Inventory']:
@@ -164,8 +164,8 @@ def location_three(user_character):
 
     PARAM: user_character, a dictionary
     PRE-CONDITION: user_character must be a complete character dictionary
-    POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends or
-    removes items from their inventory list.
+    POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends/removes
+     items from their inventory list.
     RETURN: None
     """
     print('You see the ruins of a grocery store. On top of a cash register is a fat cat smoking a cigarette!')
@@ -177,8 +177,7 @@ def location_three(user_character):
     else:
         money = input('\n ᕙ༼ ,,ԾܫԾ,, ༽ᕗ \n Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
         print('What?', money, '?', "Look I know you don't got any money "
-                                   "but can you go to the Human Museum and get me cigarettes?")
-        print('Head north west and take this. Tell them I sent ya')
+                                   "but to the Human Museum and get me cigarettes? \n Head north west and take this.")
         user_character['Inventory'].append('Me0w M1x: Binary Edition!')
         print("You can't figure out how a cat would start smoking cigarettes but you head on your way")
     print('your inventory:', str(user_character['Inventory']))
@@ -205,15 +204,15 @@ def location_four(user_character):
 
     PARAM: user_character, a dictionary
     PRE-CONDITION: user_character must be a complete character dictionary
-    POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends or
-    removes items from their inventory list.
+    POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends/removes
+     items from their inventory list.
     RETURN: None
     """
-    print("You see building with a sign that reads 'Museum', a small robotic cat sits inside \n 龴ↀ=ↀ龴 \n")
+    print("You see building with a sign that reads 'Museum', a small robotic cat sits inside \n \n龴ↀ=ↀ龴")
     print('Welcome to the Human Museum, your source for the most accurate info about our extinct friends')
     human_facts()
     if 'Me0w M1x: Binary Edition!' in user_character['Inventory']:
-        print('Oh Cigarettes? The fat cat at the grocery store again! Every week with that guy..\n Fine just take them')
+        print('\nOh Cigarettes? The fat cat at the grocery store again! Every week with that guy...Fine just take them')
         inventory_modify('Me0w M1x: Binary Edition!', 'Cigarettes', user_character)
         print('your inventory:', str(user_character['Inventory']))
         print('He seems mad. Better be on your way')
@@ -240,6 +239,14 @@ def location_secret(user_character):
 
 
 def location_special(user_character):
+    """
+    Determine if character is at a quest location.
+
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Calls a function that corresponds to characters current location.
+    RETURN: None
+    """
     if user_character['Location'] == [2, 3]:
         location_one(user_character)
     elif user_character['Location'] == [1, 5]:
@@ -253,6 +260,14 @@ def location_special(user_character):
 
 
 def location_normal(user_character):
+    """
+    Print descriptions dependant on characters location on the map.
+
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Prints output dependant on what region that character's location corresponds to on the map.
+    RETURN: None
+     """
     if user_character['Location'] != [1, 1] and user_character['Location'] != [2, 3] \
             and user_character['Location'][0] < 3 and user_character['Location'][1] < 3:
         print("You are in the valley, a barren location that likely used to be a suburb before the war")
@@ -263,7 +278,6 @@ def location_normal(user_character):
         print('Testing Testing')
     elif user_character['Location'] != [1, 5] and user_character['Location'][0] < 3 < user_character['Location'][1]:
         print('something will go here')
-
 
 
 def monster_encounter_chance():
