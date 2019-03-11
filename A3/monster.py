@@ -183,6 +183,21 @@ def monster_combat(my_character, monster):
     PRE-CONDITION: my_character must be a dictionary
     POST-CONDITION: Prints output and reduces character/monster health until one reaches 0
     RETURN: None
+    >>> random.seed(4)
+    >>> monster_combat({'Name': 'Charmander', 'Class': 'Hello Kitty', 'Health': 10,\
+                              'Dexterity': 3, 'Location': [0, 2], 'Inventory': [], 'Cursed': False},\
+                              {'Name': 'Ghoul', 'Health': 5, 'Damage': 2, 'Dexterity': 2})
+    Charmander has a chance to attack
+    Charmander attacked with damage of 3
+    Ghoul now has a health of 2
+    Ghoul has a chance to attack
+    Ghoul attacked with damage of 6
+    Charmander now has a health of 4
+    Charmander has a chance to attack
+    Charmander attacked with damage of 4
+    Ghoul now has a health of -2
+    Ghoul has died
+    >>> random.seed()
     """
     while my_character['Health'] > 0:
             attack_round(my_character, monster)
@@ -193,8 +208,8 @@ def monster_combat(my_character, monster):
             elif monster['Health'] > 0:
                 attack_round(monster, my_character)
                 print(my_character['Name'] + ' now has a health of ' + str(my_character['Health']))
-            else:
-                print(my_character['Name'] + ' has died')
+    else:
+        print(my_character['Name'] + ' has died')
 
 
 def monster_fight(my_character, monster):
