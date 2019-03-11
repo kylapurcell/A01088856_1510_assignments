@@ -100,6 +100,16 @@ def movement_conditions(user_character, command):
 
 
 def inventory_modify(item1, item2, user_character):
+    """
+    Change the items in a character dictionary.
+
+    PARAM: user_character, a dictionary
+    PARAM: Item1, a string
+    PARAM: Item2, a string
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Removes an item from the character's dictionary and replaces it with another
+    RETURN: None
+    """
     user_character['Inventory'].remove(item1)
     user_character['Inventory'].append(item2)
 
@@ -121,7 +131,7 @@ def location_one(user_character):
     elif 'CatNip' in user_character['Inventory']:
         print('Hello again man! \n 龴ↀ 0 ↀ龴 \n OMG you found it thank you!! Here take this')
         print("Its a golden medal. You're surprised someone like him has something this nice")
-        inventory_modify('CatNip','I Beat Catpocalpse Medal', user_character)
+        inventory_modify('CatNip', 'I Beat Catpocalpse Medal', user_character)
     else:
         print('Hey man. I really need some CatNip. Can you bring me some?'
               ' Try the store in the city ruins, south-east of here. Please man I gotta have it')
@@ -129,6 +139,14 @@ def location_one(user_character):
 
 
 def location_two():
+    """
+    Initiate dialogue for location three.
+
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Depending on what the user types, initiates different dialogue and prints it
+    RETURN: None
+    """
     print("You have entered the large ruins of a library, in the middle of the room stands a studious "
           "looking cat wearing glasses with the word 'Google' written on them.")
     print("^⨀ᴥ⨀^,Hello welcome to the library, I can use my state of art technology to "
@@ -141,6 +159,15 @@ def location_two():
 
 
 def location_three(user_character):
+    """
+    Initiate quest dialogue for location three.
+
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Depending on what the character has in their inventory initiates different dialogue and appends or
+    removes items from their inventory list.
+    RETURN: None
+    """
     print('You see the ruins of a grocery store. On top of a cash register is a fat cat smoking a cigarette!')
     if 'Cigarettes' in user_character['Inventory']:
         print('Wow ya got em thanks Bub! I put the Cat Nip in your inventory ;)')
@@ -157,14 +184,34 @@ def location_three(user_character):
     print('your inventory:', str(user_character['Inventory']))
 
 
-def location_four(user_character):
-    print("You see building with a sign that reads 'Museum', a small robotic cat sits inside \n 龴ↀ=ↀ龴 \n")
-    print('Welcome to the Human Museum, your source for the most accurate info about our extinct friends')
+def human_facts():
+    """
+    Print a random fact.
+
+    POST-CONDITION: Prints a random fact from a list of facts at the index specified by a random integer
+    RETURN: None
+    """
+
     random_fact = random.randint(0, 2)
     facts = ['Humans used to place items on tables and never get the urge to push them on the floor',
              'Humans had the most comfortable chairs *Holds up a laptop*',
              'Humans always closed the door when in the bathroom...but why?!']
     print('Did you know', facts[random_fact])
+
+
+def location_four(user_character):
+    """
+    Initiate quest dialogue for location three.
+
+    PARAM: user_character, a dictionary
+    PRE-CONDITION: user_character must be a complete character dictionary
+    POST-CONDITION: Depending on what the character has in their inventory initiates different dialogue and appends or
+    removes items from their inventory list.
+    RETURN: None
+    """
+    print("You see building with a sign that reads 'Museum', a small robotic cat sits inside \n 龴ↀ=ↀ龴 \n")
+    print('Welcome to the Human Museum, your source for the most accurate info about our extinct friends')
+    human_facts()
     if 'Me0w M1x: Binary Edition!' in user_character['Inventory']:
         print('Oh Cigarettes? The fat cat at the grocery store again! Every week with that guy..\n Fine just take them')
         inventory_modify('Me0w M1x: Binary Edition!', 'Cigarettes', user_character)
