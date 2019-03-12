@@ -10,8 +10,8 @@ class TestLocationOne(TestCase):
     def test_location_one(self, mock_stdout):
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 1,
                      'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}
-        expected_output = """\nOh wait, Someone appeared. In front of you, you see a scraggly looking cat with red eyes \
-and a robotic arm.
+        expected_output = """\nOh wait, Someone appeared. In front of you, you see a scraggly looking cat with \
+red eyes and a robotic arm.
 He's wearing a beanie with the phrase 'One Love' on it.
 
 龴ↀ◡ↀ龴 
