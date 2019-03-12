@@ -126,7 +126,7 @@ def location_one(user_character):
     POST-CONDITION: Depending on what the character has in their inventory prints different dialogue and appends/removes
      items from their inventory list.
     RETURN: None
-    """
+     """
     print("\nOh wait, Someone appeared. In front of you, you see a scraggly looking cat "
           "with red eyes and a robotic arm.")
     print("He's wearing a beanie with the phrase 'One Love' on it.")
