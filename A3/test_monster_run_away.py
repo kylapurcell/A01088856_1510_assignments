@@ -5,9 +5,9 @@ from A3 import monster
 
 
 class TestMonsterRunAway(TestCase):
-    @patch('random.randint', return_value=5)
+    @patch('random.randint', return_value=5)    # Tests printed output if monster attacks as character runs
     @patch('sys.stdout', new_callable=io.StringIO)
-    def test_monster_run_away(self,mock_stdout, mock_chance):
+    def test_monster_run_away(self, mock_stdout, mock_chance):
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 10,
                      'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}
         monster_opponent = {'Name': 'Ghoul', 'Health': 5, 'Damage': 2, 'Dexterity': 7}
@@ -16,7 +16,7 @@ You survived to fight another day\n"""
         monster.monster_run_away(character, monster_opponent)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('random.randint', return_value=4)
+    @patch('random.randint', return_value=4)   # Tests printed output if character escapes with no damage
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_monster_run_away2(self, mock_stdout, mock_chance):
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 10,
@@ -26,7 +26,8 @@ You survived to fight another day\n"""
         monster.monster_run_away(character, monster_opponent)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('random.randint', return_value=5)
+    @patch('random.randint', return_value=5)   # Tests printed output if monster attacks as character runs
+    # causing them to die
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_monster_run_away3(self, mock_stdout, mock_chance):
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 1,

@@ -5,15 +5,15 @@ from unittest.mock import patch
 
 
 class TestMovementConditions(TestCase):
-    @patch('sys.stdout', new_callable=io.StringIO)
-    def test_movement_conditions(self,mock_stdout):
+    @patch('sys.stdout', new_callable=io.StringIO)   # Tests printed output at North borders of map
+    def test_movement_conditions(self, mock_stdout):
         character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
                      'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}
         expected_output = " You've reached the end of this world please turn back or head east or west\n"
         sud.movement_conditions(character, 'North')
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('sys.stdout', new_callable=io.StringIO)
+    @patch('sys.stdout', new_callable=io.StringIO)  # Tests printed output at West borders of map
     def test_movement_conditions2(self, mock_stdout):
         character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
                      'Dexterity': 0, 'Location': [2, 0], 'Inventory': [], 'Cursed': False}
@@ -21,7 +21,7 @@ class TestMovementConditions(TestCase):
         sud.movement_conditions(character, 'West')
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('sys.stdout', new_callable=io.StringIO)
+    @patch('sys.stdout', new_callable=io.StringIO)  # Tests printed output at East borders of map
     def test_movement_conditions3(self, mock_stdout):
         character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
                      'Dexterity': 0, 'Location': [2, 6], 'Inventory': [], 'Cursed': False}
@@ -29,7 +29,7 @@ class TestMovementConditions(TestCase):
         sud.movement_conditions(character, 'East')
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('sys.stdout', new_callable=io.StringIO)
+    @patch('sys.stdout', new_callable=io.StringIO)  # Tests printed output at South borders of map
     def test_movement_conditions4(self, mock_stdout):
         character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
                      'Dexterity': 0, 'Location': [6, 2], 'Inventory': [], 'Cursed': False}
@@ -39,6 +39,7 @@ class TestMovementConditions(TestCase):
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_movement_conditions5(self, mock_stdout):
+        # Tests printed is user types something other than a direction or quit
         character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
                      'Dexterity': 0, 'Location': [6, 2], 'Inventory': [], 'Cursed': False}
         expected_output = "I do not understand that command. Please type North ,West, South, East, or Quit\n"

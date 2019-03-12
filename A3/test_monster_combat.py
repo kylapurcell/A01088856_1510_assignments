@@ -6,8 +6,8 @@ import random
 
 
 class TestMonsterCombat(TestCase):
-    @patch('sys.stdout', new_callable=io.StringIO)
-    def test_monster_combat(self,mock_stdout):
+    @patch('sys.stdout', new_callable=io.StringIO)   # Tests case where the monster dies
+    def test_monster_combat(self, mock_stdout):
         random.seed(3)
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 1,
                      'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}
@@ -16,10 +16,10 @@ class TestMonsterCombat(TestCase):
 Mew attacked with damage of 5
 Ghoul now has a health of 0
 Ghoul has died\n"""
-        monster.monster_combat(character,monster_opponent)
+        monster.monster_combat(character, monster_opponent)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('sys.stdout', new_callable=io.StringIO)
+    @patch('sys.stdout', new_callable=io.StringIO)  # Tests case where the character dies
     def test_monster_combat2(self, mock_stdout):
         random.seed(3)
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 1,

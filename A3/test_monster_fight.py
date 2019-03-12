@@ -6,7 +6,7 @@ import random
 
 
 class TestMonsterFight(TestCase):
-    @patch('builtins.input', return_value='fight')
+    @patch('builtins.input', return_value='fight')   # Tests printed output if user chooses to fight
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_monster_fight(self, mock_stdout, mock_input):
         random.seed(4)
@@ -25,7 +25,7 @@ Mew has died\n"""
         self.assertEqual(mock_stdout.getvalue(), expected_output)
         random.seed()
 
-    @patch('builtins.input', return_value='run')
+    @patch('builtins.input', return_value='run')     # Tests printed output if user chooses to run
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_monster_fight2(self, mock_stdout, mock_input):
         random.seed(4)
