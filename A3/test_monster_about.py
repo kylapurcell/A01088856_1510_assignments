@@ -5,7 +5,7 @@ import io
 
 
 class TestMonsterAbout(TestCase):
-    @patch('sys.stdout', new_callable=io.StringIO)
+    @patch('sys.stdout', new_callable=io.StringIO)   # Tests printed output
     def test_monster_about(self, mock_stdout):
         expected_output = """The Monster Encyclopedia:
       Ghoul: Radioactive, humanoid creature with green flesh. Rumored to be whats left of humans.
@@ -16,6 +16,6 @@ class TestMonsterAbout(TestCase):
         monster.monster_about()
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    def test_monster_about2(self):
+    def test_monster_about2(self):          # Tests that function returns None
         self.assertIsNone((monster.monster_about()))
 

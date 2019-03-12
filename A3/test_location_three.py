@@ -8,6 +8,7 @@ class TestLocationThree(TestCase):
     @patch('builtins.input', return_value='yes')
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_location_three(self, mock_stout, mock_input):
+        # Tests printed output if character inventory is empty and they select yes
         character_one = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0,
                          'Dexterity': 0, 'Location': [5, 5], 'Inventory': [], 'Cursed': False}
         expected_output = """\nYou see the ruins of a grocery store. On top of a \
@@ -24,6 +25,7 @@ Your inventory: ['Me0w M1x: Binary Edition!']\n"""
     @patch('builtins.input', return_value='whatever')
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_location_three2(self, mock_stout, mock_input):
+        # Tests printed output if character inventory is empty and they select anything
         character_one = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0,
                          'Dexterity': 0, 'Location': [5, 5], 'Inventory': [], 'Cursed': False}
         expected_output = """\nYou see the ruins of a grocery store. On top of a \
@@ -39,6 +41,7 @@ Your inventory: ['Me0w M1x: Binary Edition!']\n"""
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_location_three3(self, mock_stout):
+        # Tests printed output if cigarettes are in character inventory
         character_one = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0,
                          'Dexterity': 0, 'Location': [5, 5], 'Inventory': ['Cigarettes'], 'Cursed': False}
         expected_output = """\nYou see the ruins of a grocery store. On top of a \
@@ -52,6 +55,7 @@ Your inventory: ['CatNip']\n"""
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_location_three4(self, mock_stout):
+        # Tests printed output if Meow mix is in character inventory
         character_one = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0, 'Dexterity': 0,
                          'Location': [5, 5], 'Inventory': ['Me0w M1x: Binary Edition!'], 'Cursed': False}
         expected_output = """\nYou see the ruins of a grocery store. On top of a \
@@ -65,6 +69,7 @@ Your inventory: ['Me0w M1x: Binary Edition!']\n"""
 
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_location_three5(self, mock_stout):
+        # Tests printed output if Cat nip is in character inventory
         character_one = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0, 'Dexterity': 0,
                          'Location': [5, 5], 'Inventory': ['CatNip'], 'Cursed': False}
         expected_output = """\nYou see the ruins of a grocery store. On top of a \

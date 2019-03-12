@@ -5,7 +5,7 @@ from A3 import sud
 
 
 class TestLocationTwo(TestCase):
-    @patch('builtins.input', return_value='1')
+    @patch('builtins.input', return_value='1')   # Tests printed output if user selects 1
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_location_two(self, mock_stdout, mock_input):
         expected_output = """\nYou have entered the large ruins of a library, in the middle of the room stands a \
@@ -23,7 +23,7 @@ Thanks for coming. If you require my service again please visit this location ag
         sud.location_two()
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('builtins.input', return_value='any output')
+    @patch('builtins.input', return_value='any output')   # Tests printed output if user anything other than 1
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_location_two2(self, mock_stdout, mock_input):
         expected_output = """\nYou have entered the large ruins of a library, in the middle of the room stands a \

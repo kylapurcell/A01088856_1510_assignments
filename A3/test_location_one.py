@@ -6,7 +6,8 @@ from A3 import sud
 
 class TestLocationOne(TestCase):
     @patch('sys.stdout', new_callable=io.StringIO)
-    def test_location_one(self, mock_stdout):
+    def test_location_one(self, mock_stdout):     # Tests printed output if character inventory does not include catnip
+        # and character is not cursed
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 1,
                      'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}
         expected_output = """\nOh wait, Someone appeared. In front of you, you see a scraggly looking cat with \
@@ -20,7 +21,8 @@ Your inventory:  []\n"""
         sud.location_one(character)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('sys.stdout', new_callable=io.StringIO)
+    @patch('sys.stdout', new_callable=io.StringIO)   # Tests printed output if character has catnip in their inventory
+    # and character is not cursed
     def test_location_one2(self, mock_stdout):
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 1,
                      'Dexterity': 0, 'Location': [0, 2], 'Inventory': ['CatNip'], 'Cursed': False}
@@ -37,10 +39,10 @@ Your inventory:  ['I Beat Catpocalpse Medal']\n"""
         sud.location_one(character)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('sys.stdout', new_callable=io.StringIO)
+    @patch('sys.stdout', new_callable=io.StringIO)       # Tests printed output if character is cursed
     def test_location_one3(self, mock_stdout):
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 1,
-                     'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': True}
+                     'Dexterity': 0, 'Location': [0, 2], 'Inventory': ['CatNip'], 'Cursed': True}
         expected_output = """\nOh wait, Someone appeared. In front of you, you see a scraggly looking cat with \
 red eyes and a robotic arm.
 He's wearing a beanie with the phrase 'One Love' on it.
@@ -49,6 +51,6 @@ He's wearing a beanie with the phrase 'One Love' on it.
  
 龴ↀ__ↀ龴 
 ... I'm too scared to accept catnip from you like this...head south west
-Your inventory:  []\n"""
+Your inventory:  ['CatNip']\n"""
         sud.location_one(character)
         self.assertEqual(mock_stdout.getvalue(), expected_output)

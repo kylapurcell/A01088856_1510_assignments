@@ -5,15 +5,15 @@ from A3 import sud
 
 
 class TestLocationSecret(TestCase):
-    @patch('sys.stdout', new_callable=io.StringIO)
-    def test_location_secret(self,mock_stout):
+    @patch('sys.stdout', new_callable=io.StringIO)     # Tests printed output if character is not cursed
+    def test_location_secret(self, mock_stout):
         character_one = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0,
                          'Dexterity': 0, 'Location': [5, 5], 'Inventory': [], 'Cursed': False}
         expected_output = 'You notice something strange about this area but cannot quite put your finger on it\n'
         sud.location_secret(character_one)
         self.assertEqual(mock_stout.getvalue(), expected_output)
 
-    @patch('sys.stdout', new_callable=io.StringIO)
+    @patch('sys.stdout', new_callable=io.StringIO)   # Tests printed output if character is cursed
     def test_location_secret2(self, mock_stout):
         character_one = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0,
                          'Dexterity': 0, 'Location': [5, 5], 'Inventory': [], 'Cursed': True}
