@@ -6,7 +6,7 @@ def choose_class():
     Print a message and return an inputted class.
 
     POST-CONDITION: prints a message about the different classes and returns the inputted class
-    RETURN: a class as a string
+    RETURN: A class as a string
     """
     print("""There are several classes you may choose.
     Big Chonk: A fat cat. Very strong, always hungry at 4am
@@ -35,7 +35,7 @@ def determine_dexterity(character_class):
 
      Creates dexterity points for a character based on a random integer determined by the character's class
      PARAM: character_class, a string
-     PRE-CONDITION: character_class must be a lowercase string
+     PRE-CONDITION: character_class must be a title case string
      POST-CONDITION: returns a positive integer whose range is dependant on character_class
      RETURN: Dexterity points as a integer
 
@@ -63,7 +63,8 @@ def create_character():
     """
     character = {'Name': input('What is your name? '), 'Class': choose_class(), 'Health': 10,
                  'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}
-    character['Dexterity'] = determine_dexterity(character['Class'])
+    character['Dexterity'] = determine_dexterity(character['Class'])  # All characters start at location [2,2] and
+    # have an initial health of 10 with nothing in their inventory
     return character
 
 
@@ -82,7 +83,7 @@ def character_healing(character):
                      'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False})
     Your health has revitalized to 8
     """
-    if 10 > character['Health'] > 0:
+    if 10 > character['Health'] > 0:     # Only heals character until health = 10 and only if character is not dead
         character['Health'] = character['Health'] + 1
         print('Your health has revitalized to', str(character['Health']))
 

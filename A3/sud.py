@@ -9,6 +9,7 @@ def create_coordinates():
     """
     Create a list of coordinates for a game map.
 
+    Uses nested for loops to create a nested list of coordinates from (0,0) to (6,6) to represent points on a game map
     POST-CONDITION: Returns a list containing 7 sub-lists that contain coordinates to a game map as pairs of integers.
     RETURN: a nested list.
     >>> create_coordinates()
@@ -21,13 +22,13 @@ def create_coordinates():
     list2 = []
     list3 = []
     for i in range(0, 7):
-        for j in range(0, 7):
+        for j in range(0, 7):     # Creates two lists from nested for loop
             list1.append(i)
             list2.append(j)
     for i in list1:
-        list3.append([i])
+        list3.append([i])   # Appends items of list1 to the 0 index of sub-lists in list3
     for i in range(0, len(list3)):
-        list3[i].insert(1, list2[i])
+        list3[i].insert(1, list2[i])  # Inserts items of list2 in the 1 index of the sub-lists in list3
     return list3
 
 
@@ -44,11 +45,11 @@ def game_map(user_character):
     coord = create_coordinates()
     for i in range(0, len(coord)):
         if i % 7 == 0:
-            print('\n')
+            print('\n')                           # Adds a space to make board 7 by 7
         if user_character['Location'] == coord[i]:
-            print('=^..^=', '  ', end='')
+            print('=^..^=', '  ', end='')           # User's current position is represented by this cat icon
             continue
-        print('*****' + '    ', end='')
+        print('*****' + '    ', end='')     # Spaces on the game map are represented by *****
     print('\n')
 
 
@@ -66,7 +67,7 @@ def movement(user_character, command):
     Not sure how to doctest or unit test this function
     """
     if command == 'West':
-        user_character['Location'][1] = (user_character['Location'][1] - 1)
+        user_character['Location'][1] = (user_character['Location'][1] - 1)   # Accounts for python row dominance
     elif command == 'East':
         user_character['Location'][1] = (user_character['Location'][1] + 1)
     elif command == 'South':
@@ -136,7 +137,7 @@ def location_one(user_character):
           "with red eyes and a robotic arm.")
     print("He's wearing a beanie with the phrase 'One Love' on it.")
     print("\n龴ↀ◡ↀ龴 ")
-    if user_character['Cursed']:
+    if user_character['Cursed']:     # If character is cursed unique dialogue option to lead user to easter egg
         print(" \n龴ↀ__ↀ龴 ")
         print("... I'm too scared to accept catnip from you like this...head south west")
     elif 'CatNip' in user_character['Inventory']:
@@ -144,9 +145,9 @@ def location_one(user_character):
         print('龴ↀ 0 ↀ龴')
         print('OMG you found it thank you!! Here take this')
         print("Its a golden medal. You're surprised someone like him has something this nice")
-        inventory_modify('CatNip', 'I Beat Catpocalpse Medal', user_character)
+        inventory_modify('CatNip', 'I Beat Catpocalpse Medal', user_character)  # User 'wins' the game
     else:
-        print('Hey man. I really need some CatNip. Can you bring me some?'
+        print('Hey man. I really need some CatNip. Can you bring me some?'  # Dialogue option if no CatNip
               ' Try the store in the city ruins, south-east of here. Please man I gotta have it')
     print('Your inventory: ', str(user_character['Inventory']))
 
@@ -168,7 +169,7 @@ def location_two():
     choice = input('If if you would like to view information about the monsters of this world type 1,'
                    ' and type anything else to be left alone: ').strip()
     if choice == '1':
-        monster.monster_about()
+        monster.monster_about()  # Calls a function that gives information about monsters to the user
     print('Thanks for coming. If you require my service again please visit this location again')
 
 
@@ -183,20 +184,20 @@ def location_three(user_character):
     RETURN: None
     """
     print('\nYou see the ruins of a grocery store. On top of a cash register is a fat cat smoking a cigarette!')
-    if 'Cigarettes' in user_character['Inventory']:
+    if 'Cigarettes' in user_character['Inventory']:   # Dialogue option if user has cigarettes in inventory
         print('\n^(,,Ծ O Ծ,,)^')
         print('Wow ya got em thanks Bub! I put the CatNip in your inventory ;)')
         inventory_modify('Cigarettes', 'CatNip', user_character)
     elif 'Me0w M1x: Binary Edition!' in user_character['Inventory'] or 'CatNip' in user_character['Inventory']:
-        print('\n^(,,Ծ__Ծ,,)^')
+        print('\n^(,,Ծ__Ծ,,)^')                 # Makes it so NPC does not give CatNip to the player multiple times
         print('NO CIGARETTES, NO CATNIP. Sorry Bub.')
     else:
         print('\n^(,,ԾܫԾ,,)^')
         money = input('Hey Bub,I cant sell ya CatNip without money, ya got any money? (yes/no)')
-        print('What?', money, '?', "Look I know you don't got any money "
+        print('What?', money, '?', "Look I know you don't got any money "  # money does nothing but appears here (joke)
                                    "but can you go to the Human Museum and get me cigarettes? ")
         print("Head north west and take this.")
-        user_character['Inventory'].append('Me0w M1x: Binary Edition!')
+        user_character['Inventory'].append('Me0w M1x: Binary Edition!')  # Path if user does not have any quest items
         print("You can't figure out how a cat would start smoking cigarettes but you head on your way")
     print('Your inventory:', str(user_character['Inventory']))
 
@@ -217,10 +218,10 @@ def location_four(user_character):
     facts = ['Humans used to place items on tables and never get the urge to push them on the floor',
              'Humans had the most comfortable chairs *Holds up a laptop*',
              'Humans always closed the door when in the bathroom...but why?!']
-    print('Did you know', facts[random_fact])
+    print('Did you know', facts[random_fact])  # Will tell the user a random 'fact' from the list each visit
     if 'Me0w M1x: Binary Edition!' in user_character['Inventory']:
         print('\nOh Cigarettes? The fat cat at the grocery store again! Every week with that guy...Fine just take them')
-        inventory_modify('Me0w M1x: Binary Edition!', 'Cigarettes', user_character)
+        inventory_modify('Me0w M1x: Binary Edition!', 'Cigarettes', user_character) # Path if Meow mix in inventory
         print('Your inventory:', str(user_character['Inventory']))
         print('He seems mad. Better be on your way')
 
@@ -235,11 +236,12 @@ def location_secret(user_character):
     and changes the character's status.
     RETURN: None
     """
-    if user_character['Cursed']:
+    if user_character['Cursed']:  # Player gets cursed if they encounter the monster Pax
         print("""Hey you've found me. I'm the developer of this game. You are here because you are one of the lucky
               individuals to find my easter egg. I added this in my game because I love Black Mirror's Bandersnatch.
               If you have not seen it yet, you should. Anyway I'll un-curse you so you can beat the game! 
-              Thanks for playing!!!""")
+              Thanks for playing!!!""")  # A note from me for the easter egg, just a fun thing I added,
+        # Not a core component of the game
         user_character['Cursed'] = False
     else:
         print('You notice something strange about this area but cannot quite put your finger on it')
@@ -253,6 +255,8 @@ def location_special(user_character):
     PRE-CONDITION: user_character must be a complete character dictionary
     POST-CONDITION: Calls a function that corresponds to characters current location.
     RETURN: None
+
+    Not sure how to unit or doctest this function
     """
     if user_character['Location'] == [2, 3]:
         location_one(user_character)
@@ -310,12 +314,13 @@ def monster_encounter_chance():
     True
     >>> random.seed()
     """
-    chance = random.randint(1, 10)
+    chance = random.randint(1, 10)   # Player has a 10% chance of encountering a monster or 1 in 10
     if chance == 4:
         print('You have encountered a monster yikes')
         return True
     else:
         print('You feel a calm wind blow in the air, At this moment you are truly alone in the wasteland')
+        # Lets user know they have not encountered a monster
 
 
 def save_game(user_character):
@@ -329,17 +334,17 @@ def save_game(user_character):
 
     Not sure how to doctest or unittest this function
     """
-    filename = str(user_character['Name']) + 'savefile.json'
-    if os.path.isfile(filename):
+    filename = str(user_character['Name']) + 'savefile.json'  # Save files are named from the character's name
+    if os.path.isfile(filename):  # If save file already exists gives option to overwrite it or not
         over_write = input('There is already a save file with your name, 1 to overwrite and 2 to create a new file: ')
         if over_write == '1':
             print('Okay your character file will be overwritten')
-        elif over_write == '2':
+        elif over_write == '2':  # Creates new file if user does not want to overwrite
             new_filename = input('What would you like your new character file to be called? ') + 'savefile.json'
             with open(new_filename, 'w') as file_object: json.dump(user_character, file_object)
         else:
-            return save_game(user_character)
-    with open(filename, 'w') as file_object: json.dump(user_character, file_object)
+            return save_game(user_character)  # Recursion : User must overwrite or make a new save
+    with open(filename, 'w') as file_object: json.dump(user_character, file_object)  # Saves file
     print('Your game has been saved, Thank you for playing =^..^=')
 
 
@@ -355,16 +360,16 @@ def load_game():
     choice = input('Do you want to start a new game or load? (new,load) ').lower().strip()
     if choice == 'load':
         try:
-            name = input("Input your character's name ").title().strip()
+            name = input("Input your character's name ").title().strip()  # Loads file based on character's name
             filename = name + 'savefile.json'
             with open(filename) as file_object: my_character = json.load(file_object)
             return my_character
-        except FileNotFoundError:
+        except FileNotFoundError:  # If file is not found game does not crash
             print('We could not find that character in our system')
     elif choice == 'new':
         print('Okay we will create a new game for you')
-        return character.create_character()
-    return load_game()
+        return character.create_character()  # Uses create_character function to create a new game
+    return load_game()  # Recursion if user either does not pick load or new or their file is not found
 
 
 def is_character_dead(user_character):
@@ -379,7 +384,7 @@ def is_character_dead(user_character):
     """
     if user_character['Health'] <= 0:
         user_character['Health'] = 10
-        user_character['Location'] = [2, 2]
+        user_character['Location'] = [2, 2]  # Restores characters stats when they die
         survival = input(' Would you like to continue the game? (yes/no) ').lower().strip()
         if survival == 'yes':
             print('You awaken at the center of this world, where you started your journey')
@@ -388,7 +393,7 @@ def is_character_dead(user_character):
             return True
         else:
             print('Please choose yes or no')
-            return is_character_dead(user_character)
+            return is_character_dead(user_character)  # Recursion: user must pick yes or no
 
 
 def game_loop():
@@ -398,23 +403,23 @@ def game_loop():
     Cannot unit test or doctest. However game was play tested by several people and bugs were patched accordingly.
     """
     my_character = load_game()
-    game_map(my_character)
+    game_map(my_character)   # Shows the user the initial game map and their position
     while True:
         command = input('Input North,East,South, or West to move. Input quit to exit the game: ').title().strip()
         if command == 'Quit':
-            break
-        if movement_conditions(my_character, command):
-            movement(my_character, command)
-            game_map(my_character)
-            if monster_encounter_chance():
+            break              # On quitting saves the users game and quits the program
+        if movement_conditions(my_character, command):  # If character move is valid moves the character on the map
+            movement(my_character, command)   # Updates character coordinates
+            game_map(my_character)  # Updates the game map
+            if monster_encounter_chance():   # 10% chance of running into a monster
                 my_monster = monster.generate_monster()
-                monster.monster_fight(my_character, my_monster)
+                monster.monster_fight(my_character, my_monster)  # User can run or fight from a monster
             else:
-                character.character_healing(my_character)
+                character.character_healing(my_character)  # If user health < 10 and no monster encounter they heal
             if is_character_dead(my_character):
-                break
-            location_special(my_character)
-            location_normal(my_character)
+                break                        # If character is dead they get a choice to continue or exit/save the game
+            location_special(my_character)  # Checks if user at special quest location
+            location_normal(my_character)  # Checks what printed output to give user based on region on the map
     return save_game(my_character)
 
 

@@ -18,8 +18,8 @@ def monster_class_choice():
     'Ghoul'
     >>> random.seed()
     """
-    normal_chance = random.randint(1, 4)
-    rare_chance = random.randint(1, 60)
+    normal_chance = random.randint(1, 4)   # Determines which monster will appear
+    rare_chance = random.randint(1, 60)   # One in 60 chance of Pax appearing if monster encounter occurs
     if rare_chance == 50:
         return 'Pax'
     elif normal_chance == 1:
@@ -82,7 +82,9 @@ def generate_monster():
     >>> random.seed()
     """
     monster = {'Name': monster_class_choice(), 'Health': 5,
-               'Damage': random.randint(1, 4), 'Dexterity': 0}
+               'Damage': random.randint(1, 4), 'Dexterity': 0}  # All monsters have 5 health,
+    # dexterity dependant on name and damage of (1 to 4) if user runs away.
+    # Note monsters will do (1 to 6) damage in a fight
     class2 = monster['Name']
     monster['Dexterity'] = monster_dexterity(class2)
     return monster
@@ -108,8 +110,8 @@ def attack_round(attacker, opponent):
     Attack missed
     >>> random.seed()
     """
-    attack_roll = random.randint(1, 20)
-    damage = random.randint(1, 6)
+    attack_roll = random.randint(1, 20)   # For attack to strike this number must be greater then opponent dexterity
+    damage = random.randint(1, 6)  # Monsters and characters both do damage from (1 to 6) if they strike
     print(str(attacker['Name']), 'has a chance to attack')
     if attack_roll > opponent['Dexterity']:
         opponent['Health'] = opponent['Health'] - damage
@@ -136,7 +138,7 @@ def monster_run_away(my_character, monster):
     You escaped successfully and without a scratch too
     >>> random.seed()
     """
-    chance_damage = random.randint(1, 10)
+    chance_damage = random.randint(1, 10)   # Monsters have 10% chance of damaging a player as they run
     if chance_damage == 5:
         my_character['Health'] = my_character['Health'] - monster['Damage']
         print(str(monster['Name']), 'attacked as you were running away with a attack of', str(monster['Damage']),
@@ -168,7 +170,7 @@ def monster_encounter(random_monster, user_character):
     """
     print(random_monster['Name'], 'appeared!')
     if random_monster['Name'] == 'Pax':
-        user_character['Cursed'] = True
+        user_character['Cursed'] = True  # If pax appears it curses the character and a unique message appears
         print('You have encountered the demon thief of destiny')
         print('^( Ծ^6^Ծ )^')
 
@@ -204,12 +206,12 @@ def monster_combat(my_character, monster):
             print(monster['Name'] + ' now has a health of ' + str(monster['Health']))
             if monster['Health'] <= 0:
                 print(monster['Name'] + ' has died')
-                break
+                break                                # If the monster dies the combat ends
             elif monster['Health'] > 0:
                 attack_round(monster, my_character)
                 print(my_character['Name'] + ' now has a health of ' + str(my_character['Health']))
     else:
-        print(my_character['Name'] + ' has died')
+        print(my_character['Name'] + ' has died')  # If the player dies the combat ends
 
 
 def monster_fight(my_character, monster):
@@ -226,12 +228,13 @@ def monster_fight(my_character, monster):
     monster_encounter(monster, my_character)
     choice = input(' Would you like to run away or fight? (type run or fight) ').lower().strip()
     if choice == 'run':
-        monster_run_away(my_character, monster)
+        monster_run_away(my_character, monster)   # Calls run function
     elif choice == 'fight':
-        monster_combat(my_character, monster)
+        monster_combat(my_character, monster)  # Calls fight function
     else:
         print('You must run or fight')
         return monster_fight(my_character, monster)
+        # Recursion: Player must pick run or fight if they encounter a monster
 
 
 
