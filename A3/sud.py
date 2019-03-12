@@ -182,7 +182,7 @@ def location_two() -> None:
     print('Thanks for coming. If you require my service again please visit this location again')
 
 
-def location_three(user_character):
+def location_three(user_character: dict) -> None:
     """
     Initiate quest dialogue for location three.
 
