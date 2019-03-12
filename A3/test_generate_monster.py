@@ -3,7 +3,9 @@ from unittest.mock import patch
 from A3 import monster
 import random
 
+
 class TestGenerateMonster(TestCase):
+    # Tests 1-5 Test different returned characters for different name choice and dexterity
     @patch('A3.monster.monster_class_choice', return_value='Ghoul')
     @patch('A3.monster.monster_dexterity', return_value=3)
     @patch('random.randint', return_value=2)
@@ -28,18 +30,18 @@ class TestGenerateMonster(TestCase):
     @patch('A3.monster.monster_class_choice', return_value='Mutated Creature')
     @patch('A3.monster.monster_dexterity', return_value=3)
     @patch('random.randint', return_value=2)
-    def test_generate_monster(self, mock_class, mock_dexterity, mock_damage):
+    def test_generate_monster4(self, mock_class, mock_dexterity, mock_damage):
         self.assertEqual({'Name': 'Mutated Creature', 'Health': 5, 'Damage': 2,
                           'Dexterity': 3}, monster.generate_monster())
 
     @patch('A3.monster.monster_class_choice', return_value='Pax')
     @patch('A3.monster.monster_dexterity', return_value=3)
     @patch('random.randint', return_value=2)
-    def test_generate_monster(self, mock_class, mock_dexterity, mock_damage):
+    def test_generate_monster5(self, mock_class, mock_dexterity, mock_damage):
         self.assertEqual({'Name': 'Pax', 'Health': 5, 'Damage': 2,
                           'Dexterity': 3}, monster.generate_monster())
 
-    def test_generate_monster5(self):
+    def test_generate_monster6(self):                             # Tests that return value is a dictionary
         self.assertEqual(dict, type(monster.generate_monster()))
 
 

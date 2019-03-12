@@ -5,7 +5,7 @@ from A3 import sud
 
 
 class TestIsCharacterDead(TestCase):
-    @patch('builtins.input', return_value='yes')
+    @patch('builtins.input', return_value='yes')        # Tests printed output if user chooses to continue
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_is_character_dead(self, mock_stdout, mock_input):
         character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0,
@@ -14,17 +14,17 @@ class TestIsCharacterDead(TestCase):
         sud.is_character_dead(character)
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
-    @patch('builtins.input', return_value='yes')
+    @patch('builtins.input', return_value='yes')     # Tests that return value is False if user continues
     def test_is_character_dead2(self, mock_input):
         self.assertFalse(sud.is_character_dead({'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0,
                                                 'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}))
 
-    @patch('builtins.input', return_value='no')
+    @patch('builtins.input', return_value='no')    # Tests that return value is True if user continues
     def test_is_character_dead3(self, mock_input):
         self.assertTrue(sud.is_character_dead({'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 0,
                                                'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}))
 
-    def test_is_character_dead4(self):
+    def test_is_character_dead4(self):     # Tests that return value is False if character health > 0
         character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 5,
                      'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}
         self.assertFalse(sud.is_character_dead(character))
