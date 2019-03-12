@@ -449,7 +449,12 @@ X     `-.....-------./ /
      | /\ ~~~~~   \ |
      | | \        || |
      | |\ \       || )
-    (_/ (_/      ((_/""")                   # Ascii art from https://textart.io/art/
+    (_/ (_/      ((_/""")  # Ascii art from https://textart.io/art/
+    print("""Before the war, technology ruled the lives of humans so much so that they even decided to incorporate this
+    technology into their beloved pets, creating android like creatures. Little did they know this technology would give 
+    their feline friends special resistant to radioactive war fare, and when the ashes settled they remained 
+    the sole survivors. Welcome! We wish you luck on your post-apocalyptic journey. We suggest you head East from your
+    start position but its up to you.""")
     game_loop()
     import doctest
     doctest.testmod()
