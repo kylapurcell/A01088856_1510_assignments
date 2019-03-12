@@ -3,12 +3,11 @@ from unittest.mock import patch
 from A3 import monster
 import random
 
-
 class TestGenerateMonster(TestCase):
     @patch('A3.monster.monster_class_choice', return_value='Ghoul')
     @patch('A3.monster.monster_dexterity', return_value=3)
     @patch('random.randint', return_value=2)
-    def test_generate_monster(self,mock_class,mock_dexterity,mock_damage):
+    def test_generate_monster(self, mock_class, mock_dexterity, mock_damage):
         self.assertEqual({'Name': 'Ghoul', 'Health': 5, 'Damage': 2,
                           'Dexterity': 3}, monster.generate_monster())
 
