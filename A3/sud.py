@@ -274,6 +274,10 @@ def location_normal(user_character):
     PRE-CONDITION: user_character must be a complete character dictionary
     POST-CONDITION: Prints output dependant on what region that character's location corresponds to on the map.
     RETURN: None
+    >>> location_normal({'Name': 'Kyla', 'Class': 'Orange Julius', 'Health': 10, 'Dexterity': 6,\
+                          'Location': [2, 4], 'Inventory': [], 'Cursed': False})
+    You are crossing a bridge leading to the outskirts of the city ruins
+    In the distance you spot a large building in good condition surrounded by stacks of burnt books
      """
     if user_character['Location'] != [1, 1] and user_character['Location'] != [2, 3] \
             and user_character['Location'][0] < 4 and user_character['Location'][1] < 4:
