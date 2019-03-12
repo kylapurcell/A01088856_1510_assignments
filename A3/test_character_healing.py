@@ -18,5 +18,5 @@ class TestCharacterHealing(TestCase):
                          'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}
         self.assertIsNone(character.character_healing(character_one))
 
-        
+
 
