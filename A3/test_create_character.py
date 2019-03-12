@@ -4,6 +4,7 @@ from A3 import character
 
 
 class TestCreateCharacter(TestCase):
+    # Tests 1-7 Test different returned characters for different class choice and dexterity
     @patch('builtins.input', return_value='Kyla')
     @patch('A3.character.choose_class', return_value='Hello Kitty')
     @patch('A3.character.determine_dexterity', return_value=3)
@@ -54,7 +55,7 @@ class TestCreateCharacter(TestCase):
                           'Location': [2, 2], 'Inventory': [], 'Cursed': False}, character.create_character())
 
     @patch('builtins.input', return_value='Kyla')
-    @patch('A3.character.choose_class', return_value='Orange Julius')
+    @patch('A3.character.choose_class', return_value='Orange Julius')      # Tests that return value is dictionary
     @patch('A3.character.determine_dexterity', return_value=6)
     def test_create_character8(self, mock_name, mock_class, mock_dexterity):
         self.assertEqual(dict, type(character.create_character()))

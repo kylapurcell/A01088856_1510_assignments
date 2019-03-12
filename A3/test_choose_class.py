@@ -4,7 +4,7 @@ from A3 import character
 
 
 class TestChooseClass(TestCase):
-    @patch('builtins.input', return_value='Hello Kitty')
+    @patch('builtins.input', return_value='Hello Kitty')     # Tests 1-8, Tests return value for each case(class choice)
     def test_choose_class(self, mock_input):
         self.assertEqual('Hello Kitty', character.choose_class())
 
@@ -35,3 +35,9 @@ class TestChooseClass(TestCase):
     @patch('builtins.input', return_value='Glowing One')
     def test_choose_class8(self, mock_input):
         self.assertEqual('Glowing One', character.choose_class())
+
+    @patch('builtins.input', return_value='Glowing One')               # Tests that return value is a string
+    def test_choose_class9(self, mock_input):
+        self.assertEqual(str, type(character.choose_class()))
+
+
