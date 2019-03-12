@@ -231,7 +231,7 @@ def monster_fight(my_character, monster):
         monster_combat(my_character, monster)
     else:
         print('You must run or fight')
-        return monster_combat(my_character, monster)
+        return monster_fight(my_character, monster)
 
 
 

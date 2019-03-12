@@ -262,15 +262,20 @@ def location_normal(user_character):
     RETURN: None
      """
     if user_character['Location'] != [1, 1] and user_character['Location'] != [2, 3] \
-            and user_character['Location'][0] < 3 and user_character['Location'][1] < 3:
-        print("You are in the valley, a barren location that likely used to be a suburb before the war")
+            and user_character['Location'][0] < 4 and user_character['Location'][1] < 4:
+        print("You are in the valley, a barren location, that likely used to be a suburb before the war")
+        print("In the distance you see a large building with sturdy looking pillars")
     elif user_character['Location'] != [5, 5]\
             and user_character['Location'][0] >= 4 and user_character['Location'][1] >= 4:
         print('You are in the city ruins, a charred location filled with decaying buildings')
-    elif user_character['Location'] != [5, 1] and user_character['Location'][0] > 3 > user_character['Location'][1]:
-        print('You are in the lake region, green radioactive particles shimmer in the waters located in the distance ')
-    elif user_character['Location'] != [1, 5] and user_character['Location'][0] < 3 < user_character['Location'][1]:
+        print('In the distance you see the run down remains of a grocery store')
+    elif user_character['Location'] != [5, 1] and user_character['Location'][0] >= 4 >= user_character['Location'][1]:
+        print('You are in the lake region, green radioactive particles shimmer in the brown coloured waters')
+        print('You feel something in the humid air as if this region is the location of an Easter Egg')
+        print('Easter Egg? You have no idea what that is or why you thought of it')
+    elif user_character['Location'] != [1, 5] and user_character['Location'][0] < 4 <= user_character['Location'][1]:
         print('You are crossing a bridge leading to the outskirts of the city ruins')
+        print('In the distance you spot a large building in good condition surrounded by stacks of burnt books')
 
 
 def monster_encounter_chance(user_character):
@@ -279,7 +284,7 @@ def monster_encounter_chance(user_character):
 
     PARAM: user_character, a dictionary
     PRE-CONDITION: user_character must be a full character dictionary
-    POST-CONDITION: Prints output if monster encounter occurs and calls a helper function if it doesn't
+    POST-CONDITION: Prints output if monster encounter occurs and different output if it does mot
     RETURN: True or False as a boolean
     >>> random.seed(3)
     >>> monster_encounter_chance({'Name':'Kyla', 'Class': 'Big Chonk', 'Health': 10, 'Damage': 0,\
@@ -294,7 +299,7 @@ def monster_encounter_chance(user_character):
         return True
     else:
         print('You feel a calm wind blow in the air, At this moment you are truly alone in the wasteland')
-        character.character_healing(user_character)
+
 
 
 def save_game(user_character):
@@ -388,6 +393,8 @@ def game_loop():
             if monster_encounter_chance(my_character):
                 my_monster = monster.generate_monster()
                 monster.monster_fight(my_character, my_monster)
+            else:
+                character.character_healing(my_character)
             if is_character_dead(my_character):
                 break
             location_special(my_character)
