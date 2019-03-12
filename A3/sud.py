@@ -1,3 +1,12 @@
+# Kyla Purcell
+
+# A01088856
+
+# I hope you enjoy this short SUD. There is a small quest you can go on and also a hidden side quest
+# you can also happen upon. I took a functional programming approach when creating this game and so modules contain no
+# global variables and instead functions grouped together that relate to each purpose. Hope you like it!
+
+
 import random
 import monster
 import character

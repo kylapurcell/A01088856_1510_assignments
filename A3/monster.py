@@ -1,3 +1,10 @@
+# Kyla Purcell
+
+# A01088856
+
+# This is the monster module, it contains all the functions related to monster generation, combat and fleeing
+
+
 import random
 import character
 

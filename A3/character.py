@@ -1,3 +1,9 @@
+# Kyla Purcell
+
+# A01088856
+
+# This is the character module, it contains all functions related to character creation, healing, and classes
+
 import random
 
 
