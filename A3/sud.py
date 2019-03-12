@@ -127,18 +127,23 @@ def location_one(user_character):
      items from their inventory list.
     RETURN: None
     """
-    print("\n Oh wait, Someone appeared. In front of you, you see a scraggly looking cat "
-          "with red eyes and a robotic arm.\n He's wearing a beanie with the phrase 'One Love' on it.\n \n 龴ↀ◡ↀ龴 ")
+    print("\nOh wait, Someone appeared. In front of you, you see a scraggly looking cat "
+          "with red eyes and a robotic arm.")
+    print("He's wearing a beanie with the phrase 'One Love' on it.")
+    print("\n龴ↀ◡ↀ龴 ")
     if user_character['Cursed']:
-        print(" \n 龴ↀ__ↀ龴 \n... I'm too scared to accept catnip from you like this...head south west")
+        print(" \n龴ↀ__ↀ龴 ")
+        print("... I'm too scared to accept catnip from you like this...head south west")
     elif 'CatNip' in user_character['Inventory']:
-        print('Hello again man! \n 龴ↀ 0 ↀ龴 \n OMG you found it thank you!! Here take this')
+        print('\nHello again man!')
+        print('龴ↀ 0 ↀ龴')
+        print('OMG you found it thank you!! Here take this')
         print("Its a golden medal. You're surprised someone like him has something this nice")
         inventory_modify('CatNip', 'I Beat Catpocalpse Medal', user_character)
     else:
         print('Hey man. I really need some CatNip. Can you bring me some?'
               ' Try the store in the city ruins, south-east of here. Please man I gotta have it')
-    print('your inventory: ', str(user_character['Inventory']))
+    print('Your inventory: ', str(user_character['Inventory']))
 
 
 def location_two():
@@ -150,9 +155,10 @@ def location_two():
     POST-CONDITION: Depending on what the user types, initiates different dialogue and prints it
     RETURN: None
     """
-    print("You have entered the large ruins of a library, in the middle of the room stands a studious "
+    print("\nYou have entered the large ruins of a library, in the middle of the room stands a studious "
           "looking cat wearing glasses with the word 'Google' written on them.")
-    print("\n^⨀ᴥ⨀^\n,Hello welcome to the library, I can use my state of art technology to "
+    print("\n^⨀ᴥ⨀^")
+    print("Hello welcome to the library, I can use my state of art technology to "
           " help you access information about this world")
     choice = input('If if you would like to view information about the monsters of this world type 1,'
                    ' and type anything else to be left alone: ').strip()
@@ -171,20 +177,23 @@ def location_three(user_character):
      items from their inventory list.
     RETURN: None
     """
-    print('You see the ruins of a grocery store. On top of a cash register is a fat cat smoking a cigarette!')
+    print('\nYou see the ruins of a grocery store. On top of a cash register is a fat cat smoking a cigarette!')
     if 'Cigarettes' in user_character['Inventory']:
-        print('\n^(,,Ծ O Ծ,,)^\n')
-        print('\n Wow ya got em thanks Bub! I put the Cat Nip in your inventory ;)')
+        print('\n^(,,Ծ O Ծ,,)^')
+        print('Wow ya got em thanks Bub! I put the CatNip in your inventory ;)')
         inventory_modify('Cigarettes', 'CatNip', user_character)
     elif 'Me0w M1x: Binary Edition!' in user_character['Inventory'] or 'CatNip' in user_character['Inventory']:
-        print('\n^(,,Ծ__Ծ,,)^\n No Cigarettes no Cat Nip , sorry Bub.')
+        print('\n^(,,Ծ__Ծ,,)^')
+        print('NO CIGARETTES, NO CATNIP. Sorry Bub.')
     else:
-        money = input('\n ^(,,ԾܫԾ,,)^ \n Hey Bub,I cant sell ya Cat Nip without money, ya got any money? (yes/no)')
+        print('\n^(,,ԾܫԾ,,)^')
+        money = input('Hey Bub,I cant sell ya CatNip without money, ya got any money? (yes/no)')
         print('What?', money, '?', "Look I know you don't got any money "
-                                   "but to the Human Museum and get me cigarettes? \n Head north west and take this.")
+                                   "but can you go to the Human Museum and get me cigarettes? ")
+        print("Head north west and take this.")
         user_character['Inventory'].append('Me0w M1x: Binary Edition!')
         print("You can't figure out how a cat would start smoking cigarettes but you head on your way")
-    print('your inventory:', str(user_character['Inventory']))
+    print('Your inventory:', str(user_character['Inventory']))
 
 
 def location_four(user_character):
@@ -207,7 +216,7 @@ def location_four(user_character):
     if 'Me0w M1x: Binary Edition!' in user_character['Inventory']:
         print('\nOh Cigarettes? The fat cat at the grocery store again! Every week with that guy...Fine just take them')
         inventory_modify('Me0w M1x: Binary Edition!', 'Cigarettes', user_character)
-        print('your inventory:', str(user_character['Inventory']))
+        print('Your inventory:', str(user_character['Inventory']))
         print('He seems mad. Better be on your way')
 
 
