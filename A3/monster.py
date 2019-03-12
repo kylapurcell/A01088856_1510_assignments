@@ -9,7 +9,7 @@ import random
 import character
 
 
-def monster_class_choice():
+def monster_class_choice() -> str:
     """
     Determine what type of monster will appear.
 
@@ -39,7 +39,7 @@ def monster_class_choice():
         return 'Mutated Creature'
 
 
-def monster_dexterity(class_type):
+def monster_dexterity(class_type: str) -> int:
     """
     Calculate monster dexterity based on class.
 
@@ -62,7 +62,7 @@ def monster_dexterity(class_type):
         return random.randint(1, 20)
 
 
-def monster_about():
+def monster_about() -> None:
     """
     Print information about the monsters of this world.
 
@@ -77,7 +77,7 @@ def monster_about():
       Pax: The demon thief of destiny. Feared by all and said to curse those unlucky enough to meet him.""")
 
 
-def generate_monster():
+def generate_monster() -> dict:
     """
     Generate a monster.
 
@@ -97,7 +97,7 @@ def generate_monster():
     return monster
 
 
-def attack_round(attacker, opponent):
+def attack_round(attacker: dict, opponent: dict) -> None:
     """
     Decide if an attack will be successful.
 
@@ -127,7 +127,7 @@ def attack_round(attacker, opponent):
         print('Attack missed')
 
 
-def monster_run_away(my_character, monster):
+def monster_run_away(my_character: dict, monster: dict) -> None:
     """
     Decide if damage occurs while fleeing.
 
@@ -158,7 +158,7 @@ def monster_run_away(my_character, monster):
         print('You escaped successfully and without a scratch too')
 
 
-def monster_encounter(random_monster, user_character):
+def monster_encounter(random_monster: dict, user_character: dict) -> None:
     """
     Encounter a monster.
 
@@ -182,7 +182,7 @@ def monster_encounter(random_monster, user_character):
         print('^( Ծ^6^Ծ )^')
 
 
-def monster_combat(my_character, monster):
+def monster_combat(my_character: dict, monster: dict) -> None:
     """
     Engage in combat to the death.
 
@@ -221,7 +221,7 @@ def monster_combat(my_character, monster):
         print(my_character['Name'] + ' has died')  # If the player dies the combat ends
 
 
-def monster_fight(my_character, monster):
+def monster_fight(my_character: dict, monster: dict) -> None:
     """
      Decide the outcome of a monster encounter.
 

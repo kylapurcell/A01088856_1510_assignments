@@ -14,7 +14,7 @@ import json
 import os
 
 
-def create_coordinates():
+def create_coordinates()-> list:
     """
     Create a list of coordinates for a game map.
 
@@ -41,7 +41,7 @@ def create_coordinates():
     return list3
 
 
-def game_map(user_character):
+def game_map(user_character: dict)->None:
     """
     Print a game map.
 
@@ -62,7 +62,7 @@ def game_map(user_character):
     print('\n')
 
 
-def movement(user_character, command):
+def movement(user_character: dict, command: str)->None:
     """
     Move the character across a game map.
 
@@ -85,7 +85,7 @@ def movement(user_character, command):
         user_character['Location'][0] = (user_character['Location'][0] - 1)
 
 
-def movement_conditions(user_character, command):
+def movement_conditions(user_character: dict, command: str)-> bool:
     """
     Decide if movement command is valid.
 
@@ -115,7 +115,7 @@ def movement_conditions(user_character, command):
         return True
 
 
-def inventory_modify(item1, item2, user_character):
+def inventory_modify(item1: str, item2: str, user_character: dict)-> None:
     """
     Change the items in a character dictionary.
 
@@ -132,7 +132,7 @@ def inventory_modify(item1, item2, user_character):
     user_character['Inventory'].append(item2)
 
 
-def location_one(user_character):
+def location_one(user_character: dict) -> None:
     """
     Initiate quest dialogue for location one.
 
@@ -161,7 +161,7 @@ def location_one(user_character):
     print('Your inventory: ', str(user_character['Inventory']))
 
 
-def location_two():
+def location_two() -> None:
     """
     Initiate dialogue for location three.
 
@@ -211,7 +211,7 @@ def location_three(user_character):
     print('Your inventory:', str(user_character['Inventory']))
 
 
-def location_four(user_character):
+def location_four(user_character: dict) -> None:
     """
     Initiate quest dialogue for location three.
 
@@ -235,7 +235,7 @@ def location_four(user_character):
         print('He seems mad. Better be on your way')
 
 
-def location_secret(user_character):
+def location_secret(user_character: dict) -> None:
     """
     Initiate special dialogue for an easter egg/secret location.
 
@@ -256,7 +256,7 @@ def location_secret(user_character):
         print('You notice something strange about this area but cannot quite put your finger on it')
 
 
-def location_special(user_character):
+def location_special(user_character: dict) -> None:
     """
     Determine if character is at a quest location.
 
@@ -279,7 +279,7 @@ def location_special(user_character):
         location_secret(user_character)
 
 
-def location_normal(user_character):
+def location_normal(user_character: dict) -> None:
     """
     Print descriptions dependant on characters location on the map.
 
@@ -309,7 +309,7 @@ def location_normal(user_character):
         print('In the distance you spot a large building in good condition surrounded by stacks of burnt books')
 
 
-def monster_encounter_chance():
+def monster_encounter_chance() -> bool:
     """
     Determine if character encounters a monster or heals.
 
@@ -332,7 +332,7 @@ def monster_encounter_chance():
         # Lets user know they have not encountered a monster
 
 
-def save_game(user_character):
+def save_game(user_character: dict) -> None:
     """
     Save a character in a json file.
 
@@ -357,7 +357,7 @@ def save_game(user_character):
     print('Your game has been saved, Thank you for playing =^..^=')
 
 
-def load_game():
+def load_game() -> dict:
     """
     Load a character save file from a json file.
 
@@ -381,7 +381,7 @@ def load_game():
     return load_game()  # Recursion if user either does not pick load or new or their file is not found
 
 
-def is_character_dead(user_character):
+def is_character_dead(user_character: dict) -> bool:
     """
     Manage a dead character.
 

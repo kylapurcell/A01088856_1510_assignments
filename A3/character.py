@@ -7,7 +7,7 @@
 import random
 
 
-def choose_class():
+def choose_class() -> str:
     """
     Print a message and return an inputted class.
 
@@ -35,7 +35,7 @@ def choose_class():
         return choose_class()
 
 
-def determine_dexterity(character_class):
+def determine_dexterity(character_class: str) -> int:
     """
      Create dexterity points for a Character.
 
@@ -60,7 +60,7 @@ def determine_dexterity(character_class):
         return random.randint(1, 6)
 
 
-def create_character():
+def create_character() -> dict:
     """
     Create a character.
 
@@ -74,7 +74,7 @@ def create_character():
     return character
 
 
-def character_healing(character):
+def character_healing(character: dict) -> None:
     """
     Heal a character.
 
