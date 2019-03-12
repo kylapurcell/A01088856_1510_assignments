@@ -5,33 +5,25 @@ from A3 import sud
 
 
 class TestMonsterEncounterChance(TestCase):
-    @patch('random.randint',return_value=4)
+    @patch('random.randint', return_value=4)
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_monster_encounter_chance(self,mock_stdout,mock_integer):
-        character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
-                     'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}
         expected_output = 'You have encountered a monster yikes\n'
-        sud.monster_encounter_chance(character)
+        sud.monster_encounter_chance()
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
     @patch('random.randint', return_value=4)
-    def test_monster_encounter_chance2(self,mock_integer):
-        self.assertTrue(sud.monster_encounter_chance({'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
-                                                      'Dexterity': 0, 'Location': [2, 2],
-                                                      'Inventory': [], 'Cursed': False}))
+    def test_monster_encounter_chance2(self, mock_integer):
+        self.assertTrue(sud.monster_encounter_chance())
 
     @patch('random.randint', return_value=3)
     def test_monster_encounter_chance3(self, mock_integer):
-        self.assertFalse(sud.monster_encounter_chance({'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
-                                                      'Dexterity': 0, 'Location': [2, 2],
-                                                       'Inventory': [], 'Cursed': False}))
+        self.assertFalse(sud.monster_encounter_chance())
 
     @patch('random.randint', return_value=3)
     @patch('sys.stdout', new_callable=io.StringIO)
     def test_monster_encounter_chance4(self, mock_stdout, mock_integer):
-        character = {'Name': 'Kyla', 'Class': 'Hello Kitty', 'Health': 10,
-                     'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False}
         expected_output = 'You feel a calm wind blow in the air, At this moment you are truly alone in the wasteland\n'
-        sud.monster_encounter_chance(character)
+        sud.monster_encounter_chance()
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 

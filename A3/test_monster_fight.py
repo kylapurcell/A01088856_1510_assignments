@@ -8,7 +8,7 @@ import random
 class TestMonsterFight(TestCase):
     @patch('builtins.input', return_value='fight')
     @patch('sys.stdout', new_callable=io.StringIO)
-    def test_monster_fight(self, mock_stdout,mock_input):
+    def test_monster_fight(self, mock_stdout, mock_input):
         random.seed(4)
         character = {'Name': 'Mew', 'Class': 'Hello Kitty', 'Health': 1,
                      'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}

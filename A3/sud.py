@@ -292,7 +292,7 @@ def location_normal(user_character):
         print('In the distance you spot a large building in good condition surrounded by stacks of burnt books')
 
 
-def monster_encounter_chance(user_character):
+def monster_encounter_chance():
     """
     Determine if character encounters a monster or heals.
 
@@ -301,8 +301,7 @@ def monster_encounter_chance(user_character):
     POST-CONDITION: Prints output if monster encounter occurs and different output if it does mot
     RETURN: True or False as a boolean
     >>> random.seed(3)
-    >>> monster_encounter_chance({'Name':'Kyla', 'Class': 'Big Chonk', 'Health': 10, 'Damage': 0,\
-                 'Dexterity': 0, 'Location': [2, 2], 'Inventory': [], 'Cursed': False})
+    >>> monster_encounter_chance()
     You have encountered a monster yikes
     True
     >>> random.seed()
@@ -403,7 +402,7 @@ def game_loop():
         if movement_conditions(my_character, command):
             movement(my_character, command)
             game_map(my_character)
-            if monster_encounter_chance(my_character):
+            if monster_encounter_chance():
                 my_monster = monster.generate_monster()
                 monster.monster_fight(my_character, my_monster)
             else:

@@ -1,7 +1,5 @@
 from unittest import TestCase
-import random
 from A3 import monster
-from unittest.mock import patch
 
 
 class TestMonsterDexterity(TestCase):

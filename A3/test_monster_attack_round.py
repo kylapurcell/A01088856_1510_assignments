@@ -1,14 +1,13 @@
 from unittest import TestCase
 from unittest.mock import patch
 import io
-import random
 from A3 import monster
 
 
 class TestAttackRound(TestCase):
     @patch('random.randint', side_effect=[10, 3])
     @patch('sys.stdout', new_callable=io.StringIO)
-    def test_attack_round(self,mock_stdout,mock_random):
+    def test_attack_round(self, mock_stdout, mock_random):
         character_attacker = {'Name': 'Charmander', 'Class': 'Hello Kitty', 'Health': 10,
                               'Dexterity': 0, 'Location': [0, 2], 'Inventory': [], 'Cursed': False}
         monster_opponent = {'Name': 'Ghoul', 'Health': 5, 'Damage': 0, 'Dexterity': 7}

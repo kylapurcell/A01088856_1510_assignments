@@ -2,6 +2,7 @@ from unittest import TestCase
 import random
 from A3 import character
 
+
 class TestDetermineDexterity(TestCase):
     def test_determine_dexterity(self):
         self.assertLessEqual(1, character.determine_dexterity('Big Chonk'))
