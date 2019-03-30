@@ -36,14 +36,13 @@ def add_student():
         student1 = student.Student(first_name1, last_name1, student_number1, status1, grades)
     except ValueError:
         print('A student must have a student number, a first/last name and a status to be added ')
-        return add_student()
+        print('Could not create Student, Please select this option again to try again')
     except TypeError:
         print('A new students with no grades yet was created')
     return student1
 
 
-def write_student():
-    student1 = add_student()
+def file_write(student1):
     grade_string = ''
     for i in student1.grades:
         grade_string = grade_string + ' ' + str(i)
@@ -53,4 +52,25 @@ def write_student():
                          student1.student_number, str(student1.status), grade_string])
         file_object.write('\n' + line)
 
+
+def file_read():
+    object_list = []
+    filename = 'students.txt'
+    with open(filename) as file_object:
+        lines = file_object.readlines()
+        student_list = [line.split() for line in lines]
+        print(student_list)
+        for i in student_list:
+            if i == []:
+                continue
+            else:
+                object_list.append(student.Student(i[0], i[1], i[2], bool(i[3]), list(map(int, i[4:]))))
+        return object_list
+
+list1 = file_read()
+
+for i in list1:
+    if i.student_number == 'Vcute':
+        i.grades.append(90)
+    i.print_student_info()
 
