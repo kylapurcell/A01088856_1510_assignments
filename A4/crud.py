@@ -1,3 +1,6 @@
+from A4 import student
+
+
 def add_grades():
     grade_list = []
     while True:
@@ -14,10 +17,30 @@ def add_grades():
     return grade_list
 
 
-def add_student():
-    #try:
-        #first_name1 = input('What is the students first name')
-        #last_name1 = input('What is the students last name')
-    pass
+def status_input():
+    status = False
+    status1 = input('Is this student in good standing, (True or False)').title().strip()
+    if status1 == 'True':
+        status = True
+    return status
 
-print(add_grades())
+
+def add_student():
+    student1 = None
+    try:
+        first_name1 = input("What is the student's first name")
+        last_name1 = input("What is the student's last name")
+        student_number1 = input("What is the student's #")
+        status1 = status_input()
+        grades = add_grades()
+        student1 = student.Student(first_name1, last_name1, student_number1, status1, grades)
+    except ValueError:
+        print('A student must have a student number, a first/last name and a status to be added ')
+        return add_student()
+    except TypeError:
+        print('A new students with no grades yet was created')
+    return student1
+
+student3 = add_student()
+
+student3.print_student_info()

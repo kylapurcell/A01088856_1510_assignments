@@ -40,23 +40,4 @@ class Student:
         print(self.first_name, self.last_name, self.student_number, str(self.status), str(self.grades))
 
 
-def main():
-    print(Student.counter)
 
-    try:
-        one = Student("Jared", 'hh', '', True, [90, 100])
-
-    except ValueError:
-        print("NO!")
-    two = Student("Duchess", 'kits', 'A0108896', False, [70, 40, 50])
-    three = Student("Cleo", 'Patra', 'A0107777', True, [80, 90])
-
-    # one.print_info()
-    two.print_student_info()
-    three.print_student_info()
-
-main()
-
-
-
-kyla = input('kkkk').strip()
