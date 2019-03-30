@@ -41,6 +41,16 @@ def add_student():
         print('A new students with no grades yet was created')
     return student1
 
-student3 = add_student()
 
-student3.print_student_info()
+def write_student():
+    student1 = add_student()
+    grade_string = ''
+    for i in student1.grades:
+        grade_string = grade_string + ' ' + str(i)
+    filename = 'students.txt'
+    with open(filename, 'a') as file_object:
+        line = ' '.join([student1.first_name, student1.last_name,
+                         student1.student_number, str(student1.status), grade_string])
+        file_object.write('\n' + line)
+
+
