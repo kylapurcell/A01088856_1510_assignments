@@ -7,6 +7,8 @@ class Student:
         self.grades = grades
         if first_name is None or last_name is None or student_number is None or status is None:
             raise ValueError('A student must have a first name, last name, student number')
+        elif '' == first_name or '' == last_name or '' == student_number:
+            raise ValueError('A student must have a complete first name, last name and student number')
         else:
             self.first_name = first_name
             self.last_name = last_name
@@ -38,13 +40,11 @@ class Student:
         print(self.first_name, self.last_name, self.student_number, str(self.status), str(self.grades))
 
 
-
-
 def main():
     print(Student.counter)
 
     try:
-        one = Student("Jared", 'hh', None, True, [90, 100])
+        one = Student("Jared", 'hh', '', True, [90, 100])
 
     except ValueError:
         print("NO!")
@@ -56,3 +56,7 @@ def main():
     three.print_student_info()
 
 main()
+
+
+
+kyla = input('kkkk').strip()
