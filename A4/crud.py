@@ -66,9 +66,8 @@ def file_read():
     with open(filename) as file_object:
         lines = file_object.readlines()
         student_list = [line.split() for line in lines]
-        print(student_list)
         for i in student_list:
-            if i == []:
+            if i is []:
                 continue
             else:
                 object_list.append(student.Student(i[0], i[1], i[2], make_boolean(i[3]), list(map(int, i[4:]))))
