@@ -36,16 +36,16 @@ def add_student():
         student1 = student.Student(first_name1, last_name1, student_number1, status1, grades)
     except ValueError:
         print('A student must have a student number, a first/last name and a status to be added ')
-        return add_student()
     except TypeError:
         print('A new students with no grades yet was created')
     return student1
 
 
 def file_write(student1):
-    grade_string = ''
+    grade_string_list = []
     for i in student1.grades:
-        grade_string = grade_string + ' ' + str(i)
+        grade_string_list.append(str(i))
+    grade_string = ' '.join(grade_string_list)
     filename = 'students.txt'
     with open(filename, 'a') as file_object:
         line = ' '.join([student1.first_name, student1.last_name,
@@ -67,17 +67,32 @@ def file_read():
         lines = file_object.readlines()
         student_list = [line.split() for line in lines]
         for i in student_list:
-            if i is []:
+            if i == []:
                 continue
             else:
                 object_list.append(student.Student(i[0], i[1], i[2], make_boolean(i[3]), list(map(int, i[4:]))))
         return object_list
 
-file_write(add_student())
 
-list1 = file_read()
+def update_file(object_list: list):
+    filename = 'students.txt'
+    with open(filename, 'w') as file_object:
+        file_object.write('')
+    for student in object_list:
+        file_write(student)
 
-for i in list1:
-    i.print_student_info()
-    print(i.counter)
+
+def delete_student(student_number: str):
+    students_list = file_read()
+    while True:
+        for student in students_list:
+            if student.student_number == student_number:
+                print('We successfully deleted the student')
+                students_list.remove(student)
+                update_file(students_list)
+                return True
+        print('We could not remove that student because they do not exist in the database')
+        return False
+
+
 
