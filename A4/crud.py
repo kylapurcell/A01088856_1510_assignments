@@ -28,8 +28,8 @@ def status_input():
 def add_student():
     student1 = None
     try:
-        first_name1 = input("What is the student's first name")
-        last_name1 = input("What is the student's last name")
+        first_name1 = input("What is the student's first name").title()
+        last_name1 = input("What is the student's last name").title()
         student_number1 = input("What is the student's #")
         status1 = status_input()
         grades = add_grades()
@@ -95,6 +95,11 @@ def file_delete_student(student_number: str):
         return False
 
 
+def truncate(n, decimals=0):
+    multiplier = 10 ** decimals
+    return int(n * multiplier) / multiplier
+
+
 def calculate_class_gpa():
     print('Students with no final grades yet (GPA = 0) will not be counted in this calculation')
     student_list = file_read()
@@ -106,7 +111,7 @@ def calculate_class_gpa():
         new_list.append(student)
     for student in new_list:
         grades_sum += student.calculate_student_gpa()
-    return grades_sum/len(new_list)
+    return truncate(grades_sum/len(new_list), 2)
 
 print(calculate_class_gpa())
 
