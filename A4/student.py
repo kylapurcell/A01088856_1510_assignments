@@ -44,7 +44,12 @@ class Student:
         grades_sum = 0
         for i in self.__grades:
             grades_sum += i
-        return grades_sum/number_of_courses
+        try:
+            gpa = grades_sum/number_of_courses
+        except ZeroDivisionError:
+            print(self.__first_name, self.__last_name, 'has no final grades yet so their gpa is currently 0')
+            gpa = 0
+        return gpa
 
     def set_student_grades(self, grades: list):
         for i in grades:

@@ -82,7 +82,7 @@ def update_file(object_list: list):
         file_write(student)
 
 
-def delete_student(student_number: str):
+def file_delete_student(student_number: str):
     students_list = file_read()
     while True:
         for student in students_list:
@@ -95,4 +95,20 @@ def delete_student(student_number: str):
         return False
 
 
-file_write(add_student())
+def calculate_class_gpa():
+    print('Students with no final grades yet (GPA = 0) will not be counted in this calculation')
+    student_list = file_read()
+    grades_sum = 0
+    new_list = []
+    for student in student_list:
+        if student.calculate_student_gpa() == 0:
+            continue
+        new_list.append(student)
+    for student in new_list:
+        grades_sum += student.calculate_student_gpa()
+    return grades_sum/len(new_list)
+
+print(calculate_class_gpa())
+
+
+
