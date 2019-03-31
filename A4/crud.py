@@ -43,13 +43,13 @@ def add_student():
 
 def file_write(student1):
     grade_string_list = []
-    for i in student1.grades:
+    for i in student1.get_grades_list():
         grade_string_list.append(str(i))
     grade_string = ' '.join(grade_string_list)
     filename = 'students.txt'
     with open(filename, 'a') as file_object:
-        line = ' '.join([student1.first_name, student1.last_name,
-                         student1.student_number, str(student1.status), grade_string])
+        line = ' '.join([student1.get_first_name(), student1.get_last_name(),
+                         student1.get_student_number(), str(student1.get_status()), grade_string])
         file_object.write('\n' + line)
 
 
@@ -86,7 +86,7 @@ def delete_student(student_number: str):
     students_list = file_read()
     while True:
         for student in students_list:
-            if student.student_number == student_number:
+            if student.get_student_number() == student_number:
                 print('We successfully deleted the student')
                 students_list.remove(student)
                 update_file(students_list)
@@ -95,4 +95,4 @@ def delete_student(student_number: str):
         return False
 
 
-
+file_write(add_student())
