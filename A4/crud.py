@@ -138,6 +138,39 @@ def print_class_list():
     print('There are', str(student_list[0].counter), 'students currently enrolled in this school')
 
 
+def print_menu_options():
+    print(' 1.Add Student', '\n', '2.Delete Student', '\n', '3.Calculate Class Average', '\n', '4.Print Class List',
+          '\n', '5.Add Grade To Student Record', '\n', '6.Quit')
+    option = int(input('Please select a menu option (1-6) '))
+    return option
+
+
+def crud_loop():
+    while True:
+        option = print_menu_options()
+        if option == 6:
+            break
+        elif option == 5:
+            student_number = input('Please input a student number in the format A###### ')
+            grade = int(input('Please input a grade you would like to add (an integer from 0-100)'))
+            update_grades(student_number, grade)
+        elif option == 4:
+            print_class_list()
+        elif option == 3:
+            print(calculate_class_gpa())
+        elif option == 2:
+            student_number = input('Please input a student number in the format A###### to delete')
+            file_delete_student(student_number)
+        elif option == 1:
+            file_write(add_student())
+
+crud_loop()
+
+
+
+
+
+
 
 
 
