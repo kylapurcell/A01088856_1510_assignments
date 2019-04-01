@@ -131,6 +131,11 @@ def update_grades(student_number: str, grade_to_add: int):
         return False
 
 
+def print_class_list():
+    student_list = file_read()
+    for student in student_list:
+        student.print_student_info()
+    print('There are', str(student_list[0].counter), 'students currently enrolled in this school')
 
 
 
