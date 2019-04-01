@@ -114,24 +114,21 @@ def calculate_class_gpa():
     return truncate(grades_sum/len(new_list), 2)
 
 
-def update_grades(student_number: str, grade_to_add:int):
+def update_grades(student_number: str, grade_to_add: int):
     student_list = file_read()
-    new_list = []
     while True:
         for student in student_list:
             if student_number == student.get_student_number():
-                    for grades in student.get_grades_list():
-                        new_list = new_list.append(grades)
+                    new_list = [grades for grades in student.get_grades_list()]
                     new_list.append(grade_to_add)
                     try:
                         student.set_student_grades(new_list)
-                        return student_list
+                        update_file(student_list)
+                        return True
                     except ValueError:
                         print('Grades cannot include numbers below zero or above 100')
-        print('We could not find that student in our file')
-        return None
-
-
+        print('We could not find that student in our file or grade could not be added')
+        return False
 
 
 
