@@ -2,7 +2,13 @@ from A4 import student
 import math
 
 
-def add_grades():
+def add_grades()->list:
+    """
+    Create list of inputted grades.
+
+    POST-CONDITION: If valid adds inputted grades to a list and returns it or returns empty list if option selected
+    RETURN: list of grades as a list of integers or an empty list.
+    """
     grade_list = []
     while True:
         try:
@@ -21,7 +27,13 @@ def add_grades():
     return grade_list
 
 
-def status_input():
+def status_input()-> bool:
+    """
+     Choose a status for a student.
+
+     POST-CONDITION: Asks user for input and returns True or False based on selection
+     RETURN: a status as a bool
+     """
     status = False
     status1 = input('Is this student in good standing, (True or False)').title().strip()
     if status1 == 'True':
@@ -30,6 +42,12 @@ def status_input():
 
 
 def add_student():
+    """
+     Create a student object.
+
+     POST-CONDITION: If user input is valid returns a student object, otherwise returns None
+     RETURN: a student as a Student object or None.
+     """
     student1 = None
     try:
         first_name1 = input("What is the student's first name").title()
@@ -45,7 +63,16 @@ def add_student():
     return student1
 
 
-def file_write(student1):
+def file_write(student1)-> bool:
+    """
+     Write a student to a text file.
+
+     PARAM: student1 a student object
+     PRE-CONDITION: student1 must be a student object or None
+     POST-CONDITION: If student1 is student object writes their information to a text file as a string and returns True
+     else returns False
+     RETURN: True or False as a bool.
+     """
     if student1 is None:
         return False
     else:
@@ -61,14 +88,28 @@ def file_write(student1):
         return True
 
 
-def make_boolean(string):
-    if string == 'True':
+def make_boolean(string_one: str) -> bool:
+    """
+     Convert a string into a boolean.
+
+     PARAM: string_one, a string
+     PRE-CONDITION: string_one must be a string
+     POST-CONDITION: If string_one is True returns True else returns False
+     RETURN: True or False as a Boolean
+     """
+    if string_one == 'True':
         return True
     else:
         return False
 
 
 def file_read():
+    """
+     Read a student text file.
+
+     POST-CONDITION: Converts students in the text file to student objects and adds them to a list
+     RETURN: list of students as a list of student objects.
+     """
     object_list = []
     filename = 'students.txt'
     with open(filename) as file_object:
@@ -82,7 +123,16 @@ def file_read():
         return object_list
 
 
-def update_file(object_list: list):
+def update_file(object_list: list)-> None:
+    """
+     Update a student text file.
+
+     PARAM: object_list, a list
+     PRE-CONDITION: object_list must be a list of student objects
+     POST-CONDITION: clears current information in the students text file and replaces it with
+     the contents of object_list as a string
+     RETURN: None
+     """
     filename = 'students.txt'
     with open(filename, 'w') as file_object:
         file_object.write('')
@@ -90,7 +140,16 @@ def update_file(object_list: list):
         file_write(student1)
 
 
-def file_delete_student(student_number: str):
+def file_delete_student(student_number: str) -> bool:
+    """
+    Delete a student from a text file.
+
+    PARAM: student_number , a string
+    PRE-CONDITION: student_number must be a string
+    POST-CONDITION: if student_number matches the student number of a student in the file, deletes that
+    student's information from the text file or prints a helpful message
+    RETURN: True or False as a bool.
+        """
     students_list = file_read()
     while True:
         for student1 in students_list:
@@ -108,7 +167,13 @@ def truncate(n, decimals=0):
     return int(n * multiplier) / multiplier
 
 
-def calculate_class_gpa():
+def calculate_class_gpa()->float:
+    """
+    Calculate the class average.
+
+    POST-CONDITION: calculates the gpa of students with final grades and then calculates the rounded average
+    RETURN: the class grade point average as a float
+    """
     print('Students with no final grades yet (GPA = 0) will not be counted in this calculation')
     student_list = file_read()
     grades_sum = 0
@@ -122,7 +187,17 @@ def calculate_class_gpa():
     return truncate(grades_sum/len(new_list), 2)
 
 
-def update_grades(student_number: str, grade_to_add: int):
+def update_grades(student_number: str, grade_to_add: int) -> bool:
+    """
+    Add a grade to a student's record.
+
+    PARAM: student_number, a string
+    PARAM: grade_to_add, an integer
+    PRE-CONDITION: student_number must be a string
+    PRE-CONDITION: grade_to_add must be an integer in range 0-100
+    POST-CONDITION: If valid adds a grade to the grade list of a student and updates the text file
+    RETURN: True or False as a bool
+    """
     student_list = file_read()
     while True:
         for student1 in student_list:
@@ -139,21 +214,41 @@ def update_grades(student_number: str, grade_to_add: int):
         return False
 
 
-def print_class_list():
+def print_class_list()-> None:
+    """
+    Print the information of all students in a text file.
+
+    POST-CONDITION: Prints the information of students in the text file and prints how many students are currently
+    enrolled in the class
+    RETURN: None
+    """
     student_list = file_read()
     for student1 in student_list:
         student1.print_student_info()
     print('There are', str(len(student_list)), 'students currently enrolled in this school')
 
 
-def print_menu_options():
+def print_menu_options()-> int:
+    """
+    Print the menu options for the user.
+
+    POST-CONDITION: Prints the menu options for the user and returns their selected option.
+    RETURN: An option as an integer
+    """
     print(' 1.Add Student', '\n', '2.Delete Student', '\n', '3.Calculate Class Average', '\n', '4.Print Class List',
           '\n', '5.Add Grade To Student Record', '\n', '6.Quit')
-    option = int(input('Please select a menu option (1-6) '))
+    try:
+        option = int(input('Please select a menu option (1-6) '))
+    except ValueError:
+        print('You must select one of the given options')
+        return print_menu_options()
     return option
 
 
 def crud_loop():
+    """
+    Manage a student record.
+    """
     while True:
         option = print_menu_options()
         if option == 6:
@@ -174,6 +269,9 @@ def crud_loop():
 
 
 def main():
+    """
+    Drive the program
+    """
     crud_loop()
     import doctest
     doctest.testmod()
