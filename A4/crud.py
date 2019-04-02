@@ -1,4 +1,5 @@
 from A4 import student
+import math
 
 
 def add_grades():
@@ -135,7 +136,7 @@ def print_class_list():
     student_list = file_read()
     for student in student_list:
         student.print_student_info()
-    print('There are', str(student_list[0].counter), 'students currently enrolled in this school')
+    print('There are', str(len(student_list)), 'students currently enrolled in this school')
 
 
 def print_menu_options():

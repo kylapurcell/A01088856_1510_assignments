@@ -1,21 +1,19 @@
 
 class Student:
-
-    counter = 0
-
     def __init__(self, first_name: str, last_name: str, student_number: str, status: bool, grades: list):
         self.__grades = grades
-        if first_name is None or last_name is None or student_number is None or status is None:
-            raise ValueError('A student must have a first name, last name, student number')
-        elif '' == first_name or '' == last_name or '' == student_number:
-            raise ValueError('A student must have a complete first name, last name and student number')
+        self.__status = status
+        if ' ' in first_name or ' ' in last_name:
+            raise ValueError('A student must have a first name, last name')
+        elif '' == first_name or '' == last_name:
+            raise ValueError('A student must have a complete first name, last name')
         else:
             self.__first_name = first_name
             self.__last_name = last_name
+        if 'A' == student_number[0] and len(student_number) == 10 and ' ' not in student_number:
             self.__student_number = student_number
-            self.__status = status
-        self.id = Student.counter
-        Student.counter += 1
+        else:
+            raise ValueError('A student number must be in the correct format (A########)')
 
     def get_first_name(self):
         return self.__first_name
