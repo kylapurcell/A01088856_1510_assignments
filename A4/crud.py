@@ -61,11 +61,13 @@ def add_student():
     return student1
 
 
-def file_write(student1)-> bool:
+def file_write(student1, filename1: str)-> bool:
     """
      Write a student to a text file.
 
+     PARAM: filename1, a string
      PARAM: student1 a student object
+     PRE-CONDITION: filename1 must be a string
      PRE-CONDITION: student1 must be a student object or None
      POST-CONDITION: If student1 is student object writes their information to a text file as a string and returns True
      else returns False
@@ -74,7 +76,7 @@ def file_write(student1)-> bool:
     if student1 is None:
         return False
     else:
-        filename = 'students.txt'
+        filename = filename1
         with open(filename, 'a') as file_object:
             line = student1.__repr__()
             file_object.write('\n' + line)
