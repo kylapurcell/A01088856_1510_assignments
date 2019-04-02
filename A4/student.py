@@ -10,7 +10,7 @@ class Student:
         else:
             self.__first_name = first_name
             self.__last_name = last_name
-        if 'A' == student_number[0] and len(student_number) == 10 and ' ' not in student_number:
+        if 'A' == student_number[0] and len(student_number) == 9 and ' ' not in student_number:
             self.__student_number = student_number
         else:
             raise ValueError('A student number must be in the correct format (A########)')

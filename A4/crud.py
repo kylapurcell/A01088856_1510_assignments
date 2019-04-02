@@ -6,13 +6,16 @@ def add_grades():
     grade_list = []
     while True:
         try:
-            grade = int(input('Input a grade to add to the students grade list, If no grades yet type 1 '
-                           'when done adding type 2 ').strip())
-            if grade == 1:
-                return ''
+            grade = int(input('Input a grade to add to the students grade list, If no '
+                              'grades yet type 1 when done adding type 2 ').strip())
+            if grade > 100 or grade < 0:
+                print('That grade is not valid')
+            elif grade == 1:
+                return []
             elif grade == 2:
                     break
-            grade_list.append(grade)
+            else:
+                grade_list.append(grade)
         except TypeError:
             print('Grade must be an integer')
     return grade_list
@@ -54,7 +57,7 @@ def file_write(student1):
         with open(filename, 'a') as file_object:
             line = ' '.join([student1.get_first_name(), student1.get_last_name(),
                          student1.get_student_number(), str(student1.get_status()), grade_string])
-        file_object.write('\n' + line)
+            file_object.write('\n' + line)
         return True
 
 
@@ -169,8 +172,15 @@ def crud_loop():
         elif option == 1:
             file_write(add_student())
 
-crud_loop()
 
+def main():
+    crud_loop()
+    import doctest
+    doctest.testmod()
+
+
+if __name__ == '__main__':
+    main()
 
 
 
