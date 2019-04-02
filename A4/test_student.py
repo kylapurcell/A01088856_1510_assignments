@@ -3,6 +3,7 @@ from A4 import student
 from unittest.mock import patch
 import io
 
+
 class TestStudent(TestCase):
 
     def setUp(self):
