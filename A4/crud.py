@@ -58,8 +58,6 @@ def add_student():
         student1 = student.Student(first_name1, last_name1, student_number1, status1, grades)
     except ValueError:
         print('A student must have correct a student number, a first/last name and a status to be added ')
-    except TypeError:
-        print('A new students with no grades yet was created')
     return student1
 
 
@@ -173,13 +171,18 @@ def calculate_class_gpa()->float:
     student_list = file_read()
     grades_sum = 0
     new_list = []
+    average = 0
     for student1 in student_list:
         if student1.calculate_student_gpa() == -1:
             continue
         new_list.append(student1)
     for student1 in new_list:
         grades_sum += student1.calculate_student_gpa()
-    return truncate(grades_sum/len(new_list), 2)
+    try:
+        average = truncate(grades_sum/len(new_list), 2)
+    except ZeroDivisionError:
+        print('The students in the database do not have final grades yet')
+    return average
 
 
 def update_grades(student_number: str, grade_to_add: int) -> bool:

@@ -47,18 +47,23 @@ class TestStudent(TestCase):
         self.assertEqual(expected, actual)
 
     def test_calculate_student_gpa_empty(self):
-        expected = 0
+        expected = -1
         actual = self.test_student2.calculate_student_gpa()
         self.assertEqual(expected, actual)
 
+    def test_set_student_grades(self):
+        self.test_student.set_student_grades([70, 60, 100])
+        self.assertEqual([70, 60, 100], self.test_student.get_grades_list())
 
-    #def test_set_student_grades(self):
+    def test_set_student_first_name(self):
+        self.test_student.set_student_first_name('Kylo')
+        self.assertEqual('Kylo', self.test_student.get_first_name())
 
+    def test_set_student_last_name(self):
+        self.test_student.set_student_last_name('Purcel')
+        self.assertEqual('Purcel', self.test_student.get_last_name())
 
-    #def test_set_student_first_name(self):
-
-    #def test_set_student_last_name(self):
-
-
-    #def test_set_student_status(self):
+    def test_set_student_status(self):
+        self.test_student.set_student_status(False)
+        self.assertEqual(False, self.test_student.get_status())
 
