@@ -64,6 +64,15 @@ class Student:
     def set_student_status(self, status: bool):
         self.__status = status
 
+    def __repr__(self):
+        grade_string_list = []
+        for i in self.__grades:
+            grade_string_list.append(str(i))
+        grade_string = ' '.join(grade_string_list)
+        representation = ' '.join([self.__first_name, self.get_last_name(),
+                         self.get_student_number(), str(self.__status), grade_string])
+        return representation
+
 
 
 

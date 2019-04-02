@@ -24,7 +24,7 @@ class TestAddGrades(TestCase):
     def test_add_grades_one_invalid_above_100(self, mock_input):
         self.assertEqual([80, 90], crud.add_grades())
 
-   
+
 
 
 

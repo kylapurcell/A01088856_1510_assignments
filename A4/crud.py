@@ -76,14 +76,9 @@ def file_write(student1)-> bool:
     if student1 is None:
         return False
     else:
-        grade_string_list = []
-        for i in student1.get_grades_list():
-            grade_string_list.append(str(i))
-        grade_string = ' '.join(grade_string_list)
         filename = 'students.txt'
         with open(filename, 'a') as file_object:
-            line = ' '.join([student1.get_first_name(), student1.get_last_name(),
-                         student1.get_student_number(), str(student1.get_status()), grade_string])
+            line = student1.__repr__()
             file_object.write('\n' + line)
         return True
 
