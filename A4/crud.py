@@ -36,22 +36,26 @@ def add_student():
         grades = add_grades()
         student1 = student.Student(first_name1, last_name1, student_number1, status1, grades)
     except ValueError:
-        print('A student must have a student number, a first/last name and a status to be added ')
+        print('A student must have correct a student number, a first/last name and a status to be added ')
     except TypeError:
         print('A new students with no grades yet was created')
     return student1
 
 
 def file_write(student1):
-    grade_string_list = []
-    for i in student1.get_grades_list():
-        grade_string_list.append(str(i))
-    grade_string = ' '.join(grade_string_list)
-    filename = 'students.txt'
-    with open(filename, 'a') as file_object:
-        line = ' '.join([student1.get_first_name(), student1.get_last_name(),
+    if student1 is None:
+        return False
+    else:
+        grade_string_list = []
+        for i in student1.get_grades_list():
+            grade_string_list.append(str(i))
+        grade_string = ' '.join(grade_string_list)
+        filename = 'students.txt'
+        with open(filename, 'a') as file_object:
+            line = ' '.join([student1.get_first_name(), student1.get_last_name(),
                          student1.get_student_number(), str(student1.get_status()), grade_string])
         file_object.write('\n' + line)
+        return True
 
 
 def make_boolean(string):
@@ -79,17 +83,17 @@ def update_file(object_list: list):
     filename = 'students.txt'
     with open(filename, 'w') as file_object:
         file_object.write('')
-    for student in object_list:
-        file_write(student)
+    for student1 in object_list:
+        file_write(student1)
 
 
 def file_delete_student(student_number: str):
     students_list = file_read()
     while True:
-        for student in students_list:
-            if student.get_student_number() == student_number:
+        for student1 in students_list:
+            if student1.get_student_number() == student_number:
                 print('We successfully deleted the student')
-                students_list.remove(student)
+                students_list.remove(student1)
                 update_file(students_list)
                 return True
         print('We could not remove that student because they do not exist in the database')
@@ -106,24 +110,24 @@ def calculate_class_gpa():
     student_list = file_read()
     grades_sum = 0
     new_list = []
-    for student in student_list:
-        if student.calculate_student_gpa() == 0:
+    for student1 in student_list:
+        if student1.calculate_student_gpa() == 0:
             continue
-        new_list.append(student)
-    for student in new_list:
-        grades_sum += student.calculate_student_gpa()
+        new_list.append(student1)
+    for student1 in new_list:
+        grades_sum += student1.calculate_student_gpa()
     return truncate(grades_sum/len(new_list), 2)
 
 
 def update_grades(student_number: str, grade_to_add: int):
     student_list = file_read()
     while True:
-        for student in student_list:
-            if student_number == student.get_student_number():
-                    new_list = [grades for grades in student.get_grades_list()]
+        for student1 in student_list:
+            if student_number == student1.get_student_number():
+                    new_list = [grades for grades in student1.get_grades_list()]
                     new_list.append(grade_to_add)
                     try:
-                        student.set_student_grades(new_list)
+                        student1.set_student_grades(new_list)
                         update_file(student_list)
                         return True
                     except ValueError:
@@ -134,8 +138,8 @@ def update_grades(student_number: str, grade_to_add: int):
 
 def print_class_list():
     student_list = file_read()
-    for student in student_list:
-        student.print_student_info()
+    for student1 in student_list:
+        student1.print_student_info()
     print('There are', str(len(student_list)), 'students currently enrolled in this school')
 
 
