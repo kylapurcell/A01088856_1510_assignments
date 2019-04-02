@@ -179,7 +179,7 @@ def calculate_class_gpa()->float:
     grades_sum = 0
     new_list = []
     for student1 in student_list:
-        if student1.calculate_student_gpa() == 0:
+        if student1.calculate_student_gpa() == -1:
             continue
         new_list.append(student1)
     for student1 in new_list:

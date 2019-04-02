@@ -52,7 +52,7 @@ class TestStudent(TestCase):
         self.assertEqual(expected, actual)
 
 
-    #def test_set_student_grades(self,[]):
+    #def test_set_student_grades(self):
 
 
     #def test_set_student_first_name(self):

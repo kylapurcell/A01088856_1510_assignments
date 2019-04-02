@@ -1,10 +1,10 @@
 
 class Student:
-    def __init__(self, first_name: str, last_name: str, student_number: str, status: bool, grades: list):
+    def __init__(self, first_name: str, last_name: str, student_number: str, status: bool, grades=None):
         self.__grades = grades
         self.__status = status
         if ' ' in first_name or ' ' in last_name:
-            raise ValueError('A student must have a first name, last name')
+            raise ValueError('A student must have a complete first name, last name')
         elif '' == first_name or '' == last_name:
             raise ValueError('A student must have a complete first name, last name')
         else:
@@ -45,8 +45,8 @@ class Student:
         try:
             gpa = grades_sum/number_of_courses
         except ZeroDivisionError:
-            print(self.__first_name, self.__last_name, 'has no final grades yet so their gpa is currently 0')
-            gpa = 0
+            print(self.__first_name, self.__last_name, 'has no final grades yet so their gpa is currently -1')
+            gpa = -1
         return gpa
 
     def set_student_grades(self, grades: list):
