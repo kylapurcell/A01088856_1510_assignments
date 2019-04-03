@@ -98,7 +98,7 @@ def make_boolean(string_one: str) -> bool:
         return False
 
 
-def file_read():
+def file_read(filename: str):
     """
      Read a student text file.
 
@@ -106,7 +106,6 @@ def file_read():
      RETURN: list of students as a list of student objects.
      """
     object_list = []
-    filename = 'students.txt'
     with open(filename) as file_object:
         lines = file_object.readlines()
         student_list = [line.split() for line in lines]
