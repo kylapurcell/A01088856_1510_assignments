@@ -14,6 +14,6 @@ class TestUpdateFile(TestCase):
         student1 = student.Student('Kylo', 'Ren', 'A01077789', False, [40, 50])
         self.assertIsNone(crud.update_file([student1], 'testfile2.txt'))
 
-    
+
 
 

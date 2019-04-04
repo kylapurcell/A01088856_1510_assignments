@@ -176,7 +176,7 @@ def calculate_class_gpa()->float:
     return average
 
 
-def update_grades(student_number: str, grade_to_add: int) -> bool:
+def update_grades(student_number: str) -> bool:
     """
     Add a grade to a student's record.
 
@@ -191,6 +191,7 @@ def update_grades(student_number: str, grade_to_add: int) -> bool:
     while True:
         for student1 in student_list:
             if student_number == student1.get_student_number():
+                    grade_to_add = int(input('Please input a grade you would like to add (an integer from 0-100)'))
                     new_list = [grades for grades in student1.get_grades_list()]
                     new_list.append(grade_to_add)
                     try:
@@ -243,16 +244,13 @@ def crud_loop():
         if option == 6:
             break
         elif option == 5:
-            student_number = input('Please input a student number in the format A###### ')
-            grade = int(input('Please input a grade you would like to add (an integer from 0-100)'))
-            update_grades(student_number, grade)
+            update_grades(input('Please input a student number in the format A###### '))
         elif option == 4:
             print_class_list()
         elif option == 3:
-            print(calculate_class_gpa())
+            print('The class average of this class is', str(calculate_class_gpa()))
         elif option == 2:
-            student_number = input('Please input a student number in the format A###### to delete')
-            file_delete_student(student_number)
+            file_delete_student(input('Please input a student number in the format A###### to delete'))
         elif option == 1:
             file_write(add_student(), 'students.txt')
 
