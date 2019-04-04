@@ -129,6 +129,8 @@ def file_delete_student(student_number: str, file_name: str) -> bool:
     Delete a student from a text file.
 
     PARAM: student_number , a string
+    PARAM: file_name, a string
+    PRE-CONDITION: file_name must be a string ending in .txt
     PRE-CONDITION: student_number must be a string
     POST-CONDITION: if student_number matches the student number of a student in the file, deletes that
     student's information from the text file or prints a helpful message
@@ -144,11 +146,6 @@ def file_delete_student(student_number: str, file_name: str) -> bool:
                 return True
         print('We could not remove that student because they do not exist in the database')
         return False
-
-
-def round_up_decimals(number: float, decimals=0):
-    rounder = 10 ** decimals
-    return math.ceil(number * rounder) / rounder
 
 
 def calculate_class_gpa()->float:
@@ -170,7 +167,7 @@ def calculate_class_gpa()->float:
     for student1 in new_list:
         grades_sum += student1.calculate_student_gpa()
     try:
-        average = round_up_decimals(grades_sum/len(new_list), 2)
+        average = round(grades_sum/len(new_list), 2)
     except ZeroDivisionError:
         print('The students in the database do not have final grades yet')
     return average
