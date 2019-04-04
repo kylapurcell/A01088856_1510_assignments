@@ -145,9 +145,9 @@ def file_delete_student(student_number: str) -> bool:
         return False
 
 
-def truncate(n, decimals=0):
-    multiplier = 10 ** decimals
-    return int(n * multiplier) / multiplier
+def round_up_decimals(number: int, decimals=0):
+    rounder = 10 ** decimals
+    return int(math.ceil(number * rounder) / rounder)
 
 
 def calculate_class_gpa()->float:
@@ -169,7 +169,7 @@ def calculate_class_gpa()->float:
     for student1 in new_list:
         grades_sum += student1.calculate_student_gpa()
     try:
-        average = truncate(grades_sum/len(new_list), 2)
+        average = round_up_to_2_decimals(grades_sum/len(new_list), 2)
     except ZeroDivisionError:
         print('The students in the database do not have final grades yet')
     return average
