@@ -35,7 +35,8 @@ class Student:
         for i in self.__grades:
             grade_string_list.append(str(i))
         grade_string = ' '.join(grade_string_list)
-        print(self.__first_name, self.__last_name, self.__student_number, str(self.__status), grade_string)
+        print('Name:', self.__first_name, self.__last_name, 'Student Number:', self.__student_number,
+              'Status:', str(self.__status), 'Grades:', grade_string)
 
     def calculate_student_gpa(self):
         number_of_courses = len(self.__grades)

@@ -51,8 +51,8 @@ def add_student():
      """
     student1 = None
     try:
-        first_name1 = input("What is the student's first name")
-        last_name1 = input("What is the student's last name")
+        first_name1 = input("What is the student's first name ")
+        last_name1 = input("What is the student's last name ")
         student_number1 = input("What is the student's #")
         status1 = make_boolean(input('Is this student in good standing, (True or False)').title().strip())
         grades = add_grades()
