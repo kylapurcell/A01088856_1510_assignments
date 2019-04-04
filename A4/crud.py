@@ -51,12 +51,14 @@ def add_student():
      """
     student1 = None
     try:
-        first_name1 = input("What is the student's first name").title()
-        last_name1 = input("What is the student's last name").title()
+        first_name1 = input("What is the student's first name")
+        last_name1 = input("What is the student's last name")
         student_number1 = input("What is the student's #")
         status1 = make_boolean(input('Is this student in good standing, (True or False)').title().strip())
         grades = add_grades()
         student1 = student.Student(first_name1, last_name1, student_number1, status1, grades)
+        student1.format_first_name()
+        student1.format_last_name()
     except ValueError:
         print('A student must have correct a student number, a first/last name and a status to be added ')
     return student1

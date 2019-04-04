@@ -69,10 +69,15 @@ class Student:
         for i in self.__grades:
             grade_string_list.append(str(i))
         grade_string = ' '.join(grade_string_list)
-        representation = ' '.join([self.__first_name, self.get_last_name(),
-                         self.get_student_number(), str(self.__status), grade_string])
+        representation = ' '.join([self.__first_name, self.__last_name,
+                         self.__student_number, str(self.__status), grade_string])
         return representation
 
+    def format_first_name(self):
+        self.__first_name = self.__first_name.title().strip()
+
+    def format_last_name(self):
+        self.__last_name = self.__last_name.title().strip()
 
 
 
