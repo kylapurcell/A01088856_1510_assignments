@@ -99,7 +99,7 @@ def file_read(filename: str):
         lines = file_object.readlines()
         student_list = [line.split() for line in lines]
         for i in student_list:
-            if i == []:
+            if not i:
                 continue
             else:
                 object_list.append(student.Student(i[0], i[1], i[2], make_boolean(i[3]), list(map(int, i[4:]))))
@@ -145,9 +145,9 @@ def file_delete_student(student_number: str) -> bool:
         return False
 
 
-def round_up_decimals(number: int, decimals=0):
+def round_up_decimals(number: float, decimals=0):
     rounder = 10 ** decimals
-    return int(math.ceil(number * rounder) / rounder)
+    return math.ceil(number * rounder) / rounder
 
 
 def calculate_class_gpa()->float:
@@ -169,7 +169,7 @@ def calculate_class_gpa()->float:
     for student1 in new_list:
         grades_sum += student1.calculate_student_gpa()
     try:
-        average = round_up_to_2_decimals(grades_sum/len(new_list), 2)
+        average = round_up_decimals(grades_sum/len(new_list), 2)
     except ZeroDivisionError:
         print('The students in the database do not have final grades yet')
     return average
