@@ -106,7 +106,7 @@ def file_read(filename: str):
         return object_list
 
 
-def update_file(object_list: list,filename:str)-> None:
+def update_file(object_list: list, filename: str)-> None:
     """
      Update a student text file.
 
@@ -124,7 +124,7 @@ def update_file(object_list: list,filename:str)-> None:
         file_write(student1, filename)
 
 
-def file_delete_student(student_number: str) -> bool:
+def file_delete_student(student_number: str, file_name: str) -> bool:
     """
     Delete a student from a text file.
 
@@ -134,13 +134,13 @@ def file_delete_student(student_number: str) -> bool:
     student's information from the text file or prints a helpful message
     RETURN: True or False as a bool.
         """
-    students_list = file_read('students.txt')
+    students_list = file_read(file_name)
     while True:
         for student1 in students_list:
             if student1.get_student_number() == student_number:
                 print('We successfully deleted the student')
                 students_list.remove(student1)
-                update_file(students_list, 'students.txt')
+                update_file(students_list, file_name)
                 return True
         print('We could not remove that student because they do not exist in the database')
         return False
@@ -250,7 +250,7 @@ def crud_loop():
         elif option == 3:
             print('The class average of this class is', str(calculate_class_gpa()))
         elif option == 2:
-            file_delete_student(input('Please input a student number in the format A###### to delete'))
+            file_delete_student(input('Please input a student number in the format A###### to delete'), 'students.txt')
         elif option == 1:
             file_write(add_student(), 'students.txt')
 
