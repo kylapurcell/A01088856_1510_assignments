@@ -36,9 +36,10 @@ def make_boolean(string_one: str) -> bool:
      POST-CONDITION: If string_one is True returns True else returns False
      RETURN: True or False as a Boolean
      """
-    if string_one == 'True':
+    string_titled = string_one.title()
+    if string_titled == 'True':
         return True
-    else:
+    elif string_titled == 'False':
         return False
 
 
@@ -54,7 +55,7 @@ def add_student():
         first_name1 = input("What is the student's first name ")
         last_name1 = input("What is the student's last name ")
         student_number1 = input("What is the student's #")
-        status1 = make_boolean(input('Is this student in good standing, (True or False)').title().strip())
+        status1 = make_boolean(input('Is this student in good standing, (True or False)'))
         grades = add_grades()
         student1 = student.Student(first_name1, last_name1, student_number1, status1, grades)
         student1.format_first_name()
