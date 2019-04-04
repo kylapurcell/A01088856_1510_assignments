@@ -39,7 +39,7 @@ def make_boolean(string_one: str) -> bool:
     string_titled = string_one.title()
     if string_titled == 'True':
         return True
-    elif string_titled == 'False':
+    else:
         return False
 
 
