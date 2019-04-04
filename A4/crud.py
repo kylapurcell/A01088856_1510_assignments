@@ -54,8 +54,8 @@ def add_student():
     try:
         first_name1 = input("What is the student's first name ")
         last_name1 = input("What is the student's last name ")
-        student_number1 = input("What is the student's #")
-        status1 = make_boolean(input('Is this student in good standing, (True or False)'))
+        student_number1 = input("What is the student's # ")
+        status1 = make_boolean(input('Is this student in good standing, (True or False) '))
         grades = add_grades()
         student1 = student.Student(first_name1, last_name1, student_number1, status1, grades)
         student1.format_first_name()
@@ -106,17 +106,18 @@ def file_read(filename: str):
         return object_list
 
 
-def update_file(object_list: list)-> None:
+def update_file(object_list: list,filename:str)-> None:
     """
      Update a student text file.
 
      PARAM: object_list, a list
+     PARAM: filename, a string
+     PRE-CONDITION: filename must be a string ending in .txt
      PRE-CONDITION: object_list must be a list of student objects
      POST-CONDITION: clears current information in the students text file and replaces it with
      the contents of object_list as a string
      RETURN: None
      """
-    filename = 'students.txt'
     with open(filename, 'w') as file_object:
         file_object.write('')
     for student1 in object_list:
@@ -139,7 +140,7 @@ def file_delete_student(student_number: str) -> bool:
             if student1.get_student_number() == student_number:
                 print('We successfully deleted the student')
                 students_list.remove(student1)
-                update_file(students_list)
+                update_file(students_list, 'students.txt')
                 return True
         print('We could not remove that student because they do not exist in the database')
         return False
@@ -194,7 +195,7 @@ def update_grades(student_number: str, grade_to_add: int) -> bool:
                     new_list.append(grade_to_add)
                     try:
                         student1.set_student_grades(new_list)
-                        update_file(student_list)
+                        update_file(student_list, 'students.txt')
                         return True
                     except ValueError:
                         print('Grades cannot include numbers below zero or above 100')
