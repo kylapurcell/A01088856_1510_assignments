@@ -13,13 +13,13 @@ def add_grades()->list:
     while True:
         try:
             grade = int(input('Input a grade to add to the students grade list, If no '
-                              'grades yet type 1 when done adding type 2 ').strip())
-            if grade > 100 or grade < 0:
-                print('That grade is not valid')
-            elif grade == 1:
+                              'grades yet type -1 when done adding type -2 ').strip())
+            if grade == -1:
                 return []
-            elif grade == 2:
+            elif grade == -2:
                     break
+            elif grade > 100 or grade < 0:
+                print('That grade is not valid')
             else:
                 grade_list.append(grade)
         except TypeError:
