@@ -27,18 +27,19 @@ def add_grades()->list:
     return grade_list
 
 
-def status_input()-> bool:
+def make_boolean(string_one: str) -> bool:
     """
-     Choose a status for a student.
+     Convert a string into a boolean.
 
-     POST-CONDITION: Asks user for input and returns True or False based on selection
-     RETURN: a status as a bool
+     PARAM: string_one, a string
+     PRE-CONDITION: string_one must be a string
+     POST-CONDITION: If string_one is True returns True else returns False
+     RETURN: True or False as a Boolean
      """
-    status = False
-    status1 = input('Is this student in good standing, (True or False)').title().strip()
-    if status1 == 'True':
-        status = True
-    return status
+    if string_one == 'True':
+        return True
+    else:
+        return False
 
 
 def add_student():
@@ -53,7 +54,7 @@ def add_student():
         first_name1 = input("What is the student's first name").title()
         last_name1 = input("What is the student's last name").title()
         student_number1 = input("What is the student's #")
-        status1 = status_input()
+        status1 = make_boolean(input('Is this student in good standing, (True or False)').title().strip())
         grades = add_grades()
         student1 = student.Student(first_name1, last_name1, student_number1, status1, grades)
     except ValueError:
@@ -81,21 +82,6 @@ def file_write(student1, filename1: str)-> bool:
             line = student1.__repr__()
             file_object.write('\n' + line)
         return True
-
-
-def make_boolean(string_one: str) -> bool:
-    """
-     Convert a string into a boolean.
-
-     PARAM: string_one, a string
-     PRE-CONDITION: string_one must be a string
-     POST-CONDITION: If string_one is True returns True else returns False
-     RETURN: True or False as a Boolean
-     """
-    if string_one == 'True':
-        return True
-    else:
-        return False
 
 
 def file_read(filename: str):
@@ -131,7 +117,7 @@ def update_file(object_list: list)-> None:
     with open(filename, 'w') as file_object:
         file_object.write('')
     for student1 in object_list:
-        file_write(student1)
+        file_write(student1, filename)
 
 
 def file_delete_student(student_number: str) -> bool:
@@ -144,7 +130,7 @@ def file_delete_student(student_number: str) -> bool:
     student's information from the text file or prints a helpful message
     RETURN: True or False as a bool.
         """
-    students_list = file_read()
+    students_list = file_read('students.txt')
     while True:
         for student1 in students_list:
             if student1.get_student_number() == student_number:
@@ -168,8 +154,8 @@ def calculate_class_gpa()->float:
     POST-CONDITION: calculates the gpa of students with final grades and then calculates the rounded average
     RETURN: the class grade point average as a float
     """
-    print('Students with no final grades yet (GPA = 0) will not be counted in this calculation')
-    student_list = file_read()
+    print('Students with no final grades yet (GPA = -1) will not be counted in this calculation')
+    student_list = file_read('students.txt')
     grades_sum = 0
     new_list = []
     average = 0
@@ -197,7 +183,7 @@ def update_grades(student_number: str, grade_to_add: int) -> bool:
     POST-CONDITION: If valid adds a grade to the grade list of a student and updates the text file
     RETURN: True or False as a bool
     """
-    student_list = file_read()
+    student_list = file_read('students.txt')
     while True:
         for student1 in student_list:
             if student_number == student1.get_student_number():
@@ -221,7 +207,7 @@ def print_class_list()-> None:
     enrolled in the class
     RETURN: None
     """
-    student_list = file_read()
+    student_list = file_read('students.txt')
     for student1 in student_list:
         student1.print_student_info()
     print('There are', str(len(student_list)), 'students currently enrolled in this school')
@@ -264,7 +250,7 @@ def crud_loop():
             student_number = input('Please input a student number in the format A###### to delete')
             file_delete_student(student_number)
         elif option == 1:
-            file_write(add_student())
+            file_write(add_student(), 'students.txt')
 
 
 def main():
