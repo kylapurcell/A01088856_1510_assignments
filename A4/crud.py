@@ -12,8 +12,8 @@ def add_grades()->list:
     grade_list = []
     while True:
         try:
-            grade = int(input('Input a grade to add to the students grade list, If no '
-                              'grades yet type -1 when done adding type -2 ').strip())
+            grade = int(input('Input a grade to add to the students grade list and when done adding type -2 or '
+                              'if student has no grades yet type -1 ').strip())
             if grade == -1:
                 return []
             elif grade == -2:
