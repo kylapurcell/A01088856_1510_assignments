@@ -1,6 +1,5 @@
 from unittest import TestCase
 from A4 import crud
-from A4 import student
 from unittest.mock import patch
 from unittest.mock import mock_open
 import io
