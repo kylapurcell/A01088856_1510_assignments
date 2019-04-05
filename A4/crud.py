@@ -1,5 +1,4 @@
 from A4 import student
-import math
 
 
 def add_grades()->list:
@@ -87,10 +86,12 @@ def file_write(student1, filename1: str)-> bool:
         return True
 
 
-def file_read(filename: str):
+def file_read(filename: str)-> list:
     """
      Read a student text file.
 
+     PARAM: filename, a string
+     PRE-CONDITION: filename must be a string ending in .txt
      POST-CONDITION: Converts students in the text file to student objects and adds them to a list
      RETURN: list of students as a list of student objects.
      """
@@ -179,8 +180,10 @@ def update_grades(student_number: str, file_name: str) -> bool:
 
     PARAM: student_number, a string
     PARAM: grade_to_add, an integer
+    PARAM: file_name, a string
     PRE-CONDITION: student_number must be a string
     PRE-CONDITION: grade_to_add must be an integer in range 0-100
+    PRE-CONDITION: file_name must be a string ending in .txt
     POST-CONDITION: If valid adds a grade to the grade list of a student and updates the text file
     RETURN: True or False as a bool
     """
@@ -205,6 +208,8 @@ def print_class_list(file_name: str)-> None:
     """
     Print the information of all students in a text file.
 
+    PARAM: file_name, a string
+    PRE-CONDITION: file_name must be a string ending in .txt
     POST-CONDITION: Prints the information of students in the text file and prints how many students are currently
     enrolled in the class
     RETURN: None
