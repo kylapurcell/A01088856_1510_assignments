@@ -23,5 +23,17 @@ class TestCalculateClassGpa(TestCase):
     def test_is_type_float(self):
         self.assertEqual(float, type(crud.calculate_class_gpa()))
 
+    @patch('builtins.open', mock_open(read_data="Kyla Purcell A01088856 True 80 90 100 "
+                                                "\n Kyla Burcell A01077787 False"))
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_printed_output_no_grades(self, mock_stdout):
+        expected = 'Students with no final grades yet (GPA = -1) will not be counted in this calculation\n' \
+                   'Kyla Burcell has no final grades yet so their gpa is currently -1\n'
+        crud.calculate_class_gpa()
+        self.assertEqual(mock_stdout.getvalue(), expected)
+
+
+
+
 
 
