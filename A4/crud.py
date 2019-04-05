@@ -5,7 +5,8 @@ def add_grades()->list:
     """
     Create list of inputted grades.
 
-    POST-CONDITION: If valid adds inputted grades to a list and returns it or returns empty list if option selected
+    POST-CONDITION: If valid grade, adds the inputted grades to a list and
+    returns it or returns empty list if option selected
     RETURN: list of grades as a list of integers or an empty list.
     """
     grade_list = []
@@ -34,6 +35,11 @@ def make_boolean(string_one: str) -> bool:
      PRE-CONDITION: string_one must be a string
      POST-CONDITION: If string_one is True returns True else returns False
      RETURN: True or False as a Boolean
+
+     >>> make_boolean('true')
+     True
+     >>> make_boolean('false')
+     False
      """
     string_titled = string_one.title()
     if string_titled == 'True':
@@ -75,6 +81,9 @@ def file_write(student1, filename1: str)-> bool:
      POST-CONDITION: If student1 is student object writes their information to a text file as a string and returns True
      else returns False
      RETURN: True or False as a bool.
+
+     >>> file_write(None, 'testfile2.txt')
+     False
      """
     if student1 is None:
         return False
@@ -136,7 +145,11 @@ def file_delete_student(student_number: str, file_name: str) -> bool:
     POST-CONDITION: if student_number matches the student number of a student in the file, deletes that
     student's information from the text file or prints a helpful message
     RETURN: True or False as a bool.
-        """
+
+    >>> file_delete_student('A00000000','testfile14.txt')
+    We could not remove that student because they do not exist in the database
+    False
+    """
     students_list = file_read(file_name)
     while True:
         for student1 in students_list:
@@ -186,6 +199,10 @@ def update_grades(student_number: str, file_name: str) -> bool:
     PRE-CONDITION: file_name must be a string ending in .txt
     POST-CONDITION: If valid adds a grade to the grade list of a student and updates the text file
     RETURN: True or False as a bool
+
+    >>> update_grades('A00000000','testfile14.txt')
+    We could not find that student in our file or grade could not be added
+    False
     """
     student_list = file_read(file_name)
     while True:
