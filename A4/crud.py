@@ -17,7 +17,7 @@ def add_grades()->list:
     while True:
         try:
             grade = int(input('Input a grade to add to the students grade list and when done adding type -2 or '
-                              'if student has no grades yet type -1 ').strip())
+                              'if student has no grades yet type -1: ').strip())
             if grade == -1:
                 return []
             elif grade == -2:
@@ -166,15 +166,17 @@ def file_delete_student(student_number: str, file_name: str) -> bool:
         return False
 
 
-def calculate_class_gpa()->float:
+def calculate_class_gpa(file_name: str)->float:
     """
     Calculate the class average.
 
+    PARAM: file_name, a string
+    PRE-CONDITION: file_name must be a string
     POST-CONDITION: calculates the gpa of students with final grades and then calculates the rounded average
     RETURN: the class grade point average as a float
     """
     print('Students with no final grades yet (GPA = -1) will not be counted in this calculation')
-    student_list = file_read('students.txt')
+    student_list = file_read(file_name)
     grades_sum = 0
     new_list = []
     average = 0
@@ -275,7 +277,7 @@ def crud_loop():
         elif option == 4:
             print_class_list('students.txt')
         elif option == 3:
-            print('The class average of this class is', str(calculate_class_gpa()))
+            print('The class average of this class is', str(calculate_class_gpa('students.txt')))
         elif option == 2:
             file_delete_student(input('Please input a student number in the format A###### to delete'), 'students.txt')
         elif option == 1:
