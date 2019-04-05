@@ -173,7 +173,7 @@ def calculate_class_gpa()->float:
     return average
 
 
-def update_grades(student_number: str) -> bool:
+def update_grades(student_number: str, file_name: str) -> bool:
     """
     Add a grade to a student's record.
 
@@ -184,7 +184,7 @@ def update_grades(student_number: str) -> bool:
     POST-CONDITION: If valid adds a grade to the grade list of a student and updates the text file
     RETURN: True or False as a bool
     """
-    student_list = file_read('students.txt')
+    student_list = file_read(file_name)
     while True:
         for student1 in student_list:
             if student_number == student1.get_student_number():
@@ -193,7 +193,7 @@ def update_grades(student_number: str) -> bool:
                     new_list.append(grade_to_add)
                     try:
                         student1.set_student_grades(new_list)
-                        update_file(student_list, 'students.txt')
+                        update_file(student_list, file_name)
                         return True
                     except ValueError:
                         print('Grades cannot include numbers below zero or above 100')
@@ -241,7 +241,7 @@ def crud_loop():
         if option == 6:
             break
         elif option == 5:
-            update_grades(input('Please input a student number in the format A###### '))
+            update_grades(input('Please input a student number in the format A###### '), 'students.txt')
         elif option == 4:
             print_class_list()
         elif option == 3:
