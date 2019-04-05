@@ -1,3 +1,7 @@
+# Kyla Purcell
+
+# A01088856
+
 
 class Student:
     """ This is the student class module, it includes all methods concerning the creation, format, and rules about
