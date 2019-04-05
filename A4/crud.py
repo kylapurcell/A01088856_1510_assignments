@@ -229,7 +229,11 @@ def print_menu_options()-> int:
     except ValueError:
         print('You must select one of the given options')
         return print_menu_options()
-    return option
+    if 1 <= option <= 6:
+        return option
+    else:
+        print('You must select one of the given options')
+        return print_menu_options()
 
 
 def crud_loop():
