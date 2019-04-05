@@ -201,7 +201,7 @@ def update_grades(student_number: str, file_name: str) -> bool:
         return False
 
 
-def print_class_list()-> None:
+def print_class_list(file_name: str)-> None:
     """
     Print the information of all students in a text file.
 
@@ -209,7 +209,7 @@ def print_class_list()-> None:
     enrolled in the class
     RETURN: None
     """
-    student_list = file_read('students.txt')
+    student_list = file_read(file_name)
     for student1 in student_list:
         student1.print_student_info()
     print('There are', str(len(student_list)), 'students currently enrolled in this school')
@@ -243,7 +243,7 @@ def crud_loop():
         elif option == 5:
             update_grades(input('Please input a student number in the format A###### '), 'students.txt')
         elif option == 4:
-            print_class_list()
+            print_class_list('students.txt')
         elif option == 3:
             print('The class average of this class is', str(calculate_class_gpa()))
         elif option == 2:
