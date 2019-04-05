@@ -24,6 +24,13 @@ class TestAddGrades(TestCase):
     def test_add_grades_one_invalid_above_100(self, mock_input):
         self.assertEqual([80, 90], crud.add_grades())
 
+    @patch('builtins.input', side_effect=['hello', '-2'])
+    @patch('sys.stdout', new_callable=io.StringIO)
+    def test_add_grades_one_invalid_input(self, mock_stdout, mock_input):
+        crud.add_grades()
+        expected = 'Grade must be an integer\n'
+        self.assertEqual(mock_stdout.getvalue(), expected)
+
 
 
 

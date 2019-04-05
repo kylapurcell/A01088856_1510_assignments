@@ -22,7 +22,7 @@ def add_grades()->list:
                 print('That grade is not valid')
             else:
                 grade_list.append(grade)
-        except TypeError:
+        except ValueError:
             print('Grade must be an integer')
     return grade_list
 
