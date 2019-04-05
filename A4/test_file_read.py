@@ -12,7 +12,8 @@ class TestFileRead(TestCase):
         student1 = student.Student('Kyla', 'Purcell', 'A01088856', True, [80, 90, 100])
         self.assertEqual(student1.__repr__(), reader[0].__repr__())
 
-    @patch('builtins.open', mock_open(read_data="Kyla Purcell A01088856 True 80 90 100 \n Kaylee Hello A01099967 False "))
+    @patch('builtins.open', mock_open(read_data="Kyla Purcell A01088856 True 80 90 100 "
+                                                "\n Kaylee Hello A01099967 False "))
     def test_file_read_two_students_equal_list(self):
         reader = crud.file_read('testfile1.txt')
         new_list = []

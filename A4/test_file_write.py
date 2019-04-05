@@ -1,8 +1,6 @@
 from unittest import TestCase
 from A4 import crud
 from A4 import student
-from unittest.mock import patch
-import io
 
 
 class TestFileWrite(TestCase):

@@ -3,6 +3,7 @@ from A4 import crud
 from unittest.mock import patch
 import io
 
+
 class TestPrintMenuOptions(TestCase):
 
     @patch('builtins.input', return_value='1')

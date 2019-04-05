@@ -68,11 +68,11 @@ class TestStudent(TestCase):
         self.assertEqual(False, self.test_student.get_status())
 
     def test_format_first_name(self):
-        student2_name = self.test_student2.format_first_name()
+        self.test_student2.format_first_name()
         self.assertEqual('Dahlia', self.test_student2.get_first_name())
 
     def test_format_last_name(self):
-        student2_name = self.test_student2.format_last_name()
+        self.test_student2.format_last_name()
         self.assertEqual('Billings', self.test_student2.get_last_name())
 
     def test_repr_(self):

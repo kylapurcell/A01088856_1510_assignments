@@ -2,7 +2,6 @@ from unittest import TestCase
 from unittest.mock import patch
 from A4 import crud
 from A4 import student
-import io
 
 
 class TestAddStudent(TestCase):
