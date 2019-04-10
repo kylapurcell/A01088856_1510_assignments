@@ -13,7 +13,7 @@ def password_validator(password: str)-> bool:
             return False
 
 
-print(password_validator('HeeLLoo89'))
+print(password_validator(''))
 
 
 
