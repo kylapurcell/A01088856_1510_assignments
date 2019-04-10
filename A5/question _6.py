@@ -6,9 +6,17 @@ def get_api_info():
     response = requests.get('https://api.nasa.gov/planetary/apod?api_key=y1eJsAGH9K6MuftCjGwHq9Wm7znADIePqQiOzksD')
     response.raise_for_status()
     image = json.loads(response.text)
-    print(image)
+    return image
 
-get_api_info()
+
+def get_image_url():
+    image = get_api_info()
+    return image['url']
+
+
+def get_image_description():
+    image = get_api_info()
+    return image['explanation']
 
 
 def website():
@@ -28,9 +36,13 @@ def website():
                '<h1>' + name + '</h1>' \
                '</center>' \
                 + sentence + \
+               '<img src= ' + get_image_url() + '>'\
+               '<p>' + get_image_description() + '</p>'\
                '</body>' \
                '</html>'
         file_object.write(line)
+
+website()
 
 
 website()
